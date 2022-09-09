@@ -1,0 +1,17 @@
+C:\Users\Usuario\source\repos\CRUD_Livros\CRUD_Livros\obj\Debug\net6.0-windows\CRUD_Livros.csproj.AssemblyReference.cache
+C:\Users\Usuario\source\repos\CRUD_Livros\CRUD_Livros\obj\Debug\net6.0-windows\CRUD_Livros.Form1.resources
+C:\Users\Usuario\source\repos\CRUD_Livros\CRUD_Livros\obj\Debug\net6.0-windows\CRUD_Livros.csproj.GenerateResource.cache
+C:\Users\Usuario\source\repos\CRUD_Livros\CRUD_Livros\obj\Debug\net6.0-windows\CRUD_Livros.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Usuario\source\repos\CRUD_Livros\CRUD_Livros\obj\Debug\net6.0-windows\CRUD_Livros.AssemblyInfoInputs.cache
+C:\Users\Usuario\source\repos\CRUD_Livros\CRUD_Livros\obj\Debug\net6.0-windows\CRUD_Livros.AssemblyInfo.cs
+C:\Users\Usuario\source\repos\CRUD_Livros\CRUD_Livros\obj\Debug\net6.0-windows\CRUD_Livros.csproj.CoreCompileInputs.cache
+C:\Users\Usuario\source\repos\CRUD_Livros\CRUD_Livros\bin\Debug\net6.0-windows\CRUD_Livros.exe
+C:\Users\Usuario\source\repos\CRUD_Livros\CRUD_Livros\bin\Debug\net6.0-windows\CRUD_Livros.deps.json
+C:\Users\Usuario\source\repos\CRUD_Livros\CRUD_Livros\bin\Debug\net6.0-windows\CRUD_Livros.runtimeconfig.json
+C:\Users\Usuario\source\repos\CRUD_Livros\CRUD_Livros\bin\Debug\net6.0-windows\CRUD_Livros.dll
+C:\Users\Usuario\source\repos\CRUD_Livros\CRUD_Livros\bin\Debug\net6.0-windows\CRUD_Livros.pdb
+C:\Users\Usuario\source\repos\CRUD_Livros\CRUD_Livros\obj\Debug\net6.0-windows\CRUD_Livros.dll
+C:\Users\Usuario\source\repos\CRUD_Livros\CRUD_Livros\obj\Debug\net6.0-windows\refint\CRUD_Livros.dll
+C:\Users\Usuario\source\repos\CRUD_Livros\CRUD_Livros\obj\Debug\net6.0-windows\CRUD_Livros.pdb
+C:\Users\Usuario\source\repos\CRUD_Livros\CRUD_Livros\obj\Debug\net6.0-windows\CRUD_Livros.genruntimeconfig.cache
+C:\Users\Usuario\source\repos\CRUD_Livros\CRUD_Livros\obj\Debug\net6.0-windows\ref\CRUD_Livros.dll
