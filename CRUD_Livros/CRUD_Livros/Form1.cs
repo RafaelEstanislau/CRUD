@@ -1,26 +1,38 @@
+using CRUD_Livros;
+using System.Collections;
+using System.Windows.Forms;
+using static System.Windows.Forms.DataFormats;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+
 namespace CRUD_Livros
 {
     public partial class Form1 : Form
     {
+
         public Form1()
         {
             InitializeComponent();
+            
         }
-        public string recebeDados(object sender, EventArgs e)
-        {
-            string nomeLivro = textBox1.Text;
-            return nomeLivro;
-        }
+       
         private void Form1_Load(object sender, EventArgs e)
         {
-            List<Livro> listaDeLivros = new List<Livro>();
-            
-            Livro livro = new Livro();
-            
-            
+            var form2 = new Form2();
+            dataGridView1.DataSource = form2.CadastraLivro();
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        private void button1_Click_1(object sender, EventArgs e) //Cadastro
+        {
+            var trocaTela = new Form2();
+            trocaTela.Show();
+        }
+
+        private void button2_Click(object sender, EventArgs e) //Busca
+        {
+        
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
