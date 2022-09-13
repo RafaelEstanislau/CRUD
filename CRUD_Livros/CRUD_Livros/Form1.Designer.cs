@@ -39,6 +39,7 @@
             this.anoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.livroBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.button3 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.livroBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -55,9 +56,9 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(710, 402);
+            this.button1.Location = new System.Drawing.Point(704, 163);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(136, 73);
+            this.button1.Size = new System.Drawing.Size(148, 77);
             this.button1.TabIndex = 1;
             this.button1.Text = "CADASTRAR";
             this.button1.UseVisualStyleBackColor = true;
@@ -65,11 +66,11 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(879, 402);
+            this.button2.Location = new System.Drawing.Point(704, 286);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(148, 73);
             this.button2.TabIndex = 2;
-            this.button2.Text = "BUSCAR";
+            this.button2.Text = "EDITAR";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
@@ -87,9 +88,10 @@
             this.dataGridView1.Location = new System.Drawing.Point(0, 53);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(681, 422);
             this.dataGridView1.TabIndex = 4;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
             // nomeDataGridViewTextBoxColumn
             // 
@@ -140,11 +142,22 @@
             // 
             this.livroBindingSource.DataSource = typeof(CRUD_Livros.Livro);
             // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(704, 402);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(148, 73);
+            this.button3.TabIndex = 5;
+            this.button3.Text = "DELETAR";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1039, 487);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button2);
@@ -164,12 +177,13 @@
         private Label label1;
         private Button button1;
         private Button button2;
-        private DataGridView dataGridView1;
         private DataGridViewTextBoxColumn nomeDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn editoraDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn autorDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn anoDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private BindingSource livroBindingSource;
+        private Button button3;
+        private DataGridView dataGridView1;
     }
 }

@@ -41,6 +41,7 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -153,9 +154,9 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(466, 350);
+            this.button1.Location = new System.Drawing.Point(437, 148);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(136, 73);
+            this.button1.Size = new System.Drawing.Size(148, 73);
             this.button1.TabIndex = 5;
             this.button1.Text = "CADASTRAR";
             this.button1.UseVisualStyleBackColor = true;
@@ -163,19 +164,30 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(640, 350);
+            this.button2.Location = new System.Drawing.Point(437, 352);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(136, 73);
+            this.button2.Size = new System.Drawing.Size(148, 73);
             this.button2.TabIndex = 6;
             this.button2.Text = "VOLTAR";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(437, 255);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(148, 73);
+            this.button3.TabIndex = 7;
+            this.button3.Text = "EDITAR";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.panel1);
@@ -190,17 +202,18 @@
         #endregion
 
         private Panel panel1;
-        private TextBox textBox5;
         private Label label6;
         private Label label5;
-        private TextBox textBox4;
         private Label label4;
         private Label label3;
-        private TextBox textBox3;
-        private TextBox textBox2;
         private Label label2;
-        private TextBox textBox1;
         private Button button1;
         private Button button2;
+        private Button button3;
+        public TextBox textBox5;
+        public TextBox textBox4;
+        public TextBox textBox3;
+        public TextBox textBox2;
+        public TextBox textBox1;
     }
 }
