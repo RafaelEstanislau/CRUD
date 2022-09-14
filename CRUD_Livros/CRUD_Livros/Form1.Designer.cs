@@ -30,8 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.BotaoCadastrar = new System.Windows.Forms.Button();
+            this.BotaoEditar = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.nomeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.editoraDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -39,7 +39,7 @@
             this.anoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.livroBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.button3 = new System.Windows.Forms.Button();
+            this.BotaoDeletar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.livroBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -54,25 +54,25 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "CRUD Livros";
             // 
-            // button1
+            // BotaoCadastrar
             // 
-            this.button1.Location = new System.Drawing.Point(704, 163);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(148, 77);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "CADASTRAR";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            this.BotaoCadastrar.Location = new System.Drawing.Point(704, 163);
+            this.BotaoCadastrar.Name = "BotaoCadastrar";
+            this.BotaoCadastrar.Size = new System.Drawing.Size(148, 77);
+            this.BotaoCadastrar.TabIndex = 1;
+            this.BotaoCadastrar.Text = "CADASTRAR";
+            this.BotaoCadastrar.UseVisualStyleBackColor = true;
+            this.BotaoCadastrar.Click += new System.EventHandler(this.BotaoCadastrar_Click);
             // 
-            // button2
+            // BotaoEditar
             // 
-            this.button2.Location = new System.Drawing.Point(704, 286);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(148, 73);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "EDITAR";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.BotaoEditar.Location = new System.Drawing.Point(704, 286);
+            this.BotaoEditar.Name = "BotaoEditar";
+            this.BotaoEditar.Size = new System.Drawing.Size(148, 73);
+            this.BotaoEditar.TabIndex = 2;
+            this.BotaoEditar.Text = "EDITAR";
+            this.BotaoEditar.UseVisualStyleBackColor = true;
+            this.BotaoEditar.Click += new System.EventHandler(this.BotaoEditar_Click);
             // 
             // dataGridView1
             // 
@@ -142,26 +142,26 @@
             // 
             this.livroBindingSource.DataSource = typeof(CRUD_Livros.Livro);
             // 
-            // button3
+            // BotaoDeletar
             // 
-            this.button3.Location = new System.Drawing.Point(704, 402);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(148, 73);
-            this.button3.TabIndex = 5;
-            this.button3.Text = "DELETAR";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.BotaoDeletar.Location = new System.Drawing.Point(704, 402);
+            this.BotaoDeletar.Name = "BotaoDeletar";
+            this.BotaoDeletar.Size = new System.Drawing.Size(148, 73);
+            this.BotaoDeletar.TabIndex = 5;
+            this.BotaoDeletar.Text = "DELETAR";
+            this.BotaoDeletar.UseVisualStyleBackColor = true;
+            this.BotaoDeletar.Click += new System.EventHandler(this.BotaoDeletar_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1039, 487);
-            this.Controls.Add(this.button3);
+            this.Controls.Add(this.BotaoDeletar);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.BotaoEditar);
+            this.Controls.Add(this.BotaoCadastrar);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -175,15 +175,15 @@
         #endregion
 
         private Label label1;
-        private Button button1;
-        private Button button2;
+        private Button BotaoCadastrar;
+        private Button BotaoEditar;
         private DataGridViewTextBoxColumn nomeDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn editoraDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn autorDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn anoDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private BindingSource livroBindingSource;
-        private Button button3;
+        private Button BotaoDeletar;
         private DataGridView dataGridView1;
     }
 }

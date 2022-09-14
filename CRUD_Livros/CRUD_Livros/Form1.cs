@@ -26,17 +26,15 @@ namespace CRUD_Livros
 
         }
 
-        private void button1_Click_1(object sender, EventArgs e) //Cadastro
+        private void BotaoCadastrar_Click(object sender, EventArgs e)
         {
             var trocaTela = new Form2();
             trocaTela.ShowDialog();
 
-
-            //dataGridView1.DataSource = form2.CadastraLivro();
             ListarLivros();
         }
 
-        private void button2_Click(object sender, EventArgs e) //Editar
+        private void BotaoEditar_Click(object sender, EventArgs e)
         {
             index = this.dataGridView1.CurrentRow.Index;
             dataGridView1.CurrentRow.Selected = true;
@@ -44,11 +42,11 @@ namespace CRUD_Livros
 
 
             var trocaTexto = new Form2();
-
+           
             trocaTexto.textBox1.Text = dataGridView1.SelectedCells[0].Value.ToString();
             trocaTexto.textBox2.Text = dataGridView1.SelectedCells[1].Value.ToString();
             trocaTexto.textBox3.Text = dataGridView1.SelectedCells[2].Value.ToString();
-            trocaTexto.textBox4.Text = dataGridView1.SelectedCells[3].Value.ToString();
+            trocaTexto.dateTimePicker1.Text = dataGridView1.SelectedCells[3].Value.ToString();
             trocaTexto.textBox5.Text = dataGridView1.SelectedCells[4].Value.ToString();
             trocaTexto.ShowDialog();
 
@@ -67,61 +65,46 @@ namespace CRUD_Livros
 
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void BotaoDeletar_Click(object sender, EventArgs e)
         {
-
-            //int rowIndex = dataGridView1.CurrentRow.Index;
-            // this.dataGridView1.Rows.RemoveAt(rowIndex);
-
+           
+            removeLista();
             var bindingList = new BindingList<Livro>(listaDeLivros);
 
             dataGridView1.DataSource = bindingList;
+            dataGridView1.Update();
+            dataGridView1.Refresh();
 
-            if (dataGridView1.SelectedRows.Count > 0)
+
+
+        }
+        public List<Livro> removeLista()
+        {
+            
+            if (dataGridView1.SelectedRows.Count != 0)
             {
-                dataGridView1.Rows.RemoveAt(this.dataGridView1.CurrentRow.Index);
+                string nomeCelula = this.dataGridView1.SelectedCells[0].Value.ToString();
+                int removeIndex = this.dataGridView1.CurrentRow.Index;
+                if (MessageBox.Show("Tem certeza que deseja deletar o livro "+nomeCelula, "Confirmação",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    listaDeLivros.RemoveAt(removeIndex);
+                    
+                }
+                else
+                {
+                    MessageBox.Show("Livro não foi deletado");
+                  
+
+                }
+
+
             }
             else
             {
                 MessageBox.Show("Selecione um livro para deletar");
             }
-
+            return listaDeLivros;
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        /* public List<Livro>RetornaLivro()
-         {
-             if (dataGridView1.SelectedCells.Count > 0)
-             {
-                 string nomeGrid = dataGridView1.SelectedCells[0].Value.ToString();
-                 string editoraGrid = dataGridView1.SelectedCells[1].Value.ToString();
-                 string autorGrid = dataGridView1.SelectedCells[2].Value.ToString();
-                 string anoGrid = dataGridView1.SelectedCells[3].Value.ToString();
-                 string idGrid = dataGridView1.SelectedCells[4].Value.ToString();
-                 retornoDeLivros.Add(new Livro() { nome = nomeGrid, autor = autorGrid, editora = editoraGrid, ano = anoGrid, id = idGrid });
-             }
-
-
-             return retornoDeLivros;
-         }*/
     }
 }

@@ -29,28 +29,28 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.CadastraFormulario = new System.Windows.Forms.Button();
+            this.VoltaFormulario = new System.Windows.Forms.Button();
+            this.EditaFormulario = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.dateTimePicker1);
             this.panel1.Controls.Add(this.textBox5);
             this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.label5);
-            this.panel1.Controls.Add(this.textBox4);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.textBox3);
@@ -61,6 +61,14 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(388, 411);
             this.panel1.TabIndex = 4;
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePicker1.Location = new System.Drawing.Point(14, 266);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(250, 27);
+            this.dateTimePicker1.TabIndex = 10;
             // 
             // textBox5
             // 
@@ -89,14 +97,6 @@
             this.label5.Size = new System.Drawing.Size(175, 28);
             this.label5.TabIndex = 7;
             this.label5.Text = "Ano de publicação";
-            // 
-            // textBox4
-            // 
-            this.textBox4.Location = new System.Drawing.Point(14, 266);
-            this.textBox4.MaxLength = 10;
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(227, 27);
-            this.textBox4.TabIndex = 6;
             // 
             // label4
             // 
@@ -152,44 +152,44 @@
             this.textBox1.Size = new System.Drawing.Size(227, 27);
             this.textBox1.TabIndex = 0;
             // 
-            // button1
+            // CadastraFormulario
             // 
-            this.button1.Location = new System.Drawing.Point(437, 148);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(148, 73);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "CADASTRAR";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.CadastraFormulario.Location = new System.Drawing.Point(437, 148);
+            this.CadastraFormulario.Name = "CadastraFormulario";
+            this.CadastraFormulario.Size = new System.Drawing.Size(148, 73);
+            this.CadastraFormulario.TabIndex = 5;
+            this.CadastraFormulario.Text = "CADASTRAR";
+            this.CadastraFormulario.UseVisualStyleBackColor = true;
+            this.CadastraFormulario.Click += new System.EventHandler(this.CadastraFormulario_Click);
             // 
-            // button2
+            // VoltaFormulario
             // 
-            this.button2.Location = new System.Drawing.Point(437, 352);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(148, 73);
-            this.button2.TabIndex = 6;
-            this.button2.Text = "VOLTAR";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.VoltaFormulario.Location = new System.Drawing.Point(437, 352);
+            this.VoltaFormulario.Name = "VoltaFormulario";
+            this.VoltaFormulario.Size = new System.Drawing.Size(148, 73);
+            this.VoltaFormulario.TabIndex = 6;
+            this.VoltaFormulario.Text = "VOLTAR";
+            this.VoltaFormulario.UseVisualStyleBackColor = true;
+            this.VoltaFormulario.Click += new System.EventHandler(this.VoltaFormulario_Click);
             // 
-            // button3
+            // EditaFormulario
             // 
-            this.button3.Location = new System.Drawing.Point(437, 255);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(148, 73);
-            this.button3.TabIndex = 7;
-            this.button3.Text = "EDITAR";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.EditaFormulario.Location = new System.Drawing.Point(437, 255);
+            this.EditaFormulario.Name = "EditaFormulario";
+            this.EditaFormulario.Size = new System.Drawing.Size(148, 73);
+            this.EditaFormulario.TabIndex = 7;
+            this.EditaFormulario.Text = "EDITAR";
+            this.EditaFormulario.UseVisualStyleBackColor = true;
+            this.EditaFormulario.Click += new System.EventHandler(this.EditaFormulario_Click);
             // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.EditaFormulario);
+            this.Controls.Add(this.VoltaFormulario);
+            this.Controls.Add(this.CadastraFormulario);
             this.Controls.Add(this.panel1);
             this.Name = "Form2";
             this.Text = "Form2";
@@ -207,13 +207,13 @@
         private Label label4;
         private Label label3;
         private Label label2;
-        private Button button1;
-        private Button button2;
-        private Button button3;
+        private Button CadastraFormulario;
+        private Button VoltaFormulario;
+        private Button EditaFormulario;
         public TextBox textBox5;
-        public TextBox textBox4;
         public TextBox textBox3;
         public TextBox textBox2;
         public TextBox textBox1;
+        public DateTimePicker dateTimePicker1;
     }
 }
