@@ -79,7 +79,7 @@ namespace CRUD_Livros
 
             
                 EditaLivro();
-                this.Close();
+                
                 Form1 listagem = new();
                 listagem.ListarLivros();
             
@@ -118,7 +118,7 @@ namespace CRUD_Livros
 
         public bool verificaID(string texto)
         {
-            string idVerificado = textBox5.Text;
+            
             bool idUnico = true;
             int comprimento = Form1.listaDeLivros.Count;
             for(int i = 0; i < comprimento; i++)

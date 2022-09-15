@@ -23,7 +23,7 @@ namespace CRUD_Livros
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+          
         }
 
         private void BotaoCadastrar_Click(object sender, EventArgs e)
@@ -57,6 +57,7 @@ namespace CRUD_Livros
         {
             dataGridView1.DataSource = null;
             dataGridView1.DataSource = listaDeLivros.ToList();
+            dataGridView1.ClearSelection();
             return listaDeLivros.ToList();
         }
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -85,7 +86,7 @@ namespace CRUD_Livros
             {
                 string nomeCelula = this.dataGridView1.SelectedCells[0].Value.ToString();
                 int removeIndex = this.dataGridView1.CurrentRow.Index;
-                if (MessageBox.Show("Tem certeza que deseja deletar o livro "+nomeCelula, "Confirmação",
+                if (MessageBox.Show("Tem certeza que deseja deletar o livro: " +nomeCelula, "Confirmação",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     listaDeLivros.RemoveAt(removeIndex);
