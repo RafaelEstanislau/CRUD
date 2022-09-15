@@ -77,48 +77,16 @@ namespace CRUD_Livros
             
         {
 
-            if (!verificaID(textBox5.Text))
-            {
-                MessageBox.Show("Não é possível cadastrar um livro com ID repetido");
-            }
-            else
-            {
+            
                 EditaLivro();
                 this.Close();
                 Form1 listagem = new();
                 listagem.ListarLivros();
-            }
+            
 
         }
         public List<Livro> EditaLivro()
         {
-            string nomeLivro = "";
-            string nomeEditora = "";
-            string autorLivro = "";
-            string idLivro = "";
-            string anoLivro = "";
-
-            
-            int comprimento = Form1.listaDeLivros.Count;
-
-            for (int i = 0; i < comprimento; i++)
-            {
-                if(Form1.listaDeLivros[i].id == textBox5.Text)
-                {
-                    Livro antigo = new()
-                    {
-                        nome = nomeLivro,
-                        autor = autorLivro,
-                        editora = nomeEditora,
-                        ano = Convert.ToDateTime(anoLivro),
-                        id = idLivro
-                    };
-                    livrosAntigos.Add(antigo);
-                }
-            }
-
-
-
             
             Livro editado = new()
             {
@@ -128,16 +96,23 @@ namespace CRUD_Livros
                 ano = dateTimePicker1.Value.Date,
                 id = textBox5.Text
             };
+            string idAntigo = Form1.listaDeLivros[Form1.index].id;
 
-            Form1.listaDeLivros[Form1.index] = editado;
 
-            if(editado.id == livrosAntigos[0].id) {
-                
+            bool idMudou = idAntigo != editado.id;
+
+            if (idMudou)
+            {
+                idAntigo = editado.id;
+                MessageBox.Show("O ID de um livro não pode ser alterado!");
+            }
+            else
+            {
+                Form1.listaDeLivros[Form1.index] = editado;
+                MessageBox.Show("Livro atualizado!");
+                this.Close();
             }
 
-            
-            MessageBox.Show("Livro atualizado!");
-            this.Close();
             return Form1.listaDeLivros;
         }
 
