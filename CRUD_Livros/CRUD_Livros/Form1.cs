@@ -23,12 +23,22 @@ namespace CRUD_Livros
 
         private void Form1_Load(object sender, EventArgs e)
         {
-          
+            int comprimento = listaDeLivros.Count;
+            for (int i = 0; i < comprimento; i++)
+            {
+                if(listaDeLivros[i] == null)
+                {
+                    BotaoEditar.Enabled = false;
+                    BotaoDeletar.Enabled = false;
+                }
+            }
         }
 
         private void BotaoCadastrar_Click(object sender, EventArgs e)
         {
             var trocaTela = new Form2();
+            trocaTela.EditaFormulario.Enabled = false;
+            
             trocaTela.ShowDialog();
 
             ListarLivros();
@@ -36,23 +46,38 @@ namespace CRUD_Livros
 
         private void BotaoEditar_Click(object sender, EventArgs e)
         {
-            index = this.dataGridView1.CurrentRow.Index;
-            dataGridView1.CurrentRow.Selected = true;
 
+            if (dataGridView1.Rows.Count == 0)
+            {
+                MessageBox.Show("Não há livro para editar");
+                
+            }
+            else
+            {
+                if (!dataGridView1.CurrentRow.Selected)
+                {
+                    MessageBox.Show("Escolha um livro para editar");
+                }
+                else
+                {
+                    index = this.dataGridView1.CurrentRow.Index;
+                    var trocaTexto = new Form2();
 
+                    trocaTexto.textBox1.Text = dataGridView1.SelectedCells[0].Value.ToString();
+                    trocaTexto.textBox2.Text = dataGridView1.SelectedCells[1].Value.ToString();
+                    trocaTexto.textBox3.Text = dataGridView1.SelectedCells[2].Value.ToString();
+                    trocaTexto.dateTimePicker1.Text = dataGridView1.SelectedCells[3].Value.ToString();
+                    trocaTexto.textBox5.Text = dataGridView1.SelectedCells[4].Value.ToString();
+                    trocaTexto.CadastraFormulario.Enabled = false;
+                    trocaTexto.ShowDialog();
 
-            var trocaTexto = new Form2();
-           
-            trocaTexto.textBox1.Text = dataGridView1.SelectedCells[0].Value.ToString();
-            trocaTexto.textBox2.Text = dataGridView1.SelectedCells[1].Value.ToString();
-            trocaTexto.textBox3.Text = dataGridView1.SelectedCells[2].Value.ToString();
-            trocaTexto.dateTimePicker1.Text = dataGridView1.SelectedCells[3].Value.ToString();
-            trocaTexto.textBox5.Text = dataGridView1.SelectedCells[4].Value.ToString();
-            trocaTexto.ShowDialog();
-
-            ListarLivros();
+                    ListarLivros();
+                }
+            }
+            
 
         }
+        
         public List<Livro> ListarLivros()
         {
             dataGridView1.DataSource = null;
@@ -75,6 +100,7 @@ namespace CRUD_Livros
             dataGridView1.DataSource = bindingList;
             dataGridView1.Update();
             dataGridView1.Refresh();
+            dataGridView1.ClearSelection();
 
 
 

@@ -21,15 +21,17 @@ namespace CRUD_Livros
         
         private void CadastraFormulario_Click(object sender, EventArgs e) 
         {
+            
             CadastraLivro();
+            
         }
         public void CadastraLivro()
         {
-            string nomeLivro = "";
-            string nomeEditora =  "";
-            string autorLivro = "" ;
-            string idLivro = "";
-            string anoLivro = "";
+            string nomeLivro;
+            string nomeEditora;
+            string autorLivro;
+            string idLivro;
+            string anoLivro;
 
             if (textBox1.Text.Equals("") || textBox2.Text.Equals("")|| textBox3.Text.Equals("") || 
                textBox5.Text.Equals(""))
@@ -76,8 +78,6 @@ namespace CRUD_Livros
         private void EditaFormulario_Click(object sender, EventArgs e) 
             
         {
-
-            
                 EditaLivro();
                 
                 Form1 listagem = new();
@@ -104,7 +104,7 @@ namespace CRUD_Livros
             if (idMudou)
             {
                 idAntigo = editado.id;
-                MessageBox.Show("O ID de um livro não pode ser alterado!");
+                MessageBox.Show("O ID de um livro não pode ser alterado ou nulo!");
             }
             else
             {

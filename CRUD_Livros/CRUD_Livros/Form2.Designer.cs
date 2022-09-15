@@ -207,13 +207,13 @@
         private Label label4;
         private Label label3;
         private Label label2;
-        private Button CadastraFormulario;
         private Button VoltaFormulario;
-        private Button EditaFormulario;
         public TextBox textBox5;
         public TextBox textBox3;
         public TextBox textBox2;
         public TextBox textBox1;
         public DateTimePicker dateTimePicker1;
+        public Button EditaFormulario;
+        public Button CadastraFormulario;
     }
 }
