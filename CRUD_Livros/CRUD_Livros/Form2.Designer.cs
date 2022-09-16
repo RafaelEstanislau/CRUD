@@ -30,15 +30,15 @@
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.textBoxID = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBoxAutor = new System.Windows.Forms.TextBox();
+            this.textBoxEditora = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBoxNome = new System.Windows.Forms.TextBox();
             this.CadastraFormulario = new System.Windows.Forms.Button();
             this.VoltaFormulario = new System.Windows.Forms.Button();
             this.EditaFormulario = new System.Windows.Forms.Button();
@@ -48,15 +48,15 @@
             // panel1
             // 
             this.panel1.Controls.Add(this.dateTimePicker1);
-            this.panel1.Controls.Add(this.textBox5);
+            this.panel1.Controls.Add(this.textBoxID);
             this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.textBox3);
-            this.panel1.Controls.Add(this.textBox2);
+            this.panel1.Controls.Add(this.textBoxAutor);
+            this.panel1.Controls.Add(this.textBoxEditora);
             this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.textBox1);
+            this.panel1.Controls.Add(this.textBoxNome);
             this.panel1.Location = new System.Drawing.Point(12, 12);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(388, 411);
@@ -70,13 +70,13 @@
             this.dateTimePicker1.Size = new System.Drawing.Size(250, 27);
             this.dateTimePicker1.TabIndex = 10;
             // 
-            // textBox5
+            // textBoxID
             // 
-            this.textBox5.Location = new System.Drawing.Point(14, 340);
-            this.textBox5.MaxLength = 10;
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(227, 27);
-            this.textBox5.TabIndex = 9;
+            this.textBoxID.Location = new System.Drawing.Point(14, 340);
+            this.textBoxID.MaxLength = 10;
+            this.textBoxID.Name = "textBoxID";
+            this.textBoxID.Size = new System.Drawing.Size(227, 27);
+            this.textBoxID.TabIndex = 9;
             // 
             // label6
             // 
@@ -118,21 +118,21 @@
             this.label3.TabIndex = 4;
             this.label3.Text = "Editora ";
             // 
-            // textBox3
+            // textBoxAutor
             // 
-            this.textBox3.Location = new System.Drawing.Point(14, 186);
-            this.textBox3.MaxLength = 100;
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(227, 27);
-            this.textBox3.TabIndex = 3;
+            this.textBoxAutor.Location = new System.Drawing.Point(14, 186);
+            this.textBoxAutor.MaxLength = 100;
+            this.textBoxAutor.Name = "textBoxAutor";
+            this.textBoxAutor.Size = new System.Drawing.Size(227, 27);
+            this.textBoxAutor.TabIndex = 3;
             // 
-            // textBox2
+            // textBoxEditora
             // 
-            this.textBox2.Location = new System.Drawing.Point(14, 111);
-            this.textBox2.MaxLength = 100;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(227, 27);
-            this.textBox2.TabIndex = 2;
+            this.textBoxEditora.Location = new System.Drawing.Point(14, 111);
+            this.textBoxEditora.MaxLength = 100;
+            this.textBoxEditora.Name = "textBoxEditora";
+            this.textBoxEditora.Size = new System.Drawing.Size(227, 27);
+            this.textBoxEditora.TabIndex = 2;
             // 
             // label2
             // 
@@ -144,13 +144,13 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "Nome ";
             // 
-            // textBox1
+            // textBoxNome
             // 
-            this.textBox1.Location = new System.Drawing.Point(14, 41);
-            this.textBox1.MaxLength = 100;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(227, 27);
-            this.textBox1.TabIndex = 0;
+            this.textBoxNome.Location = new System.Drawing.Point(14, 41);
+            this.textBoxNome.MaxLength = 100;
+            this.textBoxNome.Name = "textBoxNome";
+            this.textBoxNome.Size = new System.Drawing.Size(227, 27);
+            this.textBoxNome.TabIndex = 0;
             // 
             // CadastraFormulario
             // 
@@ -208,10 +208,10 @@
         private Label label3;
         private Label label2;
         private Button VoltaFormulario;
-        public TextBox textBox5;
-        public TextBox textBox3;
-        public TextBox textBox2;
-        public TextBox textBox1;
+        public TextBox textBoxID;
+        public TextBox textBoxAutor;
+        public TextBox textBoxEditora;
+        public TextBox textBoxNome;
         public DateTimePicker dateTimePicker1;
         public Button EditaFormulario;
         public Button CadastraFormulario;

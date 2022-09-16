@@ -38,6 +38,7 @@ namespace CRUD_Livros
         {
             var trocaTela = new Form2();
             trocaTela.EditaFormulario.Enabled = false;
+            trocaTela.textBoxID.Enabled = false;
             
             trocaTela.ShowDialog();
 
@@ -63,12 +64,15 @@ namespace CRUD_Livros
                     index = this.dataGridView1.CurrentRow.Index;
                     var trocaTexto = new Form2();
 
-                    trocaTexto.textBox1.Text = dataGridView1.SelectedCells[0].Value.ToString();
-                    trocaTexto.textBox2.Text = dataGridView1.SelectedCells[1].Value.ToString();
-                    trocaTexto.textBox3.Text = dataGridView1.SelectedCells[2].Value.ToString();
+                    trocaTexto.textBoxNome.Text = dataGridView1.SelectedCells[0].Value.ToString();
+                    trocaTexto.textBoxEditora.Text = dataGridView1.SelectedCells[1].Value.ToString();
+                    trocaTexto.textBoxAutor.Text = dataGridView1.SelectedCells[2].Value.ToString();
                     trocaTexto.dateTimePicker1.Text = dataGridView1.SelectedCells[3].Value.ToString();
-                    trocaTexto.textBox5.Text = dataGridView1.SelectedCells[4].Value.ToString();
+                    trocaTexto.textBoxID.Text = dataGridView1.SelectedCells[4].Value.ToString();
+
                     trocaTexto.CadastraFormulario.Enabled = false;
+                    trocaTexto.textBoxID.Enabled = false;
+
                     trocaTexto.ShowDialog();
 
                     ListarLivros();
@@ -110,8 +114,9 @@ namespace CRUD_Livros
             
             if (dataGridView1.SelectedRows.Count != 0)
             {
-                string nomeCelula = this.dataGridView1.SelectedCells[0].Value.ToString();
-                int removeIndex = this.dataGridView1.CurrentRow.Index;
+                string nomeCelula = dataGridView1.SelectedCells[0].Value.ToString();
+                int removeIndex = dataGridView1.CurrentRow.Index;
+
                 if (MessageBox.Show("Tem certeza que deseja deletar o livro: " +nomeCelula, "Confirmação",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
