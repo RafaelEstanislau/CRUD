@@ -1,3 +1,3 @@
 # CRUD
 
-Projeto localizado na branch "crudInicial"
+Projeto CRUD Windows Form com banco em memória
