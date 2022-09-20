@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.ComponentModel;
 using System.Windows.Forms;
+using System.Xml.Xsl;
 using static System.Windows.Forms.DataFormats;
 using static System.Windows.Forms.LinkLabel;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
@@ -11,14 +12,12 @@ namespace CRUD_Livros
 {
     public partial class Form1 : Form
     {
-        public static List<Livro> listaDeLivros = new();
-        public static int index;
-
+        public List<Livro> listaDeLivros = Singleton.Instance();
+        public List<Livro> livrosAntigos = new();
 
         public Form1()
         {
             InitializeComponent();
-
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -36,11 +35,33 @@ namespace CRUD_Livros
 
         private void BotaoCadastrar_Click(object sender, EventArgs e)
         {
-            var trocaTela = new Form2();
-            trocaTela.EditaFormulario.Enabled = false;
-            trocaTela.textBoxID.Enabled = false;
-            
-            trocaTela.ShowDialog();
+            try
+            {
+                var formulario2 = new Form2(null);
+                formulario2.textBoxID.Enabled = false;
+                formulario2.ShowDialog();
+                if (formulario2.DialogResult == DialogResult.OK)
+                {
+                    if (listaDeLivros.Count() == 0)
+                    {
+                        var ultimoId = 0;
+
+                        formulario2.Livro.id = Singleton.ProximoId(ultimoId);
+                        listaDeLivros.Add(formulario2.Livro);
+                    }
+                    else
+                    {
+                        var ultimoId = listaDeLivros.Last().id;
+                        formulario2.Livro.id = Singleton.ProximoId(ultimoId);
+
+                        listaDeLivros.Add(formulario2.Livro);
+                    }
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Erros ao cadastrar");
+            }
 
             ListarLivros();
         }
@@ -51,7 +72,6 @@ namespace CRUD_Livros
             if (dataGridView1.Rows.Count == 0)
             {
                 MessageBox.Show("Não há livro para editar");
-                
             }
             else
             {
@@ -61,25 +81,18 @@ namespace CRUD_Livros
                 }
                 else
                 {
-                    index = this.dataGridView1.CurrentRow.Index;
-                    var trocaTexto = new Form2();
+                    var livroSelecionadoIndex = dataGridView1.CurrentRow.Index;
+                    var livroSelecionado = dataGridView1.Rows[livroSelecionadoIndex].DataBoundItem as Livro;
 
-                    trocaTexto.textBoxNome.Text = dataGridView1.SelectedCells[0].Value.ToString();
-                    trocaTexto.textBoxEditora.Text = dataGridView1.SelectedCells[1].Value.ToString();
-                    trocaTexto.textBoxAutor.Text = dataGridView1.SelectedCells[2].Value.ToString();
-                    trocaTexto.dateTimePicker1.Text = dataGridView1.SelectedCells[3].Value.ToString();
-                    trocaTexto.textBoxID.Text = dataGridView1.SelectedCells[4].Value.ToString();
-
-                    trocaTexto.CadastraFormulario.Enabled = false;
-                    trocaTexto.textBoxID.Enabled = false;
-
-                    trocaTexto.ShowDialog();
+                    var formulario2 = new Form2(livroSelecionado);
+                    formulario2.textBoxID.Enabled = false;
+                    formulario2.ShowDialog();
 
                     ListarLivros();
+
+
                 }
             }
-            
-
         }
         
         public List<Livro> ListarLivros()
@@ -88,11 +101,6 @@ namespace CRUD_Livros
             dataGridView1.DataSource = listaDeLivros.ToList();
             dataGridView1.ClearSelection();
             return listaDeLivros.ToList();
-        }
-        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            index = dataGridView1.CurrentRow.Index;
-
         }
 
         private void BotaoDeletar_Click(object sender, EventArgs e)

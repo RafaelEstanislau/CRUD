@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "qQU0bCl9sLUjiUaw+3gJsPhW4Zkuyvnp0hohrI1zZiotA2Uk634LA2zleMjfMKZmyNa8HCA2hJ/9FyZhRsSdbw==",
+  "dgSpecHash": "Eez+xeEbiyYEwD7M5vOU81dnYupPFLprWq89Jtz8oWFf8fyQ3H+4P+NYM6ZysAXT8QyyhpYOI7WZMYxHgbJjrQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Usuario\\Desktop\\CRUD REFATORADO\\CRUD\\CRUD_Livros\\CRUD_Livros\\CRUD_Livros.csproj",
+  "projectFilePath": "C:\\Users\\Usuario\\Desktop\\CRUD SINGLETON\\CRUD\\CRUD_Livros\\CRUD_Livros\\CRUD_Livros.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

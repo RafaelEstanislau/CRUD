@@ -41,7 +41,6 @@
             this.textBoxNome = new System.Windows.Forms.TextBox();
             this.CadastraFormulario = new System.Windows.Forms.Button();
             this.VoltaFormulario = new System.Windows.Forms.Button();
-            this.EditaFormulario = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -154,17 +153,17 @@
             // 
             // CadastraFormulario
             // 
-            this.CadastraFormulario.Location = new System.Drawing.Point(437, 148);
+            this.CadastraFormulario.Location = new System.Drawing.Point(428, 350);
             this.CadastraFormulario.Name = "CadastraFormulario";
             this.CadastraFormulario.Size = new System.Drawing.Size(148, 73);
             this.CadastraFormulario.TabIndex = 5;
-            this.CadastraFormulario.Text = "CADASTRAR";
+            this.CadastraFormulario.Text = "SALVAR";
             this.CadastraFormulario.UseVisualStyleBackColor = true;
             this.CadastraFormulario.Click += new System.EventHandler(this.CadastraFormulario_Click);
             // 
             // VoltaFormulario
             // 
-            this.VoltaFormulario.Location = new System.Drawing.Point(437, 352);
+            this.VoltaFormulario.Location = new System.Drawing.Point(630, 350);
             this.VoltaFormulario.Name = "VoltaFormulario";
             this.VoltaFormulario.Size = new System.Drawing.Size(148, 73);
             this.VoltaFormulario.TabIndex = 6;
@@ -172,22 +171,11 @@
             this.VoltaFormulario.UseVisualStyleBackColor = true;
             this.VoltaFormulario.Click += new System.EventHandler(this.VoltaFormulario_Click);
             // 
-            // EditaFormulario
-            // 
-            this.EditaFormulario.Location = new System.Drawing.Point(437, 255);
-            this.EditaFormulario.Name = "EditaFormulario";
-            this.EditaFormulario.Size = new System.Drawing.Size(148, 73);
-            this.EditaFormulario.TabIndex = 7;
-            this.EditaFormulario.Text = "EDITAR";
-            this.EditaFormulario.UseVisualStyleBackColor = true;
-            this.EditaFormulario.Click += new System.EventHandler(this.EditaFormulario_Click);
-            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.EditaFormulario);
             this.Controls.Add(this.VoltaFormulario);
             this.Controls.Add(this.CadastraFormulario);
             this.Controls.Add(this.panel1);
@@ -213,7 +201,6 @@
         public TextBox textBoxEditora;
         public TextBox textBoxNome;
         public DateTimePicker dateTimePicker1;
-        public Button EditaFormulario;
         public Button CadastraFormulario;
     }
 }
