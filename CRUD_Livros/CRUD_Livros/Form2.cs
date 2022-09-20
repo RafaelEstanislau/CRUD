@@ -1,120 +1,86 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data;
 using System.Windows.Forms;
+using System.Xml.Xsl;
 
 namespace CRUD_Livros
 {
     public partial class Form2 : Form
     {
-        public static List<Livro> livrosAntigos = new();
-        public Form2()
+        public Livro Livro { get; set; }
+        public Form2(Livro livro)
         {
             InitializeComponent();
-           
+
+            if (livro == null)
+            {
+                Livro = new Livro();
+            }
+            else
+            {
+                textBoxID.Text = livro.id.ToString();
+                textBoxNome.Text = livro.nome;
+                textBoxEditora.Text = livro.editora;
+                textBoxAutor.Text = livro.autor;
+                dateTimePicker1.Text = livro.ano.ToString();
+                Livro = livro;
+            }
         }
         
         private void CadastraFormulario_Click(object sender, EventArgs e) 
         {
-            
-            CadastraLivro();
-            
-        }
-        public void CadastraLivro()
-        {
-            string nomeLivro;
-            string nomeEditora;
-            string autorLivro;
-            string anoLivro;
+            try
+            {
+                ValidarCampos();
 
-            if (textBoxNome.Text.Equals("") || textBoxEditora.Text.Equals("")|| textBoxAutor.Text.Equals("") )
-               
-            {
-                MessageBox.Show("Nenhum campo pode ser vazio!");
-            }
-            
-            else if (dateTimePicker1.Value > DateTime.Now)
-            {
-                MessageBox.Show("Insira uma data válida anterior à hoje!");
-
-            }
-            else
-            {
-                nomeLivro = textBoxNome.Text;
-                nomeEditora = textBoxEditora.Text;
-                autorLivro = textBoxAutor.Text;
-                anoLivro = dateTimePicker1.Value.ToString("dd/MM/yyyy");
-                Form1.listaDeLivros.Add(new Livro()
+                if (Livro.id == 0)
                 {
-                    nome = nomeLivro,
-                    autor = autorLivro,
-                    editora = nomeEditora,
-                    ano = Convert.ToDateTime(anoLivro),
-                     
-                });
-                MessageBox.Show("Livro cadastrado com sucesso!");
-                this.Close();
+                    Livro.nome = textBoxNome.Text;
+                    Livro.editora = textBoxEditora.Text;
+                    Livro.autor = textBoxAutor.Text;
+                    Livro.ano = dateTimePicker1.Value;
+                }
+                else
+                {
+                    Livro.nome = textBoxNome.Text;
+                    Livro.editora = textBoxEditora.Text;
+                    Livro.autor = textBoxAutor.Text;
+                    Livro.ano = dateTimePicker1.Value;
+                }
+                DialogResult = DialogResult.OK;
             }
-    
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            
+            
         }
 
         private void VoltaFormulario_Click(object sender, EventArgs e)
         {  
-            
             this.Close();
         }
 
-        private void EditaFormulario_Click(object sender, EventArgs e) 
-            
+
+
+        public void ValidarCampos()
         {
-                EditaLivro();
-                
-                Form1 listagem = new();
-                listagem.ListarLivros();
-            
-
-        }
-        public List<Livro> EditaLivro()
-        {
-            if (textBoxNome.Text.Equals("") || textBoxEditora.Text.Equals("") || textBoxAutor.Text.Equals(""))
-
+            if (textBoxNome.Text == string.Empty)
             {
-                MessageBox.Show("Nenhum campo pode ser vazio!");
+                throw new Exception("Campo Nome deve ser informado");
             }
-            else if (dateTimePicker1.Value > DateTime.Now)
+            if (textBoxEditora.Text == string.Empty)
             {
-                MessageBox.Show("Insira uma data válida anterior à hoje!");
-
+                throw new Exception("Campo Editora deve ser informado");
             }
-            else
+            if (textBoxAutor.Text == string.Empty)
             {
-                int idAntigo = Form1.listaDeLivros[Form1.index].id;
-
-                foreach (var livro in Form1.listaDeLivros.Where(l => l.id == idAntigo))
-                {
-                    livro.nome = textBoxNome.Text;
-                    livro.autor = textBoxAutor.Text;
-                    livro.editora = textBoxEditora.Text;
-                    livro.ano = dateTimePicker1.Value;
-
-
-                }
-                MessageBox.Show("Livro atualizado!");
-                this.Close();
+                throw new Exception("Campo Autor deve ser informado");
             }
-
-
-
-
-
-
-
-            return Form1.listaDeLivros;
+            if (dateTimePicker1.Value > DateTime.Now)
+            {
+                throw new Exception("Insira uma data válida anterior à hoje!");
+            }
         }
     }
 }
