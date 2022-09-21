@@ -91,31 +91,32 @@ namespace CRUD_Livros
 
         private void BotaoDeletar_Click(object sender, EventArgs e)
         {
-            try {
-            if (dataGridView1.SelectedRows.Count != 0)
+            try 
             {
-                if (MessageBox.Show("Tem certeza que deseja deletar o livro? ", "Confirmação",
-                MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (dataGridView1.SelectedRows.Count != 0)
                 {
-                    Repository repo = new();
-                    repo.Delete();
+                    if (MessageBox.Show("Tem certeza que deseja deletar o livro? ", "Confirmação",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                            int removeIndex = dataGridView1.CurrentRow.Index;
+                            listaDeLivros.RemoveAt(removeIndex);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Livro não foi deletado");
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Livro não foi deletado");
+                    MessageBox.Show("Selecione um livro para deletar");
                 }
-            }
-            else
-            {
-                MessageBox.Show("Selecione um livro para deletar");
-            }
 
-            var bindingList = new BindingList<Livro>(listaDeLivros);
-            dataGridView1.DataSource = bindingList;
+                var bindingList = new BindingList<Livro>(listaDeLivros);
+                dataGridView1.DataSource = bindingList;
 
-            dataGridView1.Update();
-            dataGridView1.Refresh();
-            dataGridView1.ClearSelection();
+                dataGridView1.Update();
+                dataGridView1.Refresh();
+                dataGridView1.ClearSelection();
             }
             catch
             {
