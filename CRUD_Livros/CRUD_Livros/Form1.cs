@@ -37,26 +37,8 @@ namespace CRUD_Livros
         {
             try
             {
-                var formulario2 = new Form2(null);
-                formulario2.textBoxID.Enabled = false;
-                formulario2.ShowDialog();
-                if (formulario2.DialogResult == DialogResult.OK)
-                {
-                    if (listaDeLivros.Count() == 0)
-                    {
-                        var ultimoId = 0;
-
-                        formulario2.Livro.id = Singleton.ProximoId(ultimoId);
-                        listaDeLivros.Add(formulario2.Livro);
-                    }
-                    else
-                    {
-                        var ultimoId = listaDeLivros.Last().id;
-                        formulario2.Livro.id = Singleton.ProximoId(ultimoId);
-
-                        listaDeLivros.Add(formulario2.Livro);
-                    }
-                }
+                Repository repo = new();
+                repo.Save();
             }
             catch
             {
@@ -68,30 +50,34 @@ namespace CRUD_Livros
 
         private void BotaoEditar_Click(object sender, EventArgs e)
         {
-
-            if (dataGridView1.Rows.Count == 0)
+            try
             {
-                MessageBox.Show("Não há livro para editar");
-            }
-            else
-            {
-                if (!dataGridView1.CurrentRow.Selected)
+                if (dataGridView1.Rows.Count == 0)
                 {
-                    MessageBox.Show("Escolha um livro para editar");
+                    MessageBox.Show("Não há livro para editar");
                 }
                 else
                 {
-                    var livroSelecionadoIndex = dataGridView1.CurrentRow.Index;
-                    var livroSelecionado = dataGridView1.Rows[livroSelecionadoIndex].DataBoundItem as Livro;
+                    if (!dataGridView1.CurrentRow.Selected)
+                    {
+                        MessageBox.Show("Escolha um livro para editar");
+                    }
+                    else
+                    {
+                        var livroSelecionadoIndex = dataGridView1.CurrentRow.Index;
+                        var livroSelecionado = dataGridView1.Rows[livroSelecionadoIndex].DataBoundItem as Livro;
 
-                    var formulario2 = new Form2(livroSelecionado);
-                    formulario2.textBoxID.Enabled = false;
-                    formulario2.ShowDialog();
+                        var formulario2 = new Form2(livroSelecionado);
+                        formulario2.textBoxID.Enabled = false;
+                        formulario2.ShowDialog();
 
-                    ListarLivros();
-
-
+                        ListarLivros();
+                    }
                 }
+            }
+            catch
+            {
+                MessageBox.Show("Erro ao editar livro");
             }
         }
         
@@ -105,46 +91,36 @@ namespace CRUD_Livros
 
         private void BotaoDeletar_Click(object sender, EventArgs e)
         {
-           
-            removeLista();
-            var bindingList = new BindingList<Livro>(listaDeLivros);
-
-            dataGridView1.DataSource = bindingList;
-            dataGridView1.Update();
-            dataGridView1.Refresh();
-            dataGridView1.ClearSelection();
-
-
-
-        }
-        public List<Livro> removeLista()
-        {
-            
+            try {
             if (dataGridView1.SelectedRows.Count != 0)
             {
-                string nomeCelula = dataGridView1.SelectedCells[0].Value.ToString();
-                int removeIndex = dataGridView1.CurrentRow.Index;
-
-                if (MessageBox.Show("Tem certeza que deseja deletar o livro: " +nomeCelula, "Confirmação",
+                if (MessageBox.Show("Tem certeza que deseja deletar o livro? ", "Confirmação",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    listaDeLivros.RemoveAt(removeIndex);
-                    
+                    Repository repo = new();
+                    repo.Delete();
                 }
                 else
                 {
                     MessageBox.Show("Livro não foi deletado");
-                  
-
                 }
-
-
             }
             else
             {
                 MessageBox.Show("Selecione um livro para deletar");
             }
-            return listaDeLivros;
+
+            var bindingList = new BindingList<Livro>(listaDeLivros);
+            dataGridView1.DataSource = bindingList;
+
+            dataGridView1.Update();
+            dataGridView1.Refresh();
+            dataGridView1.ClearSelection();
+            }
+            catch
+            {
+                MessageBox.Show("Erro ao deletar livro");
+            }
         }
     }
 }

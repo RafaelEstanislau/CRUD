@@ -21,11 +21,10 @@ namespace CRUD_Livros
                 textBoxNome.Text = livro.nome;
                 textBoxEditora.Text = livro.editora;
                 textBoxAutor.Text = livro.autor;
-                dateTimePicker1.Text = livro.ano.ToString();
+                dateTimePicker1.Text = livro.ano.ToString("dd/MM/yyyy");
                 Livro = livro;
             }
-        }
-        
+        }       
         private void CadastraFormulario_Click(object sender, EventArgs e) 
         {
             try
@@ -60,8 +59,6 @@ namespace CRUD_Livros
         {  
             this.Close();
         }
-
-
 
         public void ValidarCampos()
         {
