@@ -184,6 +184,6 @@
         private DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private BindingSource livroBindingSource;
         private Button BotaoDeletar;
-        private DataGridView dataGridView1;
+        public DataGridView dataGridView1;
     }
 }
