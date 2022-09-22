@@ -24,35 +24,25 @@ namespace CRUD_Livros
                 dateTimePicker1.Text = livro.ano.ToString("dd/MM/yyyy");
                 Livro = livro;
             }
-        }       
+        }
+        
         private void CadastraFormulario_Click(object sender, EventArgs e) 
         {
             try
             {
                 ValidarCampos();
-
-                if (Livro.id == 0)
-                {
-                    Livro.nome = textBoxNome.Text;
-                    Livro.editora = textBoxEditora.Text;
-                    Livro.autor = textBoxAutor.Text;
-                    Livro.ano = dateTimePicker1.Value;
-                }
-                else
-                {
-                    Livro.nome = textBoxNome.Text;
-                    Livro.editora = textBoxEditora.Text;
-                    Livro.autor = textBoxAutor.Text;
-                    Livro.ano = dateTimePicker1.Value;
-                }
+                
+                Livro.nome = textBoxNome.Text;
+                Livro.editora = textBoxEditora.Text;
+                Livro.autor = textBoxAutor.Text;
+                Livro.ano = dateTimePicker1.Value;
+                               
                 DialogResult = DialogResult.OK;
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-            
-            
         }
 
         private void VoltaFormulario_Click(object sender, EventArgs e)

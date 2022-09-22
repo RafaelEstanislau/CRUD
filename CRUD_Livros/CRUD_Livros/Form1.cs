@@ -4,6 +4,7 @@ using System.Collections;
 using System.ComponentModel;
 using System.Windows.Forms;
 using System.Xml.Xsl;
+using static System.Reflection.Metadata.BlobBuilder;
 using static System.Windows.Forms.DataFormats;
 using static System.Windows.Forms.LinkLabel;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
@@ -13,7 +14,7 @@ namespace CRUD_Livros
     public partial class Form1 : Form
     {
         public List<Livro> listaDeLivros = Singleton.Instance();
-        public List<Livro> livrosAntigos = new();
+       
 
         public Form1()
         {
@@ -38,7 +39,24 @@ namespace CRUD_Livros
             try
             {
                 Repository repo = new();
-                repo.Save();
+
+                var formulario2 = new Form2(null);
+                formulario2.textBoxID.Enabled = false;
+                formulario2.ShowDialog();
+                if (formulario2.DialogResult == DialogResult.OK)
+                {
+                    if (formulario2.Livro.id == 0)
+                    {
+                        var ultimoId = 0;
+
+                        formulario2.Livro.id = Singleton.ProximoId(ultimoId);
+                        repo.Salvar(formulario2.Livro);
+                    }
+                    else
+                    {
+                        repo.Atualizar(formulario2.Livro);
+                    }
+                }
             }
             catch
             {
@@ -64,10 +82,19 @@ namespace CRUD_Livros
                     }
                     else
                     {
-                        var livroSelecionadoIndex = dataGridView1.CurrentRow.Index;
-                        var livroSelecionado = dataGridView1.Rows[livroSelecionadoIndex].DataBoundItem as Livro;
+                        var livroSelecionadoIndex = dataGridView1.CurrentRow.Index +1;
 
-                        var formulario2 = new Form2(livroSelecionado);
+                        Repository repositorio = new();
+                        Livro livroEditado = new();
+                        var idLivroBuscado = repositorio.BuscarPorID(livroSelecionadoIndex);
+
+                        livroEditado = listaDeLivros.FirstOrDefault(l => l.id == idLivroBuscado)
+                                       ?? throw new Exception($"Livro não encontrado com ID {idLivroBuscado}");
+                        
+
+                       
+
+                        Form2 formulario2 = new(livroEditado);
                         formulario2.textBoxID.Enabled = false;
                         formulario2.ShowDialog();
 
@@ -83,8 +110,10 @@ namespace CRUD_Livros
         
         public List<Livro> ListarLivros()
         {
+            Repository repositorio = new();
+
             dataGridView1.DataSource = null;
-            dataGridView1.DataSource = listaDeLivros.ToList();
+            dataGridView1.DataSource = repositorio.BuscarTodos();
             dataGridView1.ClearSelection();
             return listaDeLivros.ToList();
         }
@@ -98,8 +127,14 @@ namespace CRUD_Livros
                     if (MessageBox.Show("Tem certeza que deseja deletar o livro? ", "Confirmação",
                     MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
-                            int removeIndex = dataGridView1.CurrentRow.Index;
-                            listaDeLivros.RemoveAt(removeIndex);
+                        int removeIndex = dataGridView1.CurrentRow.Index + 1;
+                        Repository repositorio = new();
+                        Livro livroASerDeletado = new();
+                        var livroASerDeletadoID = repositorio.BuscarPorID(removeIndex);
+                        livroASerDeletado = listaDeLivros.FirstOrDefault(l => l.id == livroASerDeletadoID)
+                                            ?? throw new Exception($"Livro não encontrado com ID {livroASerDeletadoID}");
+
+                        repositorio.Deletar(livroASerDeletado);
                     }
                     else
                     {

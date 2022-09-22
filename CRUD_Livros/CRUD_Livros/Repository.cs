@@ -5,54 +5,38 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Reflection.Metadata.BlobBuilder;
 
 namespace CRUD_Livros
 {
     public class Repository : IRepository<Livro>
 
     {
-        
         protected List<Livro> listaDeLivros = Singleton.Instance();
 
-        public void Save()
+        public void Salvar(Livro livro)
         {
-            var formulario2 = new Form2(null);
-            formulario2.textBoxID.Enabled = false;
-            formulario2.ShowDialog();
-            if (formulario2.DialogResult == DialogResult.OK)
-            {
-                if (listaDeLivros.Count() == 0)
-                {
-                    var ultimoId = 0;
-
-                    formulario2.Livro.id = Singleton.ProximoId(ultimoId);
-                    listaDeLivros.Add(formulario2.Livro);
-                }
-                else
-                {
-                    var ultimoId = listaDeLivros.Last().id;
-                    formulario2.Livro.id = Singleton.ProximoId(ultimoId);
-
-                    listaDeLivros.Add(formulario2.Livro);
-                }
-            }
+            listaDeLivros.Add(livro);
         }
-        public void Update(Livro livro)
+        public List<Livro> BuscarTodos()
         {
-
+            return listaDeLivros.ToList();
         }
-        public void Delete()
+
+        public int BuscarPorID(int indexGrid)
         {
-            
-           // Form1 formulario1 = new();
-            //int removeIndex = formulario1.dataGridView1.CurrentRow.Index;
-            //listaDeLivros.RemoveAt();
-            
-            
-               
-            
+            int idSelecionado = listaDeLivros.First(l => l.id == indexGrid).id;
            
+            return idSelecionado;
         }
-        
+
+        public void Deletar(Livro livro)
+        { 
+            listaDeLivros.Remove(livro);
+        }
+        public void Atualizar(Livro livro)
+        {
+            listaDeLivros.Add(livro);
+        }
     }
 }
