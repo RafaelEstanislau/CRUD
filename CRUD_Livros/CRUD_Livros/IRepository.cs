@@ -16,6 +16,5 @@ namespace CRUD_Livros
 
         int BuscarPorID(int id);
 
-        void Atualizar(Livro livro);
     }
 }

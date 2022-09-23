@@ -54,7 +54,7 @@ namespace CRUD_Livros
                     }
                     else
                     {
-                        repo.Atualizar(formulario2.Livro);
+                        repo.Salvar(formulario2.Livro);
                     }
                 }
             }
@@ -86,14 +86,12 @@ namespace CRUD_Livros
 
                         Repository repositorio = new();
                         Livro livroEditado = new();
+
                         var idLivroBuscado = repositorio.BuscarPorID(livroSelecionadoIndex);
 
                         livroEditado = listaDeLivros.FirstOrDefault(l => l.id == idLivroBuscado)
                                        ?? throw new Exception($"Livro não encontrado com ID {idLivroBuscado}");
                         
-
-                       
-
                         Form2 formulario2 = new(livroEditado);
                         formulario2.textBoxID.Enabled = false;
                         formulario2.ShowDialog();
@@ -128,8 +126,10 @@ namespace CRUD_Livros
                     MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
                         int removeIndex = dataGridView1.CurrentRow.Index + 1;
+
                         Repository repositorio = new();
                         Livro livroASerDeletado = new();
+
                         var livroASerDeletadoID = repositorio.BuscarPorID(removeIndex);
                         livroASerDeletado = listaDeLivros.FirstOrDefault(l => l.id == livroASerDeletadoID)
                                             ?? throw new Exception($"Livro não encontrado com ID {livroASerDeletadoID}");
@@ -147,8 +147,8 @@ namespace CRUD_Livros
                 }
 
                 var bindingList = new BindingList<Livro>(listaDeLivros);
-                dataGridView1.DataSource = bindingList;
 
+                dataGridView1.DataSource = bindingList;
                 dataGridView1.Update();
                 dataGridView1.Refresh();
                 dataGridView1.ClearSelection();

@@ -29,14 +29,9 @@ namespace CRUD_Livros
            
             return idSelecionado;
         }
-
         public void Deletar(Livro livro)
         { 
             listaDeLivros.Remove(livro);
-        }
-        public void Atualizar(Livro livro)
-        {
-            listaDeLivros.Add(livro);
         }
     }
 }
