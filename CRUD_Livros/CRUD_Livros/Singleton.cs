@@ -2,18 +2,23 @@
 {
     public class Singleton
     {
-        private static List<Livro> instance;
+        private static List<Livro> listaSingleton;
 
         public static List<Livro> Instance()
         {
-                instance ??= new List<Livro>();
+            listaSingleton ??= new List<Livro>();
 
-            return instance;
+            return listaSingleton;
         }
 
         public static int ProximoId(int idAtual)
         {
-            return idAtual == 0 ? idAtual = 1 : idAtual = ++idAtual;
+            if(listaSingleton.Count != 0)
+            {
+                idAtual = listaSingleton.Last().id;
+            }
+
+            return ++idAtual;
         }
     }
 }
