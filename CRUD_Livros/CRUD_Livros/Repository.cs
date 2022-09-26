@@ -22,12 +22,18 @@ namespace CRUD_Livros
         {
             return listaDeLivros.ToList();
         }
-
         public int BuscarPorID(int indexGrid)
         {
             int idSelecionado = listaDeLivros.First(l => l.id == indexGrid).id;
            
             return idSelecionado;
+        }
+        public Livro Editar(int id)
+        {
+            var IDEditado = BuscarPorID(id);
+            Livro livroEditado = new();
+            livroEditado = listaDeLivros.First(l => l.id == id);
+            return livroEditado;
         }
         public void Deletar(Livro livro)
         { 

@@ -88,9 +88,7 @@ namespace CRUD_Livros
                         Livro livroEditado = new();
 
                         var idLivroBuscado = repositorio.BuscarPorID(livroSelecionadoIndex);
-
-                        livroEditado = listaDeLivros.FirstOrDefault(l => l.id == idLivroBuscado)
-                                       ?? throw new Exception($"Livro não encontrado com ID {idLivroBuscado}");
+                        livroEditado = repositorio.Editar(idLivroBuscado);
                         
                         Form2 formulario2 = new(livroEditado);
                         formulario2.textBoxID.Enabled = false;

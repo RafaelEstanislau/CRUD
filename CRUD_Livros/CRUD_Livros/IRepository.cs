@@ -12,6 +12,8 @@ namespace CRUD_Livros
 
         void Deletar(Livro livro);
 
+        Livro Editar(int id);
+
         List <Livro> BuscarTodos();
 
         int BuscarPorID(int id);
