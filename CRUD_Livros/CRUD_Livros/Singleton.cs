@@ -10,7 +10,6 @@
 
             return listaSingleton;
         }
-
         public static int ProximoId(int idAtual)
         {
             if(listaSingleton.Count != 0)
