@@ -14,26 +14,15 @@ namespace CRUD_Livros
     public partial class Form1 : Form
     {
         public List<Livro> listaDeLivros = Singleton.Instance();
-       
-
         public Form1()
         {
             InitializeComponent();
         }
-
         private void Form1_Load(object sender, EventArgs e)
         {
-            int comprimento = listaDeLivros.Count;
-            for (int i = 0; i < comprimento; i++)
-            {
-                if(listaDeLivros[i] == null)
-                {
-                    BotaoEditar.Enabled = false;
-                    BotaoDeletar.Enabled = false;
-                }
-            }
+            RepositorySQL repobusca = new();
+            repobusca.BuscarTodos(dataGridView1);
         }
-
         private void BotaoCadastrar_Click(object sender, EventArgs e)
         {
             try
@@ -43,60 +32,33 @@ namespace CRUD_Livros
                 var formulario2 = new Form2(null);
                 formulario2.textBoxID.Enabled = false;
                 formulario2.ShowDialog();
-                if (formulario2.DialogResult == DialogResult.OK)
-                {
-                    if (formulario2.Livro.id == 0)
-                    {
-                        var ultimoId = 0;
-
-                        formulario2.Livro.id = Singleton.ProximoId(ultimoId);
-                        repo.Salvar(formulario2.Livro);
-                    }
-                    else
-                    {
-                        repo.Salvar(formulario2.Livro);
-                    }
-                }
+             
+                RepositorySQL repo2 = new();
+                repo2.Salvar(formulario2.Livro);
             }
             catch
             {
                 MessageBox.Show("Erros ao cadastrar");
             }
-
-            ListarLivros();
+            RepositorySQL repobusca = new();
+            repobusca.BuscarTodos(dataGridView1);
         }
-
         private void BotaoEditar_Click(object sender, EventArgs e)
         {
             try
             {
-                if (dataGridView1.Rows.Count == 0)
-                {
-                    MessageBox.Show("Não há livro para editar");
-                }
-                else
-                {
-                    if (!dataGridView1.CurrentRow.Selected)
-                    {
-                        MessageBox.Show("Escolha um livro para editar");
-                    }
-                    else
-                    {
-                        var livroSelecionadoIndex = dataGridView1.CurrentRow.Index +1;
+                var id = Convert.ToInt32(dataGridView1.CurrentRow.Cells[0].Value);
 
-                        Repository repositorio = new();
-                        Livro livroEditado = new();
+                RepositorySQL repoedita = new();
+                Livro livroBuscado = new();
 
-                        var idLivroBuscado = repositorio.BuscarPorID(livroSelecionadoIndex);
-                        livroEditado = repositorio.Editar(idLivroBuscado);
-                        
-                        Form2 formulario2 = new(livroEditado);
-                        formulario2.textBoxID.Enabled = false;
-                        formulario2.ShowDialog();
+                livroBuscado = repoedita.BuscarPorID(id);
+                var formulario2 = new Form2(livroBuscado);
 
-                        ListarLivros();
-                    }
-                }
+                formulario2.textBoxID.Enabled = false;
+                formulario2.ShowDialog();
+                repoedita.Editar(livroBuscado);
+                repoedita.BuscarTodos(dataGridView1);
             }
             catch
             {
@@ -104,7 +66,7 @@ namespace CRUD_Livros
             }
         }
         
-        public List<Livro> ListarLivros()
+        /*public List<Livro> ListarLivros()
         {
             Repository repositorio = new();
 
@@ -112,49 +74,36 @@ namespace CRUD_Livros
             dataGridView1.DataSource = repositorio.BuscarTodos();
             dataGridView1.ClearSelection();
             return listaDeLivros.ToList();
-        }
-
+        }*/
         private void BotaoDeletar_Click(object sender, EventArgs e)
         {
-            try 
+            try
             {
                 if (dataGridView1.SelectedRows.Count != 0)
                 {
                     if (MessageBox.Show("Tem certeza que deseja deletar o livro? ", "Confirmação",
-                    MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                   MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
-                        int removeIndex = dataGridView1.CurrentRow.Index + 1;
-
-                        Repository repositorio = new();
-                        Livro livroASerDeletado = new();
-
-                        var livroASerDeletadoID = repositorio.BuscarPorID(removeIndex);
-                        livroASerDeletado = listaDeLivros.FirstOrDefault(l => l.id == livroASerDeletadoID)
-                                            ?? throw new Exception($"Livro não encontrado com ID {livroASerDeletadoID}");
-
-                        repositorio.Deletar(livroASerDeletado);
+                        var id = dataGridView1.CurrentRow.Cells[0].Value;
+                        RepositorySQL repoDeleta = new();
+                        repoDeleta.Excluir(Convert.ToInt32(id));
+                        repoDeleta.BuscarTodos(dataGridView1);
                     }
                     else
                     {
-                        MessageBox.Show("Livro não foi deletado");
+                        MessageBox.Show("Livro não foi excluído");
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Selecione um livro para deletar");
+                    MessageBox.Show("Não há livro selecionado");
                 }
-
-                var bindingList = new BindingList<Livro>(listaDeLivros);
-
-                dataGridView1.DataSource = bindingList;
-                dataGridView1.Update();
-                dataGridView1.Refresh();
-                dataGridView1.ClearSelection();
             }
-            catch
+            catch (Exception)
             {
-                MessageBox.Show("Erro ao deletar livro");
+              MessageBox.Show("Erro ao deletar");
             }
+            
         }
     }
 }

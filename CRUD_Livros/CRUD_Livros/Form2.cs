@@ -17,7 +17,7 @@ namespace CRUD_Livros
             }
             else
             {
-                textBoxID.Text = livro.id.ToString();
+               
                 textBoxNome.Text = livro.nome;
                 textBoxEditora.Text = livro.editora;
                 textBoxAutor.Text = livro.autor;
@@ -43,6 +43,7 @@ namespace CRUD_Livros
             {
                 MessageBox.Show(ex.Message);
             }
+      
         }
 
         private void VoltaFormulario_Click(object sender, EventArgs e)
