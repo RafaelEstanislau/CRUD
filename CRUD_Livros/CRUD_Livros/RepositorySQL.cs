@@ -17,11 +17,16 @@ namespace CRUD_Livros
         SqlDataReader dr;
 
         string strSQL;
+
+
         public void Salvar(Livro livro)
         {
+            using (conexao = new SqlConnection(@"Server = INVENT127; Database = Livros; User Id = sa; Password = sap@123; ")) { 
+            {
+
+            }
             try
             {
-                conexao = new SqlConnection(@"Server = INVENT127; Database = Livros; User Id = sa; Password = sap@123; ");
                 strSQL = "INSERT INTO CAD_LIVROS VALUES (@TITULO, @AUTOR, @EDITORA, @LANCAMENTO)";
                 comando = new SqlCommand(strSQL, conexao);
 
@@ -38,16 +43,15 @@ namespace CRUD_Livros
             {
                 MessageBox.Show(ex.Message);
             }
-            finally
-            {
-                conexao.Close();
             }
         }
        public void BuscarTodos(DataGridView grid)
         {
+            using (conexao = new SqlConnection(@"Server = INVENT127; Database = Livros; User Id = sa; Password = sap@123; ")) { 
+            {
+            }
             try
             {
-                conexao = new SqlConnection(@"Server = INVENT127; Database = Livros; User Id = sa; Password = sap@123; ");
                 strSQL = "SELECT * FROM CAD_LIVROS";
                 DataSet ds = new();
                 da = new SqlDataAdapter(strSQL, conexao);
@@ -61,17 +65,16 @@ namespace CRUD_Livros
             {
                 MessageBox.Show(ex.Message);
             }
-            finally
-            {
-                conexao.Close();
             }
         }
         public Livro BuscarPorID(int id)
         {
             Livro livroBuscado = new();
+            using (conexao = new SqlConnection(@"Server = INVENT127; Database = Livros; User Id = sa; Password = sap@123; ")) { 
+            {
+            }
             try
             {
-                conexao = new SqlConnection(@"Server = INVENT127; Database = Livros; User Id = sa; Password = sap@123; ");
                 strSQL = "SELECT * FROM CAD_LIVROS WHERE ID = @ID";
                 comando = new SqlCommand(strSQL, conexao);
                 comando.Parameters.AddWithValue("@ID", id);
@@ -79,7 +82,6 @@ namespace CRUD_Livros
                 dr = comando.ExecuteReader();
                 while (dr.Read())
                 {
-                    
                     livroBuscado.id = Convert.ToInt32(dr["id"]);
                     livroBuscado.nome = (string)dr["titulo"];
                     livroBuscado.editora = (string)dr["editora"];
@@ -87,24 +89,22 @@ namespace CRUD_Livros
                     livroBuscado.ano = DateTime.Parse(dr["lancamento"].ToString());
                     
                 }
-
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-            finally
-            {
-                conexao.Close();
             }
-           
             return livroBuscado;
         }
         public void Editar(Livro livro)
         {
+            using (conexao = new SqlConnection(@"Server = INVENT127; Database = Livros; User Id = sa; Password = sap@123; ")) { 
+            {
+
+            }
             try
             {
-                conexao = new SqlConnection(@"Server = INVENT127; Database = Livros; User Id = sa; Password = sap@123; ");
                 strSQL = "UPDATE CAD_LIVROS SET TITULO = @TITULO, AUTOR = @AUTOR, EDITORA = @EDITORA, LANCAMENTO = @LANCAMENTO WHERE ID = @ID";
                 comando = new SqlCommand(strSQL, conexao);
 
@@ -116,22 +116,22 @@ namespace CRUD_Livros
 
                 conexao.Open();
                 comando.ExecuteNonQuery();
-
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-            finally
-            {
-                conexao.Close();
             }
         }
         public void Excluir(int id)
         {
+             
+            
+            
             try
             {
                 conexao = new SqlConnection(@"Server = INVENT127; Database = Livros; User Id = sa; Password = sap@123; ");
+                
                 strSQL = "DELETE CAD_LIVROS WHERE ID = @ID";
                 comando = new SqlCommand(strSQL, conexao);
                 comando.Parameters.AddWithValue("@ID", id);
@@ -139,18 +139,14 @@ namespace CRUD_Livros
                 conexao.Open();
                 comando.ExecuteNonQuery();
                 MessageBox.Show("Livro excluído");
-                
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-            finally
-            {
-                conexao.Close();
+            finally { conexao.Close(); 
             }
+        
         }
     }
 }
-
-
