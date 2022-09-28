@@ -43,7 +43,6 @@ namespace CRUD_Livros
             {
                 MessageBox.Show(ex.Message);
             }
-      
         }
 
         private void VoltaFormulario_Click(object sender, EventArgs e)

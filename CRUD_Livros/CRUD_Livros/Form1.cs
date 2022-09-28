@@ -32,9 +32,13 @@ namespace CRUD_Livros
                 var formulario2 = new Form2(null);
                 formulario2.textBoxID.Enabled = false;
                 formulario2.ShowDialog();
-             
-                RepositorySQL repo2 = new();
-                repo2.Salvar(formulario2.Livro);
+
+                if(formulario2.DialogResult == DialogResult.OK)
+                {
+                    RepositorySQL repo2 = new();
+                    repo2.Salvar(formulario2.Livro);
+                }
+                
             }
             catch
             {
@@ -54,9 +58,9 @@ namespace CRUD_Livros
 
                 livroBuscado = repoedita.BuscarPorID(id);
                 var formulario2 = new Form2(livroBuscado);
-
                 formulario2.textBoxID.Enabled = false;
                 formulario2.ShowDialog();
+
                 repoedita.Editar(livroBuscado);
                 repoedita.BuscarTodos(dataGridView1);
             }
