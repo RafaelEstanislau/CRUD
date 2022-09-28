@@ -17,13 +17,10 @@ namespace CRUD_Livros
         SqlDataReader dr;
 
         string strSQL;
-
-
         public void Salvar(Livro livro)
         {
             using (conexao = new SqlConnection(@"Server = INVENT127; Database = Livros; User Id = sa; Password = sap@123; ")) { 
             {
-
             }
             try
             {
@@ -58,7 +55,6 @@ namespace CRUD_Livros
 
                 conexao.Open();
                 da.Fill(ds);
-                
                 grid.DataSource = ds.Tables[0];
             }
             catch (Exception ex)
@@ -87,7 +83,6 @@ namespace CRUD_Livros
                     livroBuscado.editora = (string)dr["editora"];
                     livroBuscado.autor = (string)dr["autor"];
                     livroBuscado.ano = DateTime.Parse(dr["lancamento"].ToString());
-                    
                 }
             }
             catch (Exception ex)
@@ -101,7 +96,6 @@ namespace CRUD_Livros
         {
             using (conexao = new SqlConnection(@"Server = INVENT127; Database = Livros; User Id = sa; Password = sap@123; ")) { 
             {
-
             }
             try
             {
@@ -125,28 +119,23 @@ namespace CRUD_Livros
         }
         public void Excluir(int id)
         {
-             
-            
-            
-            try
+            using (conexao = new SqlConnection(@"Server = INVENT127; Database = Livros; User Id = sa; Password = sap@123; "))
             {
-                conexao = new SqlConnection(@"Server = INVENT127; Database = Livros; User Id = sa; Password = sap@123; ");
-                
-                strSQL = "DELETE CAD_LIVROS WHERE ID = @ID";
-                comando = new SqlCommand(strSQL, conexao);
-                comando.Parameters.AddWithValue("@ID", id);
+                try
+                {
+                    strSQL = "DELETE CAD_LIVROS WHERE ID = @ID";
+                    comando = new SqlCommand(strSQL, conexao);
+                    comando.Parameters.AddWithValue("@ID", id);
 
-                conexao.Open();
-                comando.ExecuteNonQuery();
-                MessageBox.Show("Livro excluído");
+                    conexao.Open();
+                    comando.ExecuteNonQuery();
+                    MessageBox.Show("Livro excluído");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally { conexao.Close(); 
-            }
-        
         }
     }
 }
