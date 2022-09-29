@@ -1,4 +1,4 @@
-﻿namespace CRUD_Livros
+﻿namespace CRUD_Livros.Domain
 {
     public class Livro
     {

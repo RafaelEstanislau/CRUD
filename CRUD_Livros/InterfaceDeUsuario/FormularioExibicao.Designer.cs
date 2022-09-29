@@ -1,6 +1,6 @@
-﻿namespace CRUD_Livros
+﻿namespace CRUD_Livros.UserInterface
 {
-    partial class Form1
+    partial class FormularioExibicao
     {
         /// <summary>
         ///  Required designer variable.
@@ -71,7 +71,7 @@
             // 
             // livroBindingSource
             // 
-            this.livroBindingSource.DataSource = typeof(CRUD_Livros.Livro);
+            this.livroBindingSource.DataSource = typeof(CRUD_Livros.Domain.Livro);
             // 
             // BotaoDeletar
             // 

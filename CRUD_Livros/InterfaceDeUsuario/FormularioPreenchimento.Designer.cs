@@ -1,6 +1,6 @@
-﻿namespace CRUD_Livros
+﻿namespace CRUD_Livros.UserInterface
 {
-    partial class Form2
+    partial class FormularioPreenchimento
     {
         /// <summary>
         /// Required designer variable.
@@ -39,7 +39,7 @@
             this.textBoxEditora = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.textBoxNome = new System.Windows.Forms.TextBox();
-            this.CadastraFormulario = new System.Windows.Forms.Button();
+            this.SalvaFormulario = new System.Windows.Forms.Button();
             this.VoltaFormulario = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -151,15 +151,15 @@
             this.textBoxNome.Size = new System.Drawing.Size(227, 27);
             this.textBoxNome.TabIndex = 0;
             // 
-            // CadastraFormulario
+            // SalvaFormulario
             // 
-            this.CadastraFormulario.Location = new System.Drawing.Point(428, 350);
-            this.CadastraFormulario.Name = "CadastraFormulario";
-            this.CadastraFormulario.Size = new System.Drawing.Size(148, 73);
-            this.CadastraFormulario.TabIndex = 5;
-            this.CadastraFormulario.Text = "SALVAR";
-            this.CadastraFormulario.UseVisualStyleBackColor = true;
-            this.CadastraFormulario.Click += new System.EventHandler(this.CadastraFormulario_Click);
+            this.SalvaFormulario.Location = new System.Drawing.Point(428, 350);
+            this.SalvaFormulario.Name = "SalvaFormulario";
+            this.SalvaFormulario.Size = new System.Drawing.Size(148, 73);
+            this.SalvaFormulario.TabIndex = 5;
+            this.SalvaFormulario.Text = "SALVAR";
+            this.SalvaFormulario.UseVisualStyleBackColor = true;
+            this.SalvaFormulario.Click += new System.EventHandler(this.SalvaFormulario_Click);
             // 
             // VoltaFormulario
             // 
@@ -171,16 +171,17 @@
             this.VoltaFormulario.UseVisualStyleBackColor = true;
             this.VoltaFormulario.Click += new System.EventHandler(this.VoltaFormulario_Click);
             // 
-            // Form2
+            // FormularioPreenchimento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.VoltaFormulario);
-            this.Controls.Add(this.CadastraFormulario);
+            this.Controls.Add(this.SalvaFormulario);
             this.Controls.Add(this.panel1);
-            this.Name = "Form2";
+            this.Name = "FormularioPreenchimento";
             this.Text = "Form2";
+            this.Load += new System.EventHandler(this.FormularioPreenchimento_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
@@ -201,6 +202,6 @@
         public TextBox textBoxEditora;
         public TextBox textBoxNome;
         public DateTimePicker dateTimePicker1;
-        public Button CadastraFormulario;
+        public Button SalvaFormulario;
     }
 }

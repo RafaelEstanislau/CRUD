@@ -1,4 +1,4 @@
-using CRUD_Livros;
+using CRUD_Livros.DataAccessLibrary;
 using System;
 using System.Collections;
 using System.ComponentModel;
@@ -8,13 +8,14 @@ using static System.Reflection.Metadata.BlobBuilder;
 using static System.Windows.Forms.DataFormats;
 using static System.Windows.Forms.LinkLabel;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using CRUD_Livros.Domain;
 
-namespace CRUD_Livros
+namespace CRUD_Livros.UserInterface
 {
-    public partial class Form1 : Form
+    public partial class FormularioExibicao : Form
     {
         public List<Livro> listaDeLivros = Singleton.Instance();
-        public Form1()
+        public FormularioExibicao()
         {
             InitializeComponent();
         }
@@ -29,7 +30,7 @@ namespace CRUD_Livros
             {
                 Repository repo = new();
 
-                var formulario2 = new Form2(null);
+                var formulario2 = new FormularioPreenchimento(null);
                 formulario2.textBoxID.Enabled = false;
                 formulario2.ShowDialog();
 
@@ -57,28 +58,21 @@ namespace CRUD_Livros
                 Livro livroBuscado = new();
 
                 livroBuscado = repoedita.BuscarPorID(id);
-                var formulario2 = new Form2(livroBuscado);
+                var formulario2 = new FormularioPreenchimento(livroBuscado);
                 formulario2.textBoxID.Enabled = false;
                 formulario2.ShowDialog();
+                if (formulario2.DialogResult == DialogResult.OK)
+                {
+                    repoedita.Editar(livroBuscado);
+                    repoedita.BuscarTodos(dataGridView1);
+                }
 
-                repoedita.Editar(livroBuscado);
-                repoedita.BuscarTodos(dataGridView1);
-            }
+                }
             catch
             {
                 MessageBox.Show("Erro ao editar livro");
             }
         }
-        
-        /*public List<Livro> ListarLivros()
-        {
-            Repository repositorio = new();
-
-            dataGridView1.DataSource = null;
-            dataGridView1.DataSource = repositorio.BuscarTodos();
-            dataGridView1.ClearSelection();
-            return listaDeLivros.ToList();
-        }*/
         private void BotaoDeletar_Click(object sender, EventArgs e)
         {
             try

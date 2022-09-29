@@ -6,8 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Reflection.Metadata.BlobBuilder;
+using CRUD_Livros.Domain;
 
-namespace CRUD_Livros
+namespace CRUD_Livros.DataAccessLibrary
 {
     public class Repository : IRepository<Livro>
 
@@ -25,7 +26,7 @@ namespace CRUD_Livros
         public int BuscarPorID(int indexGrid)
         {
             int idSelecionado = listaDeLivros.First(l => l.id == indexGrid).id;
-           
+
             return idSelecionado;
         }
         public Livro Editar(int id)
@@ -36,7 +37,7 @@ namespace CRUD_Livros
             return livroEditado;
         }
         public void Deletar(Livro livro)
-        { 
+        {
             listaDeLivros.Remove(livro);
         }
     }

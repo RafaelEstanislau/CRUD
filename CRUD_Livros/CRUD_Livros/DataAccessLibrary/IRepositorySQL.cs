@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CRUD_Livros.Domain;
 
-namespace CRUD_Livros
+namespace CRUD_Livros.DataAccessLibrary
 {
     public interface IRepositorySQL
     {
