@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "VEaCWJxd74wTswaDkJ5GceAmZkrPe5VRBbnIHjKTIouC9MHTNiipeuRczXkyrzQ7ESieQZqHvPUQw962cpUBbw==",
+  "dgSpecHash": "x6bmMiwxNFB0bh0lkWrBRzjuzHLIi1FjyR5ev11Ymw4lFejVs9WMH/cKtNgmkApgw7lbX3AJvJLU4jaSy+9wkg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Usuario\\Desktop\\CRUD SINGLETON\\CRUD\\CRUD_Livros\\CRUD_Livros\\Tela.csproj",
+  "projectFilePath": "C:\\Users\\Usuario\\Desktop\\CRUD SINGLETON\\CRUD\\CRUD_Livros\\Infra\\Infra.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Usuario\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
     "C:\\Users\\Usuario\\.nuget\\packages\\microsoft.identitymodel.abstractions\\6.23.1\\microsoft.identitymodel.abstractions.6.23.1.nupkg.sha512",
