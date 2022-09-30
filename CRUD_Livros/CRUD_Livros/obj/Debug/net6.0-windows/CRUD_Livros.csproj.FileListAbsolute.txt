@@ -57,8 +57,6 @@ C:\Users\Usuario\Desktop\CRUD SINGLETON\CRUD\CRUD_Livros\CRUD_Livros\bin\Debug\n
 C:\Users\Usuario\Desktop\CRUD SINGLETON\CRUD\CRUD_Livros\CRUD_Livros\bin\Debug\net6.0-windows\CRUD_Livros.dll
 C:\Users\Usuario\Desktop\CRUD SINGLETON\CRUD\CRUD_Livros\CRUD_Livros\bin\Debug\net6.0-windows\CRUD_Livros.pdb
 C:\Users\Usuario\Desktop\CRUD SINGLETON\CRUD\CRUD_Livros\CRUD_Livros\obj\Debug\net6.0-windows\CRUD_Livros.csproj.AssemblyReference.cache
-C:\Users\Usuario\Desktop\CRUD SINGLETON\CRUD\CRUD_Livros\CRUD_Livros\obj\Debug\net6.0-windows\CRUD_Livros.Form1.resources
-C:\Users\Usuario\Desktop\CRUD SINGLETON\CRUD\CRUD_Livros\CRUD_Livros\obj\Debug\net6.0-windows\CRUD_Livros.Form2.resources
 C:\Users\Usuario\Desktop\CRUD SINGLETON\CRUD\CRUD_Livros\CRUD_Livros\obj\Debug\net6.0-windows\CRUD_Livros.csproj.GenerateResource.cache
 C:\Users\Usuario\Desktop\CRUD SINGLETON\CRUD\CRUD_Livros\CRUD_Livros\obj\Debug\net6.0-windows\CRUD_Livros.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\Usuario\Desktop\CRUD SINGLETON\CRUD\CRUD_Livros\CRUD_Livros\obj\Debug\net6.0-windows\CRUD_Livros.AssemblyInfoInputs.cache
@@ -76,3 +74,6 @@ C:\Users\Usuario\Desktop\CRUD SINGLETON\CRUD\CRUD_Livros\CRUD_Livros\bin\Debug\n
 C:\Users\Usuario\Desktop\CRUD SINGLETON\CRUD\CRUD_Livros\CRUD_Livros\bin\Debug\net6.0-windows\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
 C:\Users\Usuario\Desktop\CRUD SINGLETON\CRUD\CRUD_Livros\CRUD_Livros\bin\Debug\net6.0-windows\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
 C:\Users\Usuario\Desktop\CRUD SINGLETON\CRUD\CRUD_Livros\CRUD_Livros\obj\Debug\net6.0-windows\CRUD_Livros.csproj.CopyComplete
+C:\Users\Usuario\Desktop\CRUD SINGLETON\CRUD\CRUD_Livros\CRUD_Livros\bin\Debug\net6.0-windows\CRUD_Livros.dll.config
+C:\Users\Usuario\Desktop\CRUD SINGLETON\CRUD\CRUD_Livros\CRUD_Livros\obj\Debug\net6.0-windows\CRUD_Livros.UserInterface.FormularioExibicao.resources
+C:\Users\Usuario\Desktop\CRUD SINGLETON\CRUD\CRUD_Livros\CRUD_Livros\obj\Debug\net6.0-windows\CRUD_Livros.UserInterface.FormularioPreenchimento.resources
