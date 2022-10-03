@@ -1,3 +1,7 @@
+using CRUD_Livros.Infra.AcessoDeDados;
+using CRUD_Livros.UserInterface;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 namespace CRUD_Livros
 {
     internal static class Program
@@ -8,10 +12,25 @@ namespace CRUD_Livros
         [STAThread]
         static void Main()
         {
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
+            var builder = CreateHostBuilder();
+            var servicesProvider = builder.Build().Services;
+            var repositorio = servicesProvider.GetService<IRepositorio>();
+
+
+
             ApplicationConfiguration.Initialize();
-            Application.Run(new UserInterface.FormularioExibicao());
+            Application.Run(new FormularioExibicao(repositorio));
+        }
+
+
+
+        static IHostBuilder CreateHostBuilder()
+        {
+            return Host.CreateDefaultBuilder()
+                .ConfigureServices((context, services) => {
+                    services.AddScoped<IRepositorio, RepositorySQL>();
+                    
+                });
         }
     }
 }

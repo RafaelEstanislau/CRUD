@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CRUD_Livros.DataAccessLibrary
+namespace CRUD_Livros.Infra.AcessoDeDados
 {
     public interface IRepository<Livro>
     {

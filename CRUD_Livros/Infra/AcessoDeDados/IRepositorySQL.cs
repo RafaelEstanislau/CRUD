@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CRUD_Livros.Domain;
+using CRUD_Livros.Dominio.RegraDeNegocio;
 
-namespace CRUD_Livros.DataAccessLibrary
+namespace CRUD_Livros.Infra.AcessoDeDados
 {
     public interface IRepositorySQL
     {
