@@ -11,7 +11,7 @@ namespace CRUD_Livros.Dominio.RegraDeNegocio
         public static bool ValidacaoDeCampos(Livro livro)
         {
             bool validacao = true;
-            if (livro.nome == string.Empty)
+            if (livro.titulo == string.Empty)
             {
                 validacao = false;
                 throw new Exception("Campo Nome deve ser informado");
@@ -29,7 +29,7 @@ namespace CRUD_Livros.Dominio.RegraDeNegocio
                 throw new Exception("Campo Autor deve ser informado");
                 
             }
-            if (livro.ano > DateTime.Now)
+            if (livro.lancamento > DateTime.Now)
             {
                 validacao = false;
                 throw new Exception("Insira uma data válida anterior à hoje!");

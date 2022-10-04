@@ -2,6 +2,19 @@
   "version": 3,
   "targets": {
     "net6.0": {
+      "linq2db/4.3.0": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/linq2db.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/linq2db.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Microsoft.Extensions.Configuration/6.0.0": {
         "type": "package",
         "dependencies": {
@@ -608,6 +621,34 @@
     }
   },
   "libraries": {
+    "linq2db/4.3.0": {
+      "sha512": "I/CbrqshgIQAuEpFvQZBFXTB1mquZzX9mGjwnIZjN7uh8sWI4+m6gTplNul9m2Zhb0M96m1iV5i7/vEKkellFw==",
+      "type": "package",
+      "path": "linq2db/4.3.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "MIT-LICENSE.txt",
+        "README.md",
+        "images/icon.png",
+        "lib/net45/linq2db.dll",
+        "lib/net45/linq2db.xml",
+        "lib/net46/linq2db.dll",
+        "lib/net46/linq2db.xml",
+        "lib/net472/linq2db.dll",
+        "lib/net472/linq2db.xml",
+        "lib/net6.0/linq2db.dll",
+        "lib/net6.0/linq2db.xml",
+        "lib/netcoreapp3.1/linq2db.dll",
+        "lib/netcoreapp3.1/linq2db.xml",
+        "lib/netstandard2.0/linq2db.dll",
+        "lib/netstandard2.0/linq2db.xml",
+        "lib/netstandard2.1/linq2db.dll",
+        "lib/netstandard2.1/linq2db.xml",
+        "linq2db.4.3.0.nupkg.sha512",
+        "linq2db.nuspec"
+      ]
+    },
     "Microsoft.Extensions.Configuration/6.0.0": {
       "sha512": "tq2wXyh3fL17EMF2bXgRhU7JrbO3on93MRKYxzz4JzzvuGSA1l0W3GI9/tl8EO89TH+KWEymP7bcFway6z9fXg==",
       "type": "package",
@@ -1340,7 +1381,8 @@
   "projectFileDependencyGroups": {
     "net6.0": [
       "Microsoft.Extensions.Hosting >= 6.0.1",
-      "Microsoft.Extensions.Hosting.Abstractions >= 6.0.0"
+      "Microsoft.Extensions.Hosting.Abstractions >= 6.0.0",
+      "linq2db >= 4.3.0"
     ]
   },
   "packageFolders": {
@@ -1394,6 +1436,10 @@
           "Microsoft.Extensions.Hosting.Abstractions": {
             "target": "Package",
             "version": "[6.0.0, )"
+          },
+          "linq2db": {
+            "target": "Package",
+            "version": "[4.3.0, )"
           }
         },
         "imports": [

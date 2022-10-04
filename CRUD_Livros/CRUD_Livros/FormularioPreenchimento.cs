@@ -18,10 +18,10 @@ namespace CRUD_Livros.UserInterface
             }
             else
             {
-                textBoxNome.Text = livro.nome;
+                textBoxNome.Text = livro.titulo;
                 textBoxEditora.Text = livro.editora;
                 textBoxAutor.Text = livro.autor;
-                dateTimePicker1.Text = livro.ano.ToString();
+                dateTimePicker1.Text = livro.lancamento.ToString();
                 Livro = livro;
             }
         }
@@ -29,10 +29,10 @@ namespace CRUD_Livros.UserInterface
         {
             try
             {
-                Livro.nome = textBoxNome.Text;
+                Livro.titulo = textBoxNome.Text;
                 Livro.editora = textBoxEditora.Text;
                 Livro.autor = textBoxAutor.Text;
-                Livro.ano = dateTimePicker1.Value;
+                Livro.lancamento = dateTimePicker1.Value;
                 if (Validacao.ValidacaoDeCampos(Livro) == true)
                 {
                     DialogResult = DialogResult.OK;

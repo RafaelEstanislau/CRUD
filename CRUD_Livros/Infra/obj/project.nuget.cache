@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "08PmDFY0WdwayZjCwVHof5LVBrRjULuJ8GecspxK/ps8LKijoyq2uHBP2O7P+GbEdWVr9OjXX+qaAGFEZaDomA==",
+  "dgSpecHash": "QItCLpMcsL1kgSIi/oTzVuok+Zrq7yqk1XLOUVt9Mizbn2OSokv+xgOliTsYYsACUPg4NxX2mo7u0YHCalMbyw==",
   "success": true,
   "projectFilePath": "C:\\Users\\Usuario\\Desktop\\CRUD SINGLETON\\CRUD\\CRUD_Livros\\Infra\\Infra.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Usuario\\.nuget\\packages\\linq2db\\4.3.0\\linq2db.4.3.0.nupkg.sha512",
     "C:\\Users\\Usuario\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
     "C:\\Users\\Usuario\\.nuget\\packages\\microsoft.extensions.configuration\\6.0.0\\microsoft.extensions.configuration.6.0.0.nupkg.sha512",
     "C:\\Users\\Usuario\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\6.0.0\\microsoft.extensions.configuration.abstractions.6.0.0.nupkg.sha512",

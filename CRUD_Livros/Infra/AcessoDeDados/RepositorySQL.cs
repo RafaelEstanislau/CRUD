@@ -34,10 +34,10 @@ namespace CRUD_Livros.Infra.AcessoDeDados
                     {
                         cmd.CommandText = "INSERT INTO CAD_LIVROS VALUES (@TITULO, @AUTOR, @EDITORA, @LANCAMENTO)";
 
-                        cmd.Parameters.AddWithValue("@TITULO", livro.nome);
+                        cmd.Parameters.AddWithValue("@TITULO", livro.titulo);
                         cmd.Parameters.AddWithValue("@AUTOR", livro.autor);
                         cmd.Parameters.AddWithValue("@EDITORA", livro.editora);
-                        cmd.Parameters.AddWithValue("@LANCAMENTO", livro.ano);
+                        cmd.Parameters.AddWithValue("@LANCAMENTO", livro.lancamento);
 
                         cmd.ExecuteNonQuery();
                     }
@@ -67,10 +67,10 @@ namespace CRUD_Livros.Infra.AcessoDeDados
                                  select new Livro()
                                  {
                                      id = Convert.ToInt32(dr["id"]),
-                                     nome = dr["titulo"].ToString(),
+                                     titulo = dr["titulo"].ToString(),
                                      autor = dr["autor"].ToString(),
                                      editora = dr["editora"].ToString(),
-                                     ano = DateTime.Parse(dr["lancamento"].ToString()),
+                                     lancamento = DateTime.Parse(dr["lancamento"].ToString()),
                                  }).ToList();
                     }
                     catch (Exception ex)
@@ -98,10 +98,10 @@ namespace CRUD_Livros.Infra.AcessoDeDados
                         while (dr.Read())
                         {
                             livroBuscado.id = Convert.ToInt32(dr["id"]);
-                            livroBuscado.nome = (string)dr["titulo"];
+                            livroBuscado.titulo = (string)dr["titulo"];
                             livroBuscado.editora = (string)dr["editora"];
                             livroBuscado.autor = (string)dr["autor"];
-                            livroBuscado.ano = DateTime.Parse(dr["lancamento"].ToString());
+                            livroBuscado.lancamento = DateTime.Parse(dr["lancamento"].ToString());
                         }
                     }
                     catch (Exception ex)
@@ -123,10 +123,10 @@ namespace CRUD_Livros.Infra.AcessoDeDados
                         cmd.CommandText = "UPDATE CAD_LIVROS SET TITULO = @TITULO, AUTOR = @AUTOR, EDITORA = @EDITORA, LANCAMENTO = @LANCAMENTO WHERE ID = @ID";
 
                         cmd.Parameters.AddWithValue("@ID", livro.id);
-                        cmd.Parameters.AddWithValue("@TITULO", livro.nome);
+                        cmd.Parameters.AddWithValue("@TITULO", livro.titulo);
                         cmd.Parameters.AddWithValue("@AUTOR", livro.autor);
                         cmd.Parameters.AddWithValue("@EDITORA", livro.editora);
-                        cmd.Parameters.AddWithValue("@LANCAMENTO", livro.ano);
+                        cmd.Parameters.AddWithValue("@LANCAMENTO", livro.lancamento);
 
                         cmd.ExecuteNonQuery();
                     }

@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "P26sPBfSIWToSjLRfGhNv7Rjj2sMZ6jSsEhqpGhf7CEG1+453lF8HFYT/AgO/VHR4cI3pzXK+7FkV9EWDbxr1A==",
+  "dgSpecHash": "jVhr8HnXEkQrn9pxCjMjz5AhZ4G/o7cwtvBbQ8YV7+ilRj9T2Pt7Z4hcExuGHjWLtnhqNRCJHy2hp5yjCdy0QQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\Usuario\\Desktop\\CRUD SINGLETON\\CRUD\\CRUD_Livros\\CRUD_Livros\\Tela.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Usuario\\.nuget\\packages\\linq2db\\4.3.0\\linq2db.4.3.0.nupkg.sha512",
     "C:\\Users\\Usuario\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
     "C:\\Users\\Usuario\\.nuget\\packages\\microsoft.extensions.configuration\\6.0.0\\microsoft.extensions.configuration.6.0.0.nupkg.sha512",
     "C:\\Users\\Usuario\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\6.0.0\\microsoft.extensions.configuration.abstractions.6.0.0.nupkg.sha512",
