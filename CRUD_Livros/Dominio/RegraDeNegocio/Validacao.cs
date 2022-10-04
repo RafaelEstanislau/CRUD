@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CRUD_Livros.Domain
+namespace CRUD_Livros.Dominio.RegraDeNegocio
 {
     public class Validacao
     {

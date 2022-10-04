@@ -7,12 +7,12 @@ using System.Data.SqlClient;
 using System.Data;
 using System.Configuration;
 using System.Linq.Expressions;
-using CRUD_Livros.Domain;
+using CRUD_Livros.Dominio.RegraDeNegocio;
 using Microsoft.IdentityModel.Protocols;
 
-namespace CRUD_Livros.DataAccessLibrary
+namespace CRUD_Livros.Infra.AcessoDeDados
 {
-    public class RepositorySQL : IRepositorySQL
+    public class RepositorySQL : IRepositorio
     {
         SqlDataAdapter da;
         SqlDataReader dr;

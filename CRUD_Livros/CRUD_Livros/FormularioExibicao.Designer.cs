@@ -71,7 +71,7 @@
             // 
             // livroBindingSource
             // 
-            this.livroBindingSource.DataSource = typeof(CRUD_Livros.Domain.Livro);
+            this.livroBindingSource.DataSource = typeof(CRUD_Livros.Dominio.RegraDeNegocio.Livro);
             // 
             // BotaoDeletar
             // 
