@@ -2,6 +2,19 @@
   "version": 3,
   "targets": {
     "net6.0": {
+      "linq2db/4.3.0": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/linq2db.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/linq2db.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Microsoft.CSharp/4.5.0": {
         "type": "package",
         "compile": {
@@ -970,7 +983,8 @@
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
           "Microsoft.Extensions.Hosting": "6.0.1",
-          "Microsoft.Extensions.Hosting.Abstractions": "6.0.0"
+          "Microsoft.Extensions.Hosting.Abstractions": "6.0.0",
+          "linq2db": "4.3.0"
         },
         "compile": {
           "bin/placeholder/Dominio.dll": {}
@@ -982,6 +996,34 @@
     }
   },
   "libraries": {
+    "linq2db/4.3.0": {
+      "sha512": "I/CbrqshgIQAuEpFvQZBFXTB1mquZzX9mGjwnIZjN7uh8sWI4+m6gTplNul9m2Zhb0M96m1iV5i7/vEKkellFw==",
+      "type": "package",
+      "path": "linq2db/4.3.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "MIT-LICENSE.txt",
+        "README.md",
+        "images/icon.png",
+        "lib/net45/linq2db.dll",
+        "lib/net45/linq2db.xml",
+        "lib/net46/linq2db.dll",
+        "lib/net46/linq2db.xml",
+        "lib/net472/linq2db.dll",
+        "lib/net472/linq2db.xml",
+        "lib/net6.0/linq2db.dll",
+        "lib/net6.0/linq2db.xml",
+        "lib/netcoreapp3.1/linq2db.dll",
+        "lib/netcoreapp3.1/linq2db.xml",
+        "lib/netstandard2.0/linq2db.dll",
+        "lib/netstandard2.0/linq2db.xml",
+        "lib/netstandard2.1/linq2db.dll",
+        "lib/netstandard2.1/linq2db.xml",
+        "linq2db.4.3.0.nupkg.sha512",
+        "linq2db.nuspec"
+      ]
+    },
     "Microsoft.CSharp/4.5.0": {
       "sha512": "kaj6Wb4qoMuH3HySFJhxwQfe8R/sJsNJnANrvv8WdFPMoNbKY5htfNscv+LHCu5ipz+49m2e+WQXpLXr9XYemQ==",
       "type": "package",
@@ -2397,7 +2439,8 @@
       "Microsoft.Extensions.Hosting.Abstractions >= 6.0.0",
       "Microsoft.IdentityModel.Protocols >= 6.23.1",
       "System.Configuration.ConfigurationManager >= 6.0.1",
-      "System.Data.SqlClient >= 4.8.3"
+      "System.Data.SqlClient >= 4.8.3",
+      "linq2db >= 4.3.0"
     ]
   },
   "packageFolders": {
@@ -2467,6 +2510,10 @@
           "System.Data.SqlClient": {
             "target": "Package",
             "version": "[4.8.3, )"
+          },
+          "linq2db": {
+            "target": "Package",
+            "version": "[4.3.0, )"
           }
         },
         "imports": [

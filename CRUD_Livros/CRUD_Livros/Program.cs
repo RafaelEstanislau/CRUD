@@ -1,5 +1,6 @@
 using CRUD_Livros.Infra.AcessoDeDados;
 using CRUD_Livros.UserInterface;
+using Infra.AcessoDeDados;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 namespace CRUD_Livros
@@ -28,7 +29,7 @@ namespace CRUD_Livros
         {
             return Host.CreateDefaultBuilder()
                 .ConfigureServices((context, services) => {
-                    services.AddScoped<IRepositorio, RepositorySQL>();
+                    services.AddScoped<IRepositorio, RepositoryLINQTODB>();
                     
                 });
         }

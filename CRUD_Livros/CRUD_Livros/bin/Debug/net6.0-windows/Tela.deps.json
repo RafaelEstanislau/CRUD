@@ -18,6 +18,14 @@
           "Tela.dll": {}
         }
       },
+      "linq2db/4.3.0": {
+        "runtime": {
+          "lib/net6.0/linq2db.dll": {
+            "assemblyVersion": "4.3.0.0",
+            "fileVersion": "4.3.0.0"
+          }
+        }
+      },
       "Microsoft.CSharp/4.5.0": {},
       "Microsoft.Extensions.Configuration/6.0.0": {
         "dependencies": {
@@ -531,7 +539,8 @@
       "Dominio/1.0.0": {
         "dependencies": {
           "Microsoft.Extensions.Hosting": "6.0.1",
-          "Microsoft.Extensions.Hosting.Abstractions": "6.0.0"
+          "Microsoft.Extensions.Hosting.Abstractions": "6.0.0",
+          "linq2db": "4.3.0"
         },
         "runtime": {
           "Dominio.dll": {}
@@ -544,7 +553,8 @@
           "Microsoft.Extensions.Hosting.Abstractions": "6.0.0",
           "Microsoft.IdentityModel.Protocols": "6.23.1",
           "System.Configuration.ConfigurationManager": "6.0.1",
-          "System.Data.SqlClient": "4.8.3"
+          "System.Data.SqlClient": "4.8.3",
+          "linq2db": "4.3.0"
         },
         "runtime": {
           "Infra.dll": {}
@@ -557,6 +567,13 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "linq2db/4.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-I/CbrqshgIQAuEpFvQZBFXTB1mquZzX9mGjwnIZjN7uh8sWI4+m6gTplNul9m2Zhb0M96m1iV5i7/vEKkellFw==",
+      "path": "linq2db/4.3.0",
+      "hashPath": "linq2db.4.3.0.nupkg.sha512"
     },
     "Microsoft.CSharp/4.5.0": {
       "type": "package",

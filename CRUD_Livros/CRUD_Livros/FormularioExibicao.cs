@@ -1,15 +1,5 @@
 using CRUD_Livros.Infra.AcessoDeDados;
-using System;
-using System.Collections;
-using System.ComponentModel;
-using System.Windows.Forms;
-using System.Xml.Xsl;
-using static System.Reflection.Metadata.BlobBuilder;
-using static System.Windows.Forms.DataFormats;
-using static System.Windows.Forms.LinkLabel;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using CRUD_Livros.Dominio.RegraDeNegocio;
-
 namespace CRUD_Livros.UserInterface
 {
     public partial class FormularioExibicao : Form
@@ -49,7 +39,7 @@ namespace CRUD_Livros.UserInterface
         {
             try
             {
-                var id = Convert.ToInt32(dataGridView1.CurrentRow.Cells[4].Value);
+                var id = Convert.ToInt32(dataGridView1.CurrentRow.Cells[0].Value);
                 Livro livroBuscado = new();
 
                 livroBuscado = _repositorio.BuscarPorID(id);
@@ -77,7 +67,7 @@ namespace CRUD_Livros.UserInterface
                     if (MessageBox.Show("Tem certeza que deseja deletar o livro? ", "Confirmação",
                    MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
-                        var id = dataGridView1.CurrentRow.Cells[4].Value;
+                        var id = dataGridView1.CurrentRow.Cells[0].Value;
                         _repositorio.Excluir(Convert.ToInt32(id));
                         MessageBox.Show("Livro excluído");
                         ExibirLista();
