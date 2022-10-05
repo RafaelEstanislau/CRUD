@@ -1,7 +1,4 @@
-﻿using System.Data;
-using System.Windows.Forms;
-using System.Xml.Xsl;
-using CRUD_Livros.Dominio.RegraDeNegocio;
+﻿using CRUD_Livros.Dominio.RegraDeNegocio;
 
 namespace CRUD_Livros.UserInterface
 {

@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data.SqlClient;
+﻿using System.Data.SqlClient;
 using System.Data;
 using System.Configuration;
-using System.Linq.Expressions;
 using CRUD_Livros.Dominio.RegraDeNegocio;
-using Microsoft.IdentityModel.Protocols;
 
 namespace CRUD_Livros.Infra.AcessoDeDados
 {
