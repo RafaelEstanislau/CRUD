@@ -14,13 +14,14 @@ namespace Infra.AcessoDeDados
             return ConfigurationManager.ConnectionStrings["conexaoSql"].ConnectionString;
         }
 
-        public void Salvar(Livro livro)
+        public int Salvar(Livro livro)
         {
             try
             {
                 using var db = SqlServerTools.CreateDataConnection(BancoConexao());
                 {
-                    db.Insert(livro);
+                   var idDoLivroAdicionado =  db.InsertWithInt32Identity(livro);
+                    return idDoLivroAdicionado;
 
                 }
             }

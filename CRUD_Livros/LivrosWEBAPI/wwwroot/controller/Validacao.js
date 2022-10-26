@@ -1,17 +1,16 @@
 sap.ui.define([
 	"sap/ui/core/Core",
 	"sap/ui/base/ManagedObject",
-	"sap/ui/demo/walkthrough/controller/CadastrarLivro"
 ], function(
 	Core,
 	ManagedObject,
-	CadastrarLivro
+
 ) {
 	"use strict";
 
-	return CadastrarLivro.extend("sap.ui.demo.walkthrough.controller.Validacao", {
+	return ManagedObject.extend("sap.ui.demo.walkthrough.controller.Validacao", {
 		
-        validarCampo: function (input) {
+        validarCampo: function (input, dataInputada) {
 			var estado = "None";
 			var erroDeValidacao = false;
 			var oBinding = input.getBinding("value");
@@ -19,7 +18,6 @@ sap.ui.define([
 
 			let dataMinimaValida = new Date(1860, 1, 1).toISOString();
 			let dataMaximaValida = new Date().toISOString();
-			var dataInputada = this.getView().byId("DT").getValue();
 
 			if(dataInputada.length == 0){
 				estado = "Error"
@@ -42,7 +40,7 @@ sap.ui.define([
 				erroDeValidacao = true;
 			}
 			input.setValueState(estado);
-			return input;
+			return erroDeValidacao;
 		},
 	});
 });

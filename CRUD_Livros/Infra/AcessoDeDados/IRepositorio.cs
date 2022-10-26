@@ -9,7 +9,7 @@ namespace CRUD_Livros.Infra.AcessoDeDados
 {
    public interface IRepositorio
     {
-        public void Salvar(Livro livro);
+        public int Salvar(Livro livro);
 
         public List<Livro> BuscarTodos();
 

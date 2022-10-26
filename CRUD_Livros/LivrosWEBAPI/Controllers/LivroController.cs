@@ -17,17 +17,15 @@ namespace LivrosAPI.Controllers
             _livroServico = livroServico;
         }
         [HttpPost]
-        public IActionResult CriarLivros(Livro livroASerAdicionado)
+        public IActionResult CriarLivros([FromBody] Livro livroASerAdicionado)
         {
             try
             {
                 Validacao.ValidacaoDeCampos(livroASerAdicionado);
-                _livroServico.Salvar(livroASerAdicionado);
-
-                return CreatedAtAction(
-                actionName: nameof(BuscarTodos),
-                livroASerAdicionado
-                );
+                var id = _livroServico.Salvar(livroASerAdicionado);
+                livroASerAdicionado.id = id;
+            
+                return Created($"livro/{livroASerAdicionado.id}", livroASerAdicionado);
             }
             catch (Exception ex)
             {
