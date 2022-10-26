@@ -3780,11 +3780,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Usuario\\Desktop\\CRUD-UI5\\CRUD_Livros\\Tela.csproj",
+      "projectUniqueName": "C:\\Users\\Usuario\\Documents\\Meus Projetos\\CRUD\\CRUD_Livros\\CRUD_Livros\\Tela.csproj",
       "projectName": "Tela",
-      "projectPath": "C:\\Users\\Usuario\\Desktop\\CRUD-UI5\\CRUD_Livros\\Tela.csproj",
+      "projectPath": "C:\\Users\\Usuario\\Documents\\Meus Projetos\\CRUD\\CRUD_Livros\\CRUD_Livros\\Tela.csproj",
       "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Usuario\\Desktop\\CRUD-UI5\\CRUD_Livros\\obj\\",
+      "outputPath": "C:\\Users\\Usuario\\Documents\\Meus Projetos\\CRUD\\CRUD_Livros\\CRUD_Livros\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -3805,14 +3805,14 @@
         "net6.0-windows7.0": {
           "targetAlias": "net6.0-windows",
           "projectReferences": {
-            "C:\\Users\\Usuario\\Desktop\\CRUD-UI5\\Dominio\\Dominio.csproj": {
-              "projectPath": "C:\\Users\\Usuario\\Desktop\\CRUD-UI5\\Dominio\\Dominio.csproj"
+            "C:\\Users\\Usuario\\Documents\\Meus Projetos\\CRUD\\CRUD_Livros\\Dominio\\Dominio.csproj": {
+              "projectPath": "C:\\Users\\Usuario\\Documents\\Meus Projetos\\CRUD\\CRUD_Livros\\Dominio\\Dominio.csproj"
             },
-            "C:\\Users\\Usuario\\Desktop\\CRUD-UI5\\Infra\\Infra.csproj": {
-              "projectPath": "C:\\Users\\Usuario\\Desktop\\CRUD-UI5\\Infra\\Infra.csproj"
+            "C:\\Users\\Usuario\\Documents\\Meus Projetos\\CRUD\\CRUD_Livros\\Infra\\Infra.csproj": {
+              "projectPath": "C:\\Users\\Usuario\\Documents\\Meus Projetos\\CRUD\\CRUD_Livros\\Infra\\Infra.csproj"
             },
-            "C:\\Users\\Usuario\\Desktop\\CRUD-UI5\\Migrations\\Migrations.csproj": {
-              "projectPath": "C:\\Users\\Usuario\\Desktop\\CRUD-UI5\\Migrations\\Migrations.csproj"
+            "C:\\Users\\Usuario\\Documents\\Meus Projetos\\CRUD\\CRUD_Livros\\Migrations\\Migrations.csproj": {
+              "projectPath": "C:\\Users\\Usuario\\Documents\\Meus Projetos\\CRUD\\CRUD_Livros\\Migrations\\Migrations.csproj"
             }
           }
         }

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "tgQe5pww0NygqWConuByLO+KAhQg2/UGwsMcxUtiRhCT2N4I1vV8Xk0eRGH+GJdOLPRMpXtfTVRXGGAKZEpFcQ==",
+  "dgSpecHash": "QHzh0D4SPoVtUlB5IN+Mst4X/i884CkrVLauqDdSSQlyTCzWo5LtV9G+z0xNHNcYARGuyC8DR8pzlfoguTa14g==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Usuario\\Desktop\\CRUD-UI5\\Migrations\\Migrations.csproj",
+  "projectFilePath": "C:\\Users\\Usuario\\Documents\\Meus Projetos\\CRUD\\CRUD_Livros\\Migrations\\Migrations.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Usuario\\.nuget\\packages\\fluentmigrator\\3.3.2\\fluentmigrator.3.3.2.nupkg.sha512",
     "C:\\Users\\Usuario\\.nuget\\packages\\fluentmigrator.abstractions\\3.3.2\\fluentmigrator.abstractions.3.3.2.nupkg.sha512",

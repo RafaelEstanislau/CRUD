@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "DOI5XCevMfQs3tj/OzuwoPfd2RGqCWc2dJ3BjQqHjnmK+FCX2bmBW3VRHdX3b6Gc6KhAyzjqCkDT5oxsBO3L4w==",
+  "dgSpecHash": "enuMQApv3CbcV5aJYCXeVpn6EguWyOATtx1JRx/65mCAAk1KKjdS2YmPW1RJ3CFwApTI+7gVVWwgOCqkyn/TlA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Usuario\\Desktop\\CRUD-UI5\\Infra\\Infra.csproj",
+  "projectFilePath": "C:\\Users\\Usuario\\Documents\\Meus Projetos\\CRUD\\CRUD_Livros\\Infra\\Infra.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Usuario\\.nuget\\packages\\linq2db\\4.3.0\\linq2db.4.3.0.nupkg.sha512",
     "C:\\Users\\Usuario\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
