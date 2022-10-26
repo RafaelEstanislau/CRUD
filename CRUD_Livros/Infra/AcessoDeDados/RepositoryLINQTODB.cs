@@ -36,7 +36,7 @@ namespace Infra.AcessoDeDados
                 using var db = SqlServerTools.CreateDataConnection(BancoConexao());
                 {
                     var livroBuscado = db.GetTable<Livro>()
-                         .FirstOrDefault(l => l.id == id) ?? throw new Exception("Livro com id" +id+ "não encontrado");
+                         .FirstOrDefault(l => l.id == id) ?? throw new Exception("Livro com id " + id + " não encontrado");
                       return livroBuscado;
                 }
             }

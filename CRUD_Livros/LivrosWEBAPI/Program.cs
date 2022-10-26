@@ -1,6 +1,7 @@
 
 using CRUD_Livros.Infra.AcessoDeDados;
 using Infra.AcessoDeDados;
+using Microsoft.AspNetCore.StaticFiles;
 
 var builder = WebApplication.CreateBuilder(args);
 {
@@ -18,7 +19,13 @@ var app = builder.Build();
     app.UseAuthentication();
     app.UseDefaultFiles();
     app.UseStaticFiles();
-
+    app.UseStaticFiles(new StaticFileOptions()
+    {
+        ContentTypeProvider = new FileExtensionContentTypeProvider
+        {
+            Mappings = { [".properties"] = "application/x-msdownload" }
+        }
+    });
     app.MapControllers();
     app.Run();
 }

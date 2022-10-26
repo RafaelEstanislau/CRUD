@@ -16,4 +16,6 @@
     <ProjectReference Include="..\Migrations\Migrations.csproj" />
   </ItemGroup>
 
+  <ProjectExtensions><VisualStudio><UserProperties wwwroot_4manifest_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
+
 </Project>

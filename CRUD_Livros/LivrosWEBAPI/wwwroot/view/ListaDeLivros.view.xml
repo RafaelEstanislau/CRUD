@@ -1,0 +1,73 @@
+<mvc:View
+   controllerName="sap.ui.demo.walkthrough.controller.ListaDeLivros"
+   xmlns="sap.m"
+   xmlns:mvc="sap.ui.core.mvc">
+   <Panel accessibleRole="Region">
+   <Table
+      id="ListaDeLivros"
+      headerText="{i18n>tituloListaDeLivros}"
+      class="sapUiResponsiveMargin"
+      width="auto"
+      items="{
+        path: 'listaDeLivros>/',
+        sorter: {
+            path: 'autor',
+            group: true
+        }
+        }">
+        <headerToolbar>
+			<Toolbar>
+                <Button
+                icon="sap-icon://add"
+                text="Cadastrar"
+                press="aoClicarEmCadastrar"
+                class="myCustomButton"/>
+				<ToolbarSpacer/>
+				<SearchField width="50%" search="aoProcurar"/>
+			</Toolbar>
+           
+		</headerToolbar>
+      <columns>
+        <Column>
+            <Text text="{i18n>colunaTitulo}"/>
+        </Column>
+        <Column>
+            <Text text="{i18n>colunaEditora}"/>
+        </Column>
+        <Column>
+            <Text text="{i18n>colunaAutor}"/>
+        </Column>
+        <Column>
+            <Text text="{i18n>colunaLancamento}"/>
+        </Column>
+        <Column>
+            <Text text="{i18n>ID}"/>
+        </Column>
+    </columns>
+    <items>
+        <ColumnListItem
+            type="Navigation"
+            press=".aoClicarEmLivro">
+            <cells>
+                <Text text="{listaDeLivros>titulo}"/>
+                <Text text="{listaDeLivros>editora}"/>
+                <Text text="{listaDeLivros>autor}"/>
+                <Text text="{
+                        path: 'listaDeLivros>lancamento',
+                        type: 'sap.ui.model.type.DateTime',
+                        formatOptions: {
+                            style: 'short',
+                            source: {
+                              pattern: 'yyyy-MM-ddTHH:mm:ss'
+                            }
+                          }
+                    }" 
+                    />
+            <ObjectIdentifier id="idDaLista" title="{listaDeLivros>id}"/>
+            </cells>
+        </ColumnListItem>
+    </items>
+        </Table>
+        
+    </Panel>
+</mvc:View>

@@ -1,0 +1,58 @@
+<mvc:View
+	controllerName="sap.ui.demo.walkthrough.controller.Detalhes"
+	xmlns="sap.m"
+	xmlns:l="sap.ui.layout"
+	xmlns:mvc="sap.ui.core.mvc">
+	<Page
+	title="{i18n>tituloListaDeLivros}"
+	showNavButton="true"
+	navButtonPress=".aoClicarEmVoltar">
+	<headerContent>
+	
+			<Button
+				icon="sap-icon://edit"
+				text="Editar"
+				press="aoClicarEmEditar"
+				
+				/>
+				<Button
+				icon="sap-icon://delete"
+				text="Deletar"
+				press="aoClicarEmDeletar"
+				/>
+	
+	</headerContent>
+	
+
+	<l:VerticalLayout
+	class="sapUiContentPadding"
+	width="100%">
+	
+	<l:content>
+		<List
+			headerText="{livro>/titulo}" >
+			<DisplayListItem
+				label="Autor"
+				value="{livro>/autor}" />
+			<DisplayListItem
+				label="Editora"
+				value="{livro>/editora}" />
+			<DisplayListItem
+				label="Ano de lançamento"
+				value="{
+					path: 'livro>/lancamento',
+					type: 'sap.ui.model.type.Date',
+					formatOptions: {
+					  style: 'long',
+					  source: {
+						pattern: 'yyyy-MM-ddTHH:mm:ss'
+					  }
+					}
+				  }"/>
+		</List>
+
+	</l:content>
+</l:VerticalLayout>
+
+</Page>
+</mvc:View>

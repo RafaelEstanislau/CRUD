@@ -2,6 +2,7 @@
 using CRUD_Livros.Infra.AcessoDeDados;
 using CRUD_Livros.Dominio.RegraDeNegocio;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
 
 namespace LivrosAPI.Controllers
 {
@@ -18,19 +19,31 @@ namespace LivrosAPI.Controllers
         [HttpPost]
         public IActionResult CriarLivros(Livro livroASerAdicionado)
         {
-            _livroServico.Salvar(livroASerAdicionado);
+            try
+            {
+                Validacao.ValidacaoDeCampos(livroASerAdicionado);
+                _livroServico.Salvar(livroASerAdicionado);
 
-            return CreatedAtAction(
+                return CreatedAtAction(
                 actionName: nameof(BuscarTodos),
                 livroASerAdicionado
                 );
+            }
+            catch (Exception ex)
+            {
+
+                return StatusCode((int)HttpStatusCode.InternalServerError, ex.Message);
+            }
+           
+
+            
         }
 
         [HttpGet]
         public IActionResult BuscarTodos()
         {
             var livrosBuscados = _livroServico.BuscarTodos();
-            if(livrosBuscados.Count == 0)
+            if(livrosBuscados == null)
             {
                 return NotFound();
             }
@@ -38,7 +51,7 @@ namespace LivrosAPI.Controllers
             return Ok(livrosBuscados);
         }
         [HttpGet("{id}")]
-        public IActionResult ObterClientePorId(int id)
+        public IActionResult ObterLivroPorId(int id)
         {
             var livro = _livroServico.BuscarPorID(id);
             if (livro == null)
@@ -49,23 +62,34 @@ namespace LivrosAPI.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult AtualizarLivros(Livro livroASerEditado)
+        public IActionResult EditarLivro(Livro livroASerEditado)
         {
-            if(livroASerEditado == null)
+            try
             {
-                NotFound();
+                if (livroASerEditado == null)
+                {
+                    NotFound();
+                }
+                else
+                {
+                    Validacao.ValidacaoDeCampos(livroASerEditado);
+                    _livroServico.Editar(livroASerEditado);
+                }
+
+                return Ok();
             }
-            else
+            catch (Exception ex)
             {
-              _livroServico.Editar(livroASerEditado);
+
+                return StatusCode((int)HttpStatusCode.InternalServerError, ex.Message);
             }
-           
-            return Ok();
+          
         }
 
         [HttpDelete("{id}")]
         public IActionResult ExcluirLivros(int id)
         {
+            
             var livroASerDeletado = _livroServico.BuscarPorID(id);
             if(livroASerDeletado == null)
             {

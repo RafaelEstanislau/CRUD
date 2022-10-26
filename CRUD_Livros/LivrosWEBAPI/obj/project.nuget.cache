@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "6QnT++HkL/VPCzookhhTvbqiQ5gjoIHC0qsvpmEKGXy3V8IP6ad3bTJxYIlHoBcn8t8MpjY3d/KNuUyfn41rAA==",
+  "dgSpecHash": "m1vB1uQAnaAraTYEhJxIk1UqvN+elsYIQeRv5xfthyudUJUE98FAarMd5LXnIY6Zl7kGa001ya8eAGzbygagEA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Usuario\\Desktop\\CRUD SINGLETON\\CRUD\\CRUD_Livros\\LivrosWEBAPI\\LivrosWEBAPI.csproj",
+  "projectFilePath": "C:\\Users\\Usuario\\Desktop\\CRUD-UI5\\LivrosWEBAPI\\LivrosWEBAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Usuario\\.nuget\\packages\\fluentmigrator\\3.3.2\\fluentmigrator.3.3.2.nupkg.sha512",
     "C:\\Users\\Usuario\\.nuget\\packages\\fluentmigrator.abstractions\\3.3.2\\fluentmigrator.abstractions.3.3.2.nupkg.sha512",

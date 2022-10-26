@@ -1,0 +1,93 @@
+<mvc:View
+	controllerName="sap.ui.demo.walkthrough.controller.CadastrarLivro"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:l="sap.ui.layout"
+>
+	<Page
+		title="{i18n>tituloListaDeLivros}"
+		showNavButton="true"
+		navButtonPress=".aoClicarEmVoltar"
+		id= "formularioDeCadastro"
+	>
+	<headerContent>
+		<Toolbar>
+			<Button
+				icon="sap-icon://save"
+				text="Salvar"
+				press="aoClicarEmSalvar"
+			/>
+		</Toolbar>
+	</headerContent>
+
+		<l:VerticalLayout
+			class="sapUiContentPadding"
+			width="50%"
+		>
+			<Label
+				text="Titulo"
+				labelFor="input-titulo"
+				required="true"
+				
+			/>
+			<Input
+				id="input-titulo"
+				required="true"
+				value="{
+					path : 'livro>/titulo',
+					type : 'sap.ui.model.type.String',
+					constraints : {
+						minLength: 1,
+						maxLength: 100
+					}
+				}"
+			/>
+			<Label
+				text="Editora"
+				labelFor="input-editora"
+				required="true"
+			/>
+			<Input
+				id="input-editora"
+				required="true"
+				value="{
+					path : 'livro>/editora',
+					type : 'sap.ui.model.type.String',
+					constraints : {
+						minLength: 1,
+						maxLength: 100
+					}
+				}"
+			/>
+			<Label
+				text="Autor"
+				labelFor="input-autor"
+				required="true"
+			/>
+			<Input
+				id="input-autor"
+				required="true"
+				value="{
+					path : 'livro>/autor',
+					type : 'sap.ui.model.type.String',
+					constraints : {
+						minLength: 1,
+						maxLength: 100
+					}
+				}"
+				
+			/>
+			<Label
+				text="Data de lançamento"
+				labelFor="DT"
+				required="true"
+			/>
+			<DateTimePicker
+			id="DT"
+			displayFormat="short"
+			required="true"
+			valueFormat="yyyy-MM-ddTHH:mm:ss"
+			value="{livro>/lancamento}"/>
+		</l:VerticalLayout>
+	</Page>
+</mvc:View>
