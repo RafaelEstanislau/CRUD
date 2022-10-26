@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "CGdzhhqYTEa54zxZy0P7AXHA7qYIBX9YdyYxQ21O2Cs=",
+  "Hash": "eCOtOShKw7Uav3Sj9rdYErOFe3hbT+uo02ZJbSIZwAc=",
   "Source": "LivrosWEBAPI",
   "BasePath": "_content/LivrosWEBAPI",
   "Mode": "Default",
@@ -10,17 +10,17 @@
     {
       "Name": "LivrosWEBAPI\\wwwroot",
       "Source": "LivrosWEBAPI",
-      "ContentRoot": "C:\\Users\\Usuario\\Desktop\\CRUD-UI5\\LivrosWEBAPI\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Usuario\\Desktop\\CRUD SINGLETON\\CRUD\\CRUD_Livros\\LivrosWEBAPI\\wwwroot\\",
       "BasePath": "_content/LivrosWEBAPI",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "C:\\Users\\Usuario\\Desktop\\CRUD-UI5\\LivrosWEBAPI\\wwwroot\\Component.js",
+      "Identity": "C:\\Users\\Usuario\\Desktop\\CRUD SINGLETON\\CRUD\\CRUD_Livros\\LivrosWEBAPI\\wwwroot\\Component.js",
       "SourceId": "LivrosWEBAPI",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Usuario\\Desktop\\CRUD-UI5\\LivrosWEBAPI\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Usuario\\Desktop\\CRUD SINGLETON\\CRUD\\CRUD_Livros\\LivrosWEBAPI\\wwwroot\\",
       "BasePath": "_content/LivrosWEBAPI",
       "RelativePath": "Component.js",
       "AssetKind": "All",
@@ -34,10 +34,10 @@
       "OriginalItemSpec": "wwwroot\\Component.js"
     },
     {
-      "Identity": "C:\\Users\\Usuario\\Desktop\\CRUD-UI5\\LivrosWEBAPI\\wwwroot\\controller\\App.controller.js",
+      "Identity": "C:\\Users\\Usuario\\Desktop\\CRUD SINGLETON\\CRUD\\CRUD_Livros\\LivrosWEBAPI\\wwwroot\\controller\\App.controller.js",
       "SourceId": "LivrosWEBAPI",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Usuario\\Desktop\\CRUD-UI5\\LivrosWEBAPI\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Usuario\\Desktop\\CRUD SINGLETON\\CRUD\\CRUD_Livros\\LivrosWEBAPI\\wwwroot\\",
       "BasePath": "_content/LivrosWEBAPI",
       "RelativePath": "controller/App.controller.js",
       "AssetKind": "All",
@@ -51,10 +51,10 @@
       "OriginalItemSpec": "wwwroot\\controller\\App.controller.js"
     },
     {
-      "Identity": "C:\\Users\\Usuario\\Desktop\\CRUD-UI5\\LivrosWEBAPI\\wwwroot\\controller\\CadastrarLivro.controller.js",
+      "Identity": "C:\\Users\\Usuario\\Desktop\\CRUD SINGLETON\\CRUD\\CRUD_Livros\\LivrosWEBAPI\\wwwroot\\controller\\CadastrarLivro.controller.js",
       "SourceId": "LivrosWEBAPI",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Usuario\\Desktop\\CRUD-UI5\\LivrosWEBAPI\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Usuario\\Desktop\\CRUD SINGLETON\\CRUD\\CRUD_Livros\\LivrosWEBAPI\\wwwroot\\",
       "BasePath": "_content/LivrosWEBAPI",
       "RelativePath": "controller/CadastrarLivro.controller.js",
       "AssetKind": "All",
@@ -68,10 +68,10 @@
       "OriginalItemSpec": "wwwroot\\controller\\CadastrarLivro.controller.js"
     },
     {
-      "Identity": "C:\\Users\\Usuario\\Desktop\\CRUD-UI5\\LivrosWEBAPI\\wwwroot\\controller\\Detalhes.controller.js",
+      "Identity": "C:\\Users\\Usuario\\Desktop\\CRUD SINGLETON\\CRUD\\CRUD_Livros\\LivrosWEBAPI\\wwwroot\\controller\\Detalhes.controller.js",
       "SourceId": "LivrosWEBAPI",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Usuario\\Desktop\\CRUD-UI5\\LivrosWEBAPI\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Usuario\\Desktop\\CRUD SINGLETON\\CRUD\\CRUD_Livros\\LivrosWEBAPI\\wwwroot\\",
       "BasePath": "_content/LivrosWEBAPI",
       "RelativePath": "controller/Detalhes.controller.js",
       "AssetKind": "All",
@@ -85,10 +85,10 @@
       "OriginalItemSpec": "wwwroot\\controller\\Detalhes.controller.js"
     },
     {
-      "Identity": "C:\\Users\\Usuario\\Desktop\\CRUD-UI5\\LivrosWEBAPI\\wwwroot\\controller\\ListaDeLivros.controller.js",
+      "Identity": "C:\\Users\\Usuario\\Desktop\\CRUD SINGLETON\\CRUD\\CRUD_Livros\\LivrosWEBAPI\\wwwroot\\controller\\ListaDeLivros.controller.js",
       "SourceId": "LivrosWEBAPI",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Usuario\\Desktop\\CRUD-UI5\\LivrosWEBAPI\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Usuario\\Desktop\\CRUD SINGLETON\\CRUD\\CRUD_Livros\\LivrosWEBAPI\\wwwroot\\",
       "BasePath": "_content/LivrosWEBAPI",
       "RelativePath": "controller/ListaDeLivros.controller.js",
       "AssetKind": "All",
@@ -102,10 +102,10 @@
       "OriginalItemSpec": "wwwroot\\controller\\ListaDeLivros.controller.js"
     },
     {
-      "Identity": "C:\\Users\\Usuario\\Desktop\\CRUD-UI5\\LivrosWEBAPI\\wwwroot\\controller\\Validacao.js",
+      "Identity": "C:\\Users\\Usuario\\Desktop\\CRUD SINGLETON\\CRUD\\CRUD_Livros\\LivrosWEBAPI\\wwwroot\\controller\\Validacao.js",
       "SourceId": "LivrosWEBAPI",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Usuario\\Desktop\\CRUD-UI5\\LivrosWEBAPI\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Usuario\\Desktop\\CRUD SINGLETON\\CRUD\\CRUD_Livros\\LivrosWEBAPI\\wwwroot\\",
       "BasePath": "_content/LivrosWEBAPI",
       "RelativePath": "controller/Validacao.js",
       "AssetKind": "All",
@@ -119,10 +119,10 @@
       "OriginalItemSpec": "wwwroot\\controller\\Validacao.js"
     },
     {
-      "Identity": "C:\\Users\\Usuario\\Desktop\\CRUD-UI5\\LivrosWEBAPI\\wwwroot\\i18n\\i18n.properties",
+      "Identity": "C:\\Users\\Usuario\\Desktop\\CRUD SINGLETON\\CRUD\\CRUD_Livros\\LivrosWEBAPI\\wwwroot\\i18n\\i18n.properties",
       "SourceId": "LivrosWEBAPI",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Usuario\\Desktop\\CRUD-UI5\\LivrosWEBAPI\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Usuario\\Desktop\\CRUD SINGLETON\\CRUD\\CRUD_Livros\\LivrosWEBAPI\\wwwroot\\",
       "BasePath": "_content/LivrosWEBAPI",
       "RelativePath": "i18n/i18n.properties",
       "AssetKind": "All",
@@ -136,10 +136,10 @@
       "OriginalItemSpec": "wwwroot\\i18n\\i18n.properties"
     },
     {
-      "Identity": "C:\\Users\\Usuario\\Desktop\\CRUD-UI5\\LivrosWEBAPI\\wwwroot\\index.html",
+      "Identity": "C:\\Users\\Usuario\\Desktop\\CRUD SINGLETON\\CRUD\\CRUD_Livros\\LivrosWEBAPI\\wwwroot\\index.html",
       "SourceId": "LivrosWEBAPI",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Usuario\\Desktop\\CRUD-UI5\\LivrosWEBAPI\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Usuario\\Desktop\\CRUD SINGLETON\\CRUD\\CRUD_Livros\\LivrosWEBAPI\\wwwroot\\",
       "BasePath": "_content/LivrosWEBAPI",
       "RelativePath": "index.html",
       "AssetKind": "All",
@@ -153,10 +153,10 @@
       "OriginalItemSpec": "wwwroot\\index.html"
     },
     {
-      "Identity": "C:\\Users\\Usuario\\Desktop\\CRUD-UI5\\LivrosWEBAPI\\wwwroot\\index.js",
+      "Identity": "C:\\Users\\Usuario\\Desktop\\CRUD SINGLETON\\CRUD\\CRUD_Livros\\LivrosWEBAPI\\wwwroot\\index.js",
       "SourceId": "LivrosWEBAPI",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Usuario\\Desktop\\CRUD-UI5\\LivrosWEBAPI\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Usuario\\Desktop\\CRUD SINGLETON\\CRUD\\CRUD_Livros\\LivrosWEBAPI\\wwwroot\\",
       "BasePath": "_content/LivrosWEBAPI",
       "RelativePath": "index.js",
       "AssetKind": "All",
@@ -170,10 +170,10 @@
       "OriginalItemSpec": "wwwroot\\index.js"
     },
     {
-      "Identity": "C:\\Users\\Usuario\\Desktop\\CRUD-UI5\\LivrosWEBAPI\\wwwroot\\manifest.json",
+      "Identity": "C:\\Users\\Usuario\\Desktop\\CRUD SINGLETON\\CRUD\\CRUD_Livros\\LivrosWEBAPI\\wwwroot\\manifest.json",
       "SourceId": "LivrosWEBAPI",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Usuario\\Desktop\\CRUD-UI5\\LivrosWEBAPI\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Usuario\\Desktop\\CRUD SINGLETON\\CRUD\\CRUD_Livros\\LivrosWEBAPI\\wwwroot\\",
       "BasePath": "_content/LivrosWEBAPI",
       "RelativePath": "manifest.json",
       "AssetKind": "All",
@@ -187,10 +187,10 @@
       "OriginalItemSpec": "wwwroot\\manifest.json"
     },
     {
-      "Identity": "C:\\Users\\Usuario\\Desktop\\CRUD-UI5\\LivrosWEBAPI\\wwwroot\\view\\App.view.xml",
+      "Identity": "C:\\Users\\Usuario\\Desktop\\CRUD SINGLETON\\CRUD\\CRUD_Livros\\LivrosWEBAPI\\wwwroot\\view\\App.view.xml",
       "SourceId": "LivrosWEBAPI",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Usuario\\Desktop\\CRUD-UI5\\LivrosWEBAPI\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Usuario\\Desktop\\CRUD SINGLETON\\CRUD\\CRUD_Livros\\LivrosWEBAPI\\wwwroot\\",
       "BasePath": "_content/LivrosWEBAPI",
       "RelativePath": "view/App.view.xml",
       "AssetKind": "All",
@@ -204,10 +204,10 @@
       "OriginalItemSpec": "wwwroot\\view\\App.view.xml"
     },
     {
-      "Identity": "C:\\Users\\Usuario\\Desktop\\CRUD-UI5\\LivrosWEBAPI\\wwwroot\\view\\CadastrarLivro.view.xml",
+      "Identity": "C:\\Users\\Usuario\\Desktop\\CRUD SINGLETON\\CRUD\\CRUD_Livros\\LivrosWEBAPI\\wwwroot\\view\\CadastrarLivro.view.xml",
       "SourceId": "LivrosWEBAPI",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Usuario\\Desktop\\CRUD-UI5\\LivrosWEBAPI\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Usuario\\Desktop\\CRUD SINGLETON\\CRUD\\CRUD_Livros\\LivrosWEBAPI\\wwwroot\\",
       "BasePath": "_content/LivrosWEBAPI",
       "RelativePath": "view/CadastrarLivro.view.xml",
       "AssetKind": "All",
@@ -221,10 +221,10 @@
       "OriginalItemSpec": "wwwroot\\view\\CadastrarLivro.view.xml"
     },
     {
-      "Identity": "C:\\Users\\Usuario\\Desktop\\CRUD-UI5\\LivrosWEBAPI\\wwwroot\\view\\Detalhes.view.xml",
+      "Identity": "C:\\Users\\Usuario\\Desktop\\CRUD SINGLETON\\CRUD\\CRUD_Livros\\LivrosWEBAPI\\wwwroot\\view\\Detalhes.view.xml",
       "SourceId": "LivrosWEBAPI",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Usuario\\Desktop\\CRUD-UI5\\LivrosWEBAPI\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Usuario\\Desktop\\CRUD SINGLETON\\CRUD\\CRUD_Livros\\LivrosWEBAPI\\wwwroot\\",
       "BasePath": "_content/LivrosWEBAPI",
       "RelativePath": "view/Detalhes.view.xml",
       "AssetKind": "All",
@@ -238,10 +238,10 @@
       "OriginalItemSpec": "wwwroot\\view\\Detalhes.view.xml"
     },
     {
-      "Identity": "C:\\Users\\Usuario\\Desktop\\CRUD-UI5\\LivrosWEBAPI\\wwwroot\\view\\ListaDeLivros.view.xml",
+      "Identity": "C:\\Users\\Usuario\\Desktop\\CRUD SINGLETON\\CRUD\\CRUD_Livros\\LivrosWEBAPI\\wwwroot\\view\\ListaDeLivros.view.xml",
       "SourceId": "LivrosWEBAPI",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Usuario\\Desktop\\CRUD-UI5\\LivrosWEBAPI\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Usuario\\Desktop\\CRUD SINGLETON\\CRUD\\CRUD_Livros\\LivrosWEBAPI\\wwwroot\\",
       "BasePath": "_content/LivrosWEBAPI",
       "RelativePath": "view/ListaDeLivros.view.xml",
       "AssetKind": "All",
@@ -255,10 +255,10 @@
       "OriginalItemSpec": "wwwroot\\view\\ListaDeLivros.view.xml"
     },
     {
-      "Identity": "C:\\Users\\Usuario\\Desktop\\CRUD-UI5\\LivrosWEBAPI\\wwwroot\\view\\Overview.view.xml",
+      "Identity": "C:\\Users\\Usuario\\Desktop\\CRUD SINGLETON\\CRUD\\CRUD_Livros\\LivrosWEBAPI\\wwwroot\\view\\Overview.view.xml",
       "SourceId": "LivrosWEBAPI",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Usuario\\Desktop\\CRUD-UI5\\LivrosWEBAPI\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Usuario\\Desktop\\CRUD SINGLETON\\CRUD\\CRUD_Livros\\LivrosWEBAPI\\wwwroot\\",
       "BasePath": "_content/LivrosWEBAPI",
       "RelativePath": "view/Overview.view.xml",
       "AssetKind": "All",
