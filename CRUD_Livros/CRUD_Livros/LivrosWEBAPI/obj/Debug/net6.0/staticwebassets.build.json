@@ -1,0 +1,71 @@
+{
+  "Version": 1,
+  "Hash": "apoWzSZu+zmU7wIJ5VcIbY4hzpYP10IDI1ZocIauFLk=",
+  "Source": "LivrosWEBAPI",
+  "BasePath": "_content/LivrosWEBAPI",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "LivrosWEBAPI\\wwwroot",
+      "Source": "LivrosWEBAPI",
+      "ContentRoot": "C:\\Users\\Usuario\\Desktop\\CRUD SINGLETON\\CRUD\\CRUD_Livros\\LivrosWEBAPI\\wwwroot\\",
+      "BasePath": "_content/LivrosWEBAPI",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\Usuario\\Desktop\\CRUD SINGLETON\\CRUD\\CRUD_Livros\\LivrosWEBAPI\\wwwroot\\index.html",
+      "SourceId": "LivrosWEBAPI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Usuario\\Desktop\\CRUD SINGLETON\\CRUD\\CRUD_Livros\\LivrosWEBAPI\\wwwroot\\",
+      "BasePath": "_content/LivrosWEBAPI",
+      "RelativePath": "index.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\index.html"
+    },
+    {
+      "Identity": "C:\\Users\\Usuario\\Desktop\\CRUD SINGLETON\\CRUD\\CRUD_Livros\\LivrosWEBAPI\\wwwroot\\js\\index.js",
+      "SourceId": "LivrosWEBAPI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Usuario\\Desktop\\CRUD SINGLETON\\CRUD\\CRUD_Livros\\LivrosWEBAPI\\wwwroot\\",
+      "BasePath": "_content/LivrosWEBAPI",
+      "RelativePath": "js/index.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\index.js"
+    },
+    {
+      "Identity": "C:\\Users\\Usuario\\Desktop\\CRUD SINGLETON\\CRUD\\CRUD_Livros\\LivrosWEBAPI\\wwwroot\\view\\App.view.xml",
+      "SourceId": "LivrosWEBAPI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Usuario\\Desktop\\CRUD SINGLETON\\CRUD\\CRUD_Livros\\LivrosWEBAPI\\wwwroot\\",
+      "BasePath": "_content/LivrosWEBAPI",
+      "RelativePath": "view/App.view.xml",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\view\\App.view.xml"
+    }
+  ]
+}
