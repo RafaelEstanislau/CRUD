@@ -3,12 +3,12 @@ sap.ui.define([
 	"sap/ui/core/routing/History",
 	"sap/ui/model/json/JSONModel",
 	"sap/m/MessageBox",
-	"sap/ui/demo/walkthrough/controller/RepositorioDeAPI"
+	"sap/ui/demo/walkthrough/controller/RepositorioDeLivros"
 ], function (Controller,
 	History,
 	JSONModel,
 	MessageBox,
-	RepositorioDeAPI) {
+	RepositorioDeLivros) {
 	"use strict";
 	return Controller.extend("sap.ui.demo.walkthrough.controller.Detalhes", {
 		onInit: function () {
@@ -27,7 +27,7 @@ sap.ui.define([
 		},
 
 		_carregarLivros: function (idLivroBuscado) {
-			var repositorioBuscaLivro = new RepositorioDeAPI();
+			var repositorioBuscaLivro = new RepositorioDeLivros();
 			var resultado = repositorioBuscaLivro.BuscarLivroPorId(idLivroBuscado);
 			resultado.then(livroRetornado => {
 				var oModel = new JSONModel(livroRetornado);

@@ -5,7 +5,7 @@ sap.ui.define([
 	"sap/ui/model/json/JSONModel",
 	"sap/ui/core/Core",
 	"sap/ui/demo/walkthrough/controller/Validacao",
-	"sap/ui/demo/walkthrough/controller/RepositorioDeAPI"
+	"sap/ui/demo/walkthrough/controller/RepositorioDeLivros"
 
 ], function (Controller,
 	History,
@@ -13,7 +13,7 @@ sap.ui.define([
 	JSONModel,
 	Core,
 	Validacao,
-	RepositorioDeAPI) {
+	RepositorioDeLivros) {
 	"use strict";
 	return Controller.extend("sap.ui.demo.walkthrough.controller.CadastrarLivro", {
 
@@ -37,7 +37,7 @@ sap.ui.define([
 		},
 
 		_carregarLivros: function (idAEditar) {
-			let _repositorioLivro = new RepositorioDeAPI;
+			let _repositorioLivro = new RepositorioDeLivros;
 			_repositorioLivro.BuscarLivroPorId(idAEditar).then((livroRetornado) => {
 				var oModel = new JSONModel(livroRetornado);
 				this.getView().setModel(oModel, "livro")
@@ -45,8 +45,11 @@ sap.ui.define([
 		},
 
 		AoClicarEmVoltar: function () {
-			//this.mensagemDeConfirmacao();
-			this.getOwnerComponent().getRouter().navTo("overview", {});
+			let confirmacaoParaVoltar = this.MensagemDeConfirmacao();
+			// if (confirmacaoParaVoltar === 'OK') {
+			// 	this.getOwnerComponent().getRouter().navTo("overview", {});
+			// }
+
 		},
 
 		aoClicarEmSalvar: function () {
@@ -67,26 +70,42 @@ sap.ui.define([
 			let livroASerSalvo = this.getView().getModel("livro");
 
 			if (!erroDeValidacaoDeCampos && !erroDeValidacaoDeData) {
-				let _repositorioLivro = new RepositorioDeAPI;
-				_repositorioLivro.SalvarLivro(livroASerSalvo)
-					.then(livro => {
-						rota.navTo("detalhes", {
-							id: livro.id
-						});
-					})
+				let _repositorioLivro = new RepositorioDeLivros;
+				let livroModelo = livroASerSalvo.getData();
+				if (!!livroModelo.id) {
+					_repositorioLivro.AtualizarLivro(livroASerSalvo)
+						.then(livro => {
+							rota.navTo("detalhes", {
+								id: livro.id
+							});
+						})
+				} else {
+					_repositorioLivro.SalvarLivro(livroASerSalvo)
+						.then(livro => {
+							rota.navTo("detalhes", {
+								id: livro.id
+							});
+						})
+				}
 			} else {
 				MessageBox.alert("Falha na validação dos campos");
 			}
 		},
+		MensagemDeConfirmacao: function () {
 
-		mensagemDeConfirmacao: function () {
-			return MessageBox.confirm("Ao voltar todos os dados serão perdidos. Deseja continuar?", {
+			MessageBox.confirm("Ao voltar todos os dados serão perdidos. Deseja continuar?", {
 				title: "Confirmação",
 				emphasizedAction: sap.m.MessageBox.Action.OK,
 				actions: [sap.m.MessageBox.Action.OK,
 					sap.m.MessageBox.Action.CANCEL
-				]
+				],
+				onClose: function (oAction) {
+					console.log(oAction);
+					return oAction;
+				}
+
 			});
+
 		}
 	});
 });

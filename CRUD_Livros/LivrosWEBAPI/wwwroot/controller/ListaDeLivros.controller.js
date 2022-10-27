@@ -3,8 +3,8 @@ sap.ui.define([
 	"sap/ui/model/json/JSONModel",
 	"sap/ui/model/Filter",
 	"sap/ui/model/FilterOperator",
-	"sap/ui/demo/walkthrough/controller/RepositorioDeAPI"
-], function (Controller, JSONModel, Filter, FilterOperator, RepositorioDeAPI) {
+	"sap/ui/demo/walkthrough/controller/RepositorioDeLivros"
+], function (Controller, JSONModel, Filter, FilterOperator, RepositorioDeLivros) {
 	"use strict";
 
 	return Controller.extend("sap.ui.demo.walkthrough.controller.ListaDeLivros", {
@@ -24,7 +24,7 @@ sap.ui.define([
 		},
 
 		_carregarLivros: function () {
-			var repositorioBuscaLivros = new RepositorioDeAPI()
+			var repositorioBuscaLivros = new RepositorioDeLivros()
 			var resultado = repositorioBuscaLivros.ObterTodosOsLivros();
 			resultado.then(lista => {
 				var oModel = new JSONModel(lista);
