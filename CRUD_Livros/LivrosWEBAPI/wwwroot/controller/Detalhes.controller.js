@@ -2,8 +2,13 @@ sap.ui.define([
 	"sap/ui/core/mvc/Controller",
 	"sap/ui/core/routing/History",
 	"sap/ui/model/json/JSONModel",
-	"sap/m/MessageBox"
-], function (Controller, History, JSONModel, MessageBox) {
+	"sap/m/MessageBox",
+	"sap/ui/demo/walkthrough/controller/RepositorioDeAPI"
+], function (Controller,
+	History,
+	JSONModel,
+	MessageBox,
+	RepositorioDeAPI) {
 	"use strict";
 	return Controller.extend("sap.ui.demo.walkthrough.controller.Detalhes", {
 		onInit: function () {
@@ -20,39 +25,27 @@ sap.ui.define([
 				this._carregarLivros(idTeste);
 			}
 		},
+
 		_carregarLivros: function (idLivroBuscado) {
-			var resultado = this._buscarLivro(idLivroBuscado)
+			var repositorioBuscaLivro = new RepositorioDeAPI();
+			var resultado = repositorioBuscaLivro.BuscarLivroPorId(idLivroBuscado);
 			resultado.then(livroRetornado => {
 				var oModel = new JSONModel(livroRetornado);
 				this.getView().setModel(oModel, "livro")
 			})
 		},
-		_buscarLivro: function (idLivroBuscado) {
-			var livroBuscado = fetch(`https://localhost:7012/livros/${idLivroBuscado}`)
-				.then((response) => response.json())
-				.then(data => livroBuscado = data)
-			return livroBuscado;
-
+		AoClicarEmVoltar: function () {
+			this.getOwnerComponent().getRouter().navTo("overview", {});
 		},
 
-		aoClicarEmVoltar: function () {
-			var oHistory = History.getInstance();
-			var sPreviousHash = oHistory.getPreviousHash();
-			if (sPreviousHash !== undefined) {
-				window.history.go(-1);
-			} else {
-				var oRouter = this.getOwnerComponent().getRouter();
-				oRouter.navTo("overview", {});
-			}
-		},
-		aoClicarEmEditar: function () {
+		AoClicarEmEditar: function () {
 			var idLivro = this.getView().getModel("livro").getData().id
-			var oRouter = this.getOwnerComponent().getRouter();
-			oRouter.navTo("editarLivro", {
+			this.getOwnerComponent().getRouter().navTo("editarLivro", {
 				id: idLivro
 			});
 		},
-		aoClicarEmDeletar: function () {
+
+		AoClicarEmDeletar: function () {
 			let livroSelecionado = this.getView().getModel("livro").getData();
 			let idASerDeletado = livroSelecionado.id;
 			let oRouter = this.getOwnerComponent().getRouter();

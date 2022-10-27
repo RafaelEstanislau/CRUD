@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "bJ4XreRsAjObNtgb2uOay2jp8jnsDClY4apQDndGuco=",
+  "Hash": "q8Tl8vSI4jgJ0JeZFPvueapQ4xwkDQWaFtfWdsgmVYA=",
   "Source": "LivrosWEBAPI",
   "BasePath": "_content/LivrosWEBAPI",
   "Mode": "Default",
@@ -100,6 +100,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\controller\\ListaDeLivros.controller.js"
+    },
+    {
+      "Identity": "C:\\Users\\Usuario\\Documents\\Meus Projetos\\CRUD\\CRUD_Livros\\LivrosWEBAPI\\wwwroot\\controller\\RepositorioDeAPI.js",
+      "SourceId": "LivrosWEBAPI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Usuario\\Documents\\Meus Projetos\\CRUD\\CRUD_Livros\\LivrosWEBAPI\\wwwroot\\",
+      "BasePath": "_content/LivrosWEBAPI",
+      "RelativePath": "controller/RepositorioDeAPI.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\controller\\RepositorioDeAPI.js"
     },
     {
       "Identity": "C:\\Users\\Usuario\\Documents\\Meus Projetos\\CRUD\\CRUD_Livros\\LivrosWEBAPI\\wwwroot\\controller\\Validacao.js",

@@ -15,7 +15,7 @@ namespace CRUD_Livros.Infra.AcessoDeDados
 
         public Livro BuscarPorID(int id);
 
-        public void Editar(Livro livro);
+        public Livro Editar(Livro livro);
 
         public void Excluir(int id);
     }

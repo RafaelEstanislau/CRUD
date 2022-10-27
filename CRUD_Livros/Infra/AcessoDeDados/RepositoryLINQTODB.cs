@@ -65,14 +65,14 @@ namespace Infra.AcessoDeDados
             }
         }
 
-        public void Editar(Livro livro)
+        public Livro Editar(Livro livro)
         {
             try
             {
                 using var db = SqlServerTools.CreateDataConnection(BancoConexao());
                 {
                     db.Update(livro);
-
+                    return BuscarPorID(livro.id);
                 }
             }
             catch (Exception ex)
