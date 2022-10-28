@@ -14,14 +14,14 @@ sap.ui.define([
         },
         //BuscarLivroPorId
         BuscarLivroPorId: function (idLivroBuscado) {
-            var livroBuscado = fetch(`https://localhost:7012/livros/${idLivroBuscado}`)
+            let livroBuscado = fetch(`https://localhost:7012/livros/${idLivroBuscado}`)
                 .then((response) => response.json())
                 .then(data => livroBuscado = data)
             return livroBuscado;
         },
         //SalvarLivro
         SalvarLivro: async function (livroASerSalvo) {
-            let livroASerCriado = livroASerSalvo.getData();
+            let livroModelo = livroASerSalvo.getData();
             var livro;
             await fetch('https://localhost:7012/livros', {
                     headers: {
@@ -29,10 +29,10 @@ sap.ui.define([
                     },
                     method: 'POST',
                     body: JSON.stringify({
-                        autor: livroASerCriado.autor,
-                        titulo: livroASerCriado.titulo,
-                        editora: livroASerCriado.editora,
-                        lancamento: livroASerCriado.lancamento,
+                        autor: livroModelo.autor,
+                        titulo: livroModelo.titulo,
+                        editora: livroModelo.editora,
+                        lancamento: livroModelo.lancamento,
                     })
                 })
                 .then((response) => response.json())
@@ -59,6 +59,14 @@ sap.ui.define([
                 .then((response) => response.json())
                 .then(data => livro = data)
             return livro;
+        },
+        
+        ExcluirLivro: async function (livroASerExcluido) {
+            let livroModelo = livroASerExcluido.getData();
+            let idASerDeletado = livroModelo.id;
+            await fetch(`https://localhost:7012/livros/${idASerDeletado}`, {
+                method: 'DELETE'
+            })
         }
     });
 });

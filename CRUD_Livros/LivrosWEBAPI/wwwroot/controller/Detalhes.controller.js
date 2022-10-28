@@ -1,71 +1,83 @@
 sap.ui.define([
 	"sap/ui/core/mvc/Controller",
-	"sap/ui/core/routing/History",
 	"sap/ui/model/json/JSONModel",
 	"sap/m/MessageBox",
 	"sap/ui/demo/walkthrough/controller/RepositorioDeLivros"
 ], function (Controller,
-	History,
 	JSONModel,
 	MessageBox,
 	RepositorioDeLivros) {
 	"use strict";
 	return Controller.extend("sap.ui.demo.walkthrough.controller.Detalhes", {
 		onInit: function () {
-			this.getOwnerComponent();
-			var oRouter = this.getOwnerComponent().getRouter();
-			oRouter.getRoute("detalhes").attachPatternMatched(this._coincidirRota, this);
+			let rota = sap.ui.core.UIComponent.getRouterFor(this);
+			rota.attachRoutePatternMatched(this._coincidirRota, this);
 		},
 
-		_coincidirRota: function (oEvent) {
-			if (oEvent.getParameter("name") != "detalhes") {
-				return;
-			} else {
-				var idTeste = window.decodeURIComponent(oEvent.getParameter("arguments").id);
-				this._carregarLivros(idTeste);
+		_coincidirRota: function (evento) {
+			const parametroNome = "name";
+			const rotaDetalhesLivro = "detalhes";
+
+			if(evento.getParameter(parametroNome) == rotaDetalhesLivro){
+				this._carregarLivros(window.decodeURIComponent(evento.getParameter("arguments").id));
 			}
 		},
 
 		_carregarLivros: function (idLivroBuscado) {
-			var repositorioBuscaLivro = new RepositorioDeLivros();
-			var resultado = repositorioBuscaLivro.BuscarLivroPorId(idLivroBuscado);
+			let _repositorioLivro = new RepositorioDeLivros();
+			let resultado = _repositorioLivro.BuscarLivroPorId(idLivroBuscado);
+
 			resultado.then(livroRetornado => {
-				var oModel = new JSONModel(livroRetornado);
-				this.getView().setModel(oModel, "livro")
+				let modelo = new JSONModel(livroRetornado);
+				this.getView().setModel(modelo, "livro");
 			})
 		},
+
 		AoClicarEmVoltar: function () {
-			this.getOwnerComponent().getRouter().navTo("overview", {});
+			const rotaDaLista = "listaDeLivros";
+			this._navegarParaRota(rotaDaLista);
+		
 		},
 
 		AoClicarEmEditar: function () {
-			var idLivro = this.getView().getModel("livro").getData().id
-			this.getOwnerComponent().getRouter().navTo("editarLivro", {
-				id: idLivro
-			});
+			const rotaEditarLivro = "editarLivro";
+			let idLivro = this.getView().getModel("livro").getData().id;
+	
+			this._navegarParaRota(rotaEditarLivro, idLivro);
 		},
 
 		AoClicarEmDeletar: function () {
-			let livroSelecionado = this.getView().getModel("livro").getData();
-			let idASerDeletado = livroSelecionado.id;
-			let oRouter = this.getOwnerComponent().getRouter();
+			let livroASerExcluido = this.getView().getModel("livro");
+			this._confirmarExclusaoDeLivro(livroASerExcluido);
+		},
 
-			return MessageBox.confirm("Deseja excluir o livro?", {
+		_confirmarExclusaoDeLivro: function (livroASerExcluido) {
+			MessageBox.confirm("Deseja excluir o livro?", {
 				title: "Confirmação",
 				emphasizedAction: sap.m.MessageBox.Action.OK,
 				actions: [sap.m.MessageBox.Action.OK,
 					sap.m.MessageBox.Action.CANCEL
 				],
-				onClose: async function (oAction) {
-					if (oAction === 'OK') {
-						await fetch(`https://localhost:7012/livros/${idASerDeletado}`, {
-							method: 'DELETE'
-						})
-						oRouter.navTo("overview");
+				onClose: function (confirmacao) {
+					if (confirmacao === 'OK') {
+						const rotaDaLista = "listaDeLivros";
+						let parametroDaRota = null;
+						let _repositorioLivro = new RepositorioDeLivros();
+						_repositorioLivro.ExcluirLivro(livroASerExcluido);
+						this._navegarParaRota(rotaDaLista, parametroDaRota)
 					}
-
-				},
+				}.bind(this)
 			});
+		},
+
+		_navegarParaRota(nomeDaRota, parametroDaRota = null) {
+			let rota = this.getOwnerComponent().getRouter();
+
+			(parametroDaRota !== null) 
+				? rota.navTo(nomeDaRota, {
+					"id": parametroDaRota
+				})
+				: rota.navTo(nomeDaRota) 
 		}
 	});
 });

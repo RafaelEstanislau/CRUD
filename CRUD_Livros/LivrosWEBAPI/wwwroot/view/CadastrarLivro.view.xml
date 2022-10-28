@@ -15,7 +15,7 @@
 			<Button
 				icon="sap-icon://save"
 				text="Salvar"
-				press="aoClicarEmSalvar"
+				press="AoClicarEmSalvar"
 			/>
 		</Toolbar>
 	</headerContent>

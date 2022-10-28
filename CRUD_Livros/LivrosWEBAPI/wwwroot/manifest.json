@@ -54,8 +54,8 @@
 	  "routes": [
 		{
 		  "pattern": "",
-		  "name": "overview",
-		  "target": "overview"
+		  "name": "listaDeLivros",
+		  "target": "listaDeLivros"
 		},
 		{
 		  "pattern": "detalhes/{id}",
@@ -74,9 +74,9 @@
 		}
 	  ],
 	  "targets": {
-		"overview": {
-		  "id": "overview",
-		  "name": "Overview"
+		"listaDeLivros": {
+		  "id": "listaDeLivros",
+		  "name": "ListaDeLivros"
 		},
 		"detalhes": {
 		  "id": "detalhes",

@@ -10,13 +10,14 @@ sap.ui.define([
 	return Controller.extend("sap.ui.demo.walkthrough.controller.ListaDeLivros", {
 
 		onInit: function () {
-			this.getOwnerComponent();
-			var oRouter = this.getOwnerComponent().getRouter();
-			oRouter.getRoute("overview").attachPatternMatched(this._coincidirRota, this);
+			let rota = sap.ui.core.UIComponent.getRouterFor(this);
+			rota.attachRoutePatternMatched(this._coincidirRota, this);
 		},
 
 		_coincidirRota: function (oEvent) {
-			if (oEvent.getParameter("name") != "overview") {
+			const parametroNome = "name";
+			const rotaListaDeLivros = "listaDeLivros";
+			if (oEvent.getParameter(parametroNome) != rotaListaDeLivros) {
 				return;
 			} else {
 				this._carregarLivros();
@@ -24,35 +25,44 @@ sap.ui.define([
 		},
 
 		_carregarLivros: function () {
-			var repositorioBuscaLivros = new RepositorioDeLivros()
-			var resultado = repositorioBuscaLivros.ObterTodosOsLivros();
+			let repositorioBuscaLivros = new RepositorioDeLivros()
+			let resultado = repositorioBuscaLivros.ObterTodosOsLivros();
 			resultado.then(lista => {
-				var oModel = new JSONModel(lista);
+				let oModel = new JSONModel(lista);
 				this.getView().setModel(oModel, "listaDeLivros")
 			})
 		},
 
-		AoClicarEmLivro: function (oEvent) {
-			var oItem = oEvent.getSource();
-			var oRouter = this.getOwnerComponent().getRouter();
-			oRouter.navTo("detalhes", {
-				id: window.encodeURIComponent(oItem.getBindingContext("listaDeLivros").getProperty('id'))
-			});
+		AoClicarEmLivro: function (evento) {
+			const detalhesDoLivro = "detalhes";
+			const idDoLivroClicado = evento.getSource().getBindingContext("listaDeLivros").getProperty('id');
+			this._navegarParaRota(detalhesDoLivro, idDoLivroClicado)
 		},
 
 		AoClicarEmCadastrar: function () {
-			this.getOwnerComponent().getRouter().navTo("cadastrarLivro");
+			const rotaDeCadastro = "cadastrarLivro";
+			let parametroDaRota = null;
+			this._navegarParaRota(rotaDeCadastro, parametroDaRota);
 		},
 
 		AoProcurar: function (oEvent) {
-			var livrosBuscados = [];
-			var sQuery = oEvent.getParameter("query");
+			let livrosBuscados = [];
+			let sQuery = oEvent.getParameter("query");
 			if (sQuery) {
 				livrosBuscados.push(new Filter("titulo", FilterOperator.Contains, sQuery));
 			}
-			var oList = this.byId("ListaDeLivros");
-			var oBinding = oList.getBinding("items");
+			let listaDeLivros = this.byId("ListaDeLivros");
+			let oBinding = listaDeLivros.getBinding("items");
 			oBinding.filter(livrosBuscados);
+		},
+
+		_navegarParaRota(nomeDaRota, parametroDaRota = null) {
+			let rota = this.getOwnerComponent().getRouter();
+			(parametroDaRota !== null) 
+				? rota.navTo(nomeDaRota, {
+					"id": parametroDaRota
+				})
+				: rota.navTo(nomeDaRota) 
 		}
 	});
 });
