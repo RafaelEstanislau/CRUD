@@ -1,150 +1,124 @@
 sap.ui.define([
 	"sap/ui/core/mvc/Controller",
-	"sap/ui/core/routing/History",
 	"sap/m/MessageBox",
 	"sap/ui/model/json/JSONModel",
 	"sap/ui/core/Core",
-	"sap/ui/demo/walkthrough/controller/Validacao"
+	"sap/ui/demo/walkthrough/controller/Validacao",
+	"sap/ui/demo/walkthrough/controller/RepositorioDeLivros"
 
-], function (Controller,
-	History,
+], function (
+	Controller,
 	MessageBox,
 	JSONModel,
 	Core,
-	Validacao) {
+	Validacao,
+	RepositorioDeLivros) {
 	"use strict";
+
+	const inputTitulo = "input-titulo";
+	const inputAutor = "input-autor";
+	const inputEditora = "input-editora";
+	const rotaDetalhes = "detalhes";
+
 	return Controller.extend("sap.ui.demo.walkthrough.controller.CadastrarLivro", {
 
 		onInit: function () {
-			var router = sap.ui.core.UIComponent.getRouterFor(this);
-			router.attachRoutePatternMatched(this._coincidirRota, this);
-			var tela = this.getView(),
+
+			let rota = sap.ui.core.UIComponent.getRouterFor(this);
+			rota.attachRoutePatternMatched(this._coincidirRota, this);
+			let tela = this.getView(),
+
 				oMM = Core.getMessageManager();
-			oMM.registerObject(tela.byId("input-titulo"), true)
-			oMM.registerObject(tela.byId("input-editora"), true)
-			oMM.registerObject(tela.byId("input-autor"), true)
-		},
-		_coincidirRota: function (oEvent) {
-			if (oEvent.getParameter("name") == "editarLivro") {
-				var idAEditar = window.decodeURIComponent(oEvent.getParameter("arguments").id);
-				this._carregarLivros(idAEditar)
-			} else {
-				this.getView().setModel(new sap.ui.model.json.JSONModel({}), "livro");
-			}
-		},
-		_carregarLivros: function (idAEditar) {
-			var resultado = this._buscarLivro(idAEditar)
-			resultado.then(livroRetornado => {
-				var oModel = new JSONModel(livroRetornado);
-				this.getView().setModel(oModel, "livro")
-			})
-		},
-		_buscarLivro: function (idAEditar) {
-			var livroBuscado = fetch(`https://localhost:7012/livros/${idAEditar}`)
-				.then((response) => response.json())
-				.then(data => livroBuscado = data)
-			return livroBuscado;
-
-		},
-		aoClicarEmVoltar: function () {
-			var oHistory = History.getInstance();
-			var sPreviousHash = oHistory.getPreviousHash();
-
-			if (sPreviousHash !== undefined) {
-				window.history.go(-1);
-			} else {
-				var oRouter = this.getOwnerComponent().getRouter();
-				oRouter.navTo("overview", {});
-			}
+			oMM.registerObject(tela.byId(inputTitulo), true)
+			oMM.registerObject(tela.byId(inputEditora), true)
+			oMM.registerObject(tela.byId(inputAutor), true)
 		},
 
-		aoClicarEmSalvar: function () {
-			var livroASerSalvo = this.getView().getModel("livro").getData();
-			let _validacao = new Validacao()
+		_coincidirRota: function (evento) {
+			const parametroNome = "name";
+			const rotaEditarLivro = "editarLivro";
+			const nomeModelo = "livro";
+			let livroASerAtualizado = window.decodeURIComponent(evento.getParameter("arguments"));
 
-			var telaCadastro = this.getView(),
-				inputs = [
-					telaCadastro.byId("input-titulo"),
-					telaCadastro.byId("input-editora"),
-					telaCadastro.byId("input-autor"),
-				],
-				erroDeValidacao = false;
-
-			inputs.forEach(function (input) {
-				erroDeValidacao = _validacao.validarCampo(input) || erroDeValidacao;
-			}, this);
-
-			if (!erroDeValidacao) {
-				if (!!livroASerSalvo.id) {
-					this._editarLivro()
-				} else {
-					this._criarLivro()
-				};
-			} else {
-				MessageBox.alert("Todos os campos devem ser preenchidos");
-			}
+			evento.getParameter(parametroNome) == rotaEditarLivro 
+				? this._carregarLivro(livroASerAtualizado.id) 
+				: this.getView().setModel(new JSONModel(), nomeModelo);
 		},
-		_criarLivro: function () {
-			var livroASerCriado = this.getView().getModel("livro").getData();
-			return MessageBox.confirm("Deseja concluir o cadastro?", {
+
+		_carregarLivro: function (id) {
+			const nomeModelo = "livro";
+			let _repositorioLivro = new RepositorioDeLivros;
+
+			_repositorioLivro.BuscarLivroPorId(id).then(livroRetornado => {
+				let oModel = new JSONModel(livroRetornado);
+				this.getView().setModel(oModel, nomeModelo);
+			});
+		},
+
+		AoClicarEmSalvar: function () {
+			const dateTimePicker = "DT";
+			const nomeDoModelo = "livro";
+			let _validacaoLivro = new Validacao;
+			let telaCadastro = this.getView();
+
+			let inputs = [
+				telaCadastro.byId(inputTitulo),
+				telaCadastro.byId(inputEditora),
+				telaCadastro.byId(inputAutor),
+			];
+
+			let valorInputData = this.getView().byId(dateTimePicker);
+			let erroDeValidacaoDeCampos = _validacaoLivro.ValidarCadastro(inputs, valorInputData).erroDeInput;
+			let erroDeValidacaoDeData = _validacaoLivro.ValidarCadastro(inputs, valorInputData).erroDeData;
+			let livroASerSalvo = this.getView().getModel(nomeDoModelo).getData();
+
+			!erroDeValidacaoDeCampos && !erroDeValidacaoDeData 
+				? !!livroASerSalvo.id 
+						? this._salvarLivro(livroASerSalvo)
+						: this._atualizarLivro(livroASerSalvo)
+				: MessageBox.alert("Falha na validação dos campos");
+		},
+
+		AoClicarEmVoltar: function () {
+			const rotaDaLista = "listaDeLivros";
+			this._confirmarRetornoDeNavegacao(rotaDaLista);
+		},
+
+		_confirmarRetornoDeNavegacao: function (rota) {
+			MessageBox.confirm("Ao voltar todas as alterações serão perdidas. Deseja continuar?", {
 				title: "Confirmação",
 				emphasizedAction: sap.m.MessageBox.Action.OK,
 				actions: [sap.m.MessageBox.Action.OK,
 					sap.m.MessageBox.Action.CANCEL
 				],
-				onClose: async function (oAction) {
-					if (oAction === 'OK') {
-						await fetch('https://localhost:7012/livros', {
-							headers: {
-								"Content-Type": "application/json; charset=utf-8"
-							},
-							method: 'POST',
-							body: JSON.stringify({
-								autor: livroASerCriado.autor,
-								titulo: livroASerCriado.titulo,
-								editora: livroASerCriado.editora,
-								lancamento: livroASerCriado.lancamento,
-							})
-						})
-
-						let oRouter = this.getOwnerComponent().getRouter();
-						oRouter.navTo("detalhes", {
-							id: livroASerCriado.id
-						});
+				onClose: function (confirmacao) {
+					if (confirmacao === 'OK') {
+						this._navegarParaRota(rota, null);
 					}
-				},
-			})
+				}.bind(this)
+			});
 		},
-		_editarLivro: function () {
-			var livroASerEditado = this.getView().getModel("livro").getData();
-			MessageBox.confirm("Deseja concluir a edição?", {
-				title: "Confirmação",
-				emphasizedAction: sap.m.MessageBox.Action.OK,
-				actions: [sap.m.MessageBox.Action.OK,
-					sap.m.MessageBox.Action.CANCEL
-				],
-				onClose: async function (oAction) {
-					if (oAction === 'OK') {
-						await fetch(`https://localhost:7012/livros/${livroASerEditado.id}`, {
-							headers: {
-								"Content-Type": "application/json; charset=utf-8"
-							},
-							method: 'PUT',
-							body: JSON.stringify({
-								id: livroASerEditado.id,
-								autor: livroASerEditado.autor,
-								titulo: livroASerEditado.titulo,
-								editora: livroASerEditado.editora,
-								lancamento: livroASerEditado.lancamento,
-							})
-						})
-						let oRouter = this.getOwnerComponent().getRouter();
-						oRouter.navTo("detalhes", {
-							id: livroASerEditado.id
-						});
-					}
-				},
-			})
-		}
+
+		_navegarParaRota(nomeDaRota, id = null) {
+			let rota = this.getOwnerComponent().getRouter();
+
+			!!id 
+				? rota.navTo(nomeDaRota, {"id": id })
+				: rota.navTo(nomeDaRota); 
+		},
+
+		_salvarLivro: function(livroASerSalvo){
+			let _repositorioLivro = new RepositorioDeLivros;
+			return _repositorioLivro.AtualizarLivro(livroASerSalvo)
+			.then(this._navegarParaRota(rotaDetalhes, livroASerSalvo.id));
+		},
+
+		_atualizarLivro: function(livroASerSalvo){
+			let _repositorioLivro = new RepositorioDeLivros;
+			return _repositorioLivro.SalvarLivro(livroASerSalvo)
+			.then(livroRetorno => {
+				this._navegarParaRota(rotaDetalhes, livroRetorno.id)
+			});
+		},
 	});
 });

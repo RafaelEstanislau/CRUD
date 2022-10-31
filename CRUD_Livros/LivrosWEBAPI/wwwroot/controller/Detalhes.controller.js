@@ -1,78 +1,83 @@
 sap.ui.define([
 	"sap/ui/core/mvc/Controller",
-	"sap/ui/core/routing/History",
 	"sap/ui/model/json/JSONModel",
-	"sap/m/MessageBox"
-], function (Controller, History, JSONModel, MessageBox) {
+	"sap/m/MessageBox",
+	"sap/ui/demo/walkthrough/controller/RepositorioDeLivros"
+], function (Controller,
+	JSONModel,
+	MessageBox,
+	RepositorioDeLivros) {
 	"use strict";
 	return Controller.extend("sap.ui.demo.walkthrough.controller.Detalhes", {
 		onInit: function () {
-			this.getOwnerComponent();
-			var oRouter = this.getOwnerComponent().getRouter();
-			oRouter.getRoute("detalhes").attachPatternMatched(this._coincidirRota, this);
+			let rota = sap.ui.core.UIComponent.getRouterFor(this);
+			rota.attachRoutePatternMatched(this._coincidirRota, this);
 		},
 
-		_coincidirRota: function (oEvent) {
-			if (oEvent.getParameter("name") != "detalhes") {
-				return;
-			} else {
-				var idTeste = window.decodeURIComponent(oEvent.getParameter("arguments").id);
-				this._carregarLivros(idTeste);
+		_coincidirRota: function (evento) {
+			const parametroNome = "name";
+			const rotaDetalhes = "detalhes";
+
+			if(evento.getParameter(parametroNome) == rotaDetalhes){
+				this._carregarLivros(window.decodeURIComponent(evento.getParameter("arguments").id));
 			}
 		},
+
 		_carregarLivros: function (idLivroBuscado) {
-			var resultado = this._buscarLivro(idLivroBuscado)
-			resultado.then(livroRetornado => {
-				var oModel = new JSONModel(livroRetornado);
-				this.getView().setModel(oModel, "livro")
+			const nomeModelo = "livro";
+			let _repositorioLivro = new RepositorioDeLivros;
+			let livroBuscado = _repositorioLivro.BuscarLivroPorId(idLivroBuscado);
+
+			livroBuscado.then(livroRetornado => {
+				let modelo = new JSONModel(livroRetornado);
+				this.getView().setModel(modelo, nomeModelo);
 			})
 		},
-		_buscarLivro: function (idLivroBuscado) {
-			var livroBuscado = fetch(`https://localhost:7012/livros/${idLivroBuscado}`)
-				.then((response) => response.json())
-				.then(data => livroBuscado = data)
-			return livroBuscado;
 
+		AoClicarEmVoltar: function () {
+			const rotaDaLista = "listaDeLivros";
+			this._navegarParaRota(rotaDaLista, null);
 		},
 
-		aoClicarEmVoltar: function () {
-			var oHistory = History.getInstance();
-			var sPreviousHash = oHistory.getPreviousHash();
-			if (sPreviousHash !== undefined) {
-				window.history.go(-1);
-			} else {
-				var oRouter = this.getOwnerComponent().getRouter();
-				oRouter.navTo("overview", {});
-			}
+		AoClicarEmEditar: function () {
+			const rotaEditar = "editarLivro";
+			let livro = this.getView().getModel("livro").getData();
+	
+			this._navegarParaRota(rotaEditar, livro.id);
 		},
-		aoClicarEmEditar: function () {
-			var idLivro = this.getView().getModel("livro").getData().id
-			var oRouter = this.getOwnerComponent().getRouter();
-			oRouter.navTo("editarLivro", {
-				id: idLivro
-			});
-		},
-		aoClicarEmDeletar: function () {
-			let livroSelecionado = this.getView().getModel("livro").getData();
-			let idASerDeletado = livroSelecionado.id;
-			let oRouter = this.getOwnerComponent().getRouter();
 
-			return MessageBox.confirm("Deseja excluir o livro?", {
+		AoClicarEmDeletar: function () {
+			let livroASerExcluido = this.getView().getModel("livro");
+			this._confirmarExclusaoDeLivro(livroASerExcluido);
+		},
+
+		_confirmarExclusaoDeLivro: function (livroASerExcluido) {
+			const rotaDaLista = "listaDeLivros";
+			let _repositorioLivro = new RepositorioDeLivros;
+
+			MessageBox.confirm("Deseja excluir o livro?", {
 				title: "Confirmação",
 				emphasizedAction: sap.m.MessageBox.Action.OK,
 				actions: [sap.m.MessageBox.Action.OK,
 					sap.m.MessageBox.Action.CANCEL
 				],
-				onClose: async function (oAction) {
-					if (oAction === 'OK') {
-						await fetch(`https://localhost:7012/livros/${idASerDeletado}`, {
-							method: 'DELETE'
-						})
-						oRouter.navTo("overview");
+				onClose: function (confirmacao) {
+					if (confirmacao === 'OK') {
+						_repositorioLivro.ExcluirLivro(livroASerExcluido);
+						this._navegarParaRota(rotaDaLista, null)
 					}
-
-				},
+				}.bind(this)
 			});
+		},
+
+		_navegarParaRota(nomeDaRota, id = null) {
+			let rota = this.getOwnerComponent().getRouter();
+
+			(id !== null) 
+				? rota.navTo(nomeDaRota, {
+					"id": id
+				})
+				: rota.navTo(nomeDaRota) 
 		}
 	});
 });

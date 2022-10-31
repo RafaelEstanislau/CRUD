@@ -20,10 +20,10 @@
                 <Button
                 icon="sap-icon://add"
                 text="Cadastrar"
-                press="aoClicarEmCadastrar"
+                press="AoClicarEmCadastrar"
                 class="myCustomButton"/>
 				<ToolbarSpacer/>
-				<SearchField width="50%" search="aoProcurar"/>
+				<SearchField width="50%" search="aoClicarEmPesquisar"/>
 			</Toolbar>
            
 		</headerToolbar>
@@ -47,7 +47,7 @@
     <items>
         <ColumnListItem
             type="Navigation"
-            press=".aoClicarEmLivro">
+            press=".AoClicarEmLivro">
             <cells>
                 <Text text="{listaDeLivros>titulo}"/>
                 <Text text="{listaDeLivros>editora}"/>

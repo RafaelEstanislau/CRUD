@@ -54,8 +54,8 @@
 	  "routes": [
 		{
 		  "pattern": "",
-		  "name": "overview",
-		  "target": "overview"
+		  "name": "listaDeLivros",
+		  "target": "listaDeLivros"
 		},
 		{
 		  "pattern": "detalhes/{id}",
@@ -68,15 +68,15 @@
 			"target": "cadastrarLivro"
 		},
 		{
-			"pattern": "cadastrarLivro/{id}",
+			"pattern": "editar/{id}",
 			"name": "editarLivro",
 			"target": "cadastrarLivro"
 		}
 	  ],
 	  "targets": {
-		"overview": {
-		  "id": "overview",
-		  "name": "Overview"
+		"listaDeLivros": {
+		  "id": "listaDeLivros",
+		  "name": "ListaDeLivros"
 		},
 		"detalhes": {
 		  "id": "detalhes",

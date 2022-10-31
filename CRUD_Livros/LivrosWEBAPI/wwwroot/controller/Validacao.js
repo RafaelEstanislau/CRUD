@@ -1,35 +1,51 @@
 sap.ui.define([
-	"sap/ui/core/Core",
-	"sap/ui/base/ManagedObject",
-	"sap/ui/demo/walkthrough/controller/CadastrarLivro"
+	"sap/ui/base/ManagedObject"
 ], function(
-	Core,
 	ManagedObject,
-	CadastrarLivro
+
 ) {
 	"use strict";
 
-	return CadastrarLivro.extend("sap.ui.demo.walkthrough.controller.Validacao", {
+	return ManagedObject.extend("sap.ui.demo.walkthrough.controller.Validacao", {
 		
-        validarCampo: function (input) {
-			var estado = "None";
-			var erroDeValidacao = false;
-			var oBinding = input.getBinding("value");
-			
+		ValidarCadastro: function (inputsDeCampo, data) {
+			let erroDeInput = false;
+			let erroDeData = false;
 
+			inputsDeCampo.forEach(input =>
+				erroDeInput = this._validarCampo(input) || erroDeInput, this);
+				erroDeData = this._validarData(data);
+			return {erroDeInput, erroDeData};
+		},
+
+        _validarCampo: function (input) {
+			let estado = "None";
+			let erroDeValidacao = false;
+			let oBinding = input.getBinding("value");
+			try {
+				oBinding.getType().validateValue(input.getValue());
+			} catch (oException) {
+				estado = "Error";
+				erroDeValidacao = true;
+			}
+			input.setValueStateText("O campo deve conter 1-100 caracteres");
+			input.setValueState(estado);
+			return erroDeValidacao;
+		},
+
+		_validarData : function(inputData){
+			let dataInputada = inputData.getValue();
+			let estado = "None";
+			let erroDeValidacao = false;
 			let dataMinimaValida = new Date(1860, 1, 1).toISOString();
 			let dataMaximaValida = new Date().toISOString();
-			var dataInputada = this.getView().byId("DT").getValue();
 
 			if(dataInputada.length == 0){
 				estado = "Error"
 				erroDeValidacao = true;
-				
-			}else{
-				var dataInputadaFormatada = new Date(dataInputada).toISOString();
-			}			
+			}
 			try {
-				oBinding.getType().validateValue(input.getValue());
+				var dataInputadaFormatada = new Date(dataInputada).toISOString();
 				if(dataInputadaFormatada > dataMinimaValida && dataInputadaFormatada < dataMaximaValida){
 					erroDeValidacao = false;
 					estado = "None";
@@ -41,8 +57,9 @@ sap.ui.define([
 				estado = "Error";
 				erroDeValidacao = true;
 			}
-			input.setValueState(estado);
-			return input;
+			inputData.setValueState(estado);
+			inputData.setValueStateText("A data deve ser válida e preenchida entre 1860 e hoje");
+			return erroDeValidacao;	
 		},
 	});
 });
