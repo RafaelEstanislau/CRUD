@@ -18,6 +18,7 @@ sap.ui.define([
 	const inputTitulo = "input-titulo";
 	const inputAutor = "input-autor";
 	const inputEditora = "input-editora";
+	const rotaDetalhes = "detalhes";
 
 	return Controller.extend("sap.ui.demo.walkthrough.controller.CadastrarLivro", {
 
@@ -27,7 +28,7 @@ sap.ui.define([
 			rota.attachRoutePatternMatched(this._coincidirRota, this);
 			let tela = this.getView(),
 
-			oMM = Core.getMessageManager();
+				oMM = Core.getMessageManager();
 			oMM.registerObject(tela.byId(inputTitulo), true)
 			oMM.registerObject(tela.byId(inputEditora), true)
 			oMM.registerObject(tela.byId(inputAutor), true)
@@ -37,10 +38,11 @@ sap.ui.define([
 			const parametroNome = "name";
 			const rotaEditarLivro = "editarLivro";
 			const nomeModelo = "livro";
-			
-			evento.getParameter(parametroNome) == rotaEditarLivro
-				?	this._carregarLivro(window.decodeURIComponent(evento.getParameter("arguments").id))
-				:	this.getView().setModel(new JSONModel(), nomeModelo);
+			let livroASerAtualizado = window.decodeURIComponent(evento.getParameter("arguments"));
+
+			evento.getParameter(parametroNome) == rotaEditarLivro 
+				? this._carregarLivro(livroASerAtualizado.id) 
+				: this.getView().setModel(new JSONModel(), nomeModelo);
 		},
 
 		_carregarLivro: function (id) {
@@ -52,44 +54,29 @@ sap.ui.define([
 				this.getView().setModel(oModel, nomeModelo);
 			});
 		},
-		//paramos aqui
 
 		AoClicarEmSalvar: function () {
-			let _validacao = new Validacao;
-
-			var telaCadastro = this.getView(),
-				inputs = [
-					telaCadastro.byId(inputTitulo),
-					telaCadastro.byId(inputEditora),
-					telaCadastro.byId(inputAutor),
-				],
-				erroDeValidacaoDeCampos = false;
-			inputs.forEach(input =>
-				erroDeValidacaoDeCampos = _validacao.ValidarCampo(input) || erroDeValidacaoDeCampos, this);
 			const dateTimePicker = "DT";
-			let erroDeValidacaoDeData = _validacao.ValidarData(this.getView().byId(dateTimePicker));
-			let livroASerSalvo = this.getView().getModel("livro");
+			const nomeDoModelo = "livro";
+			let _validacaoLivro = new Validacao;
+			let telaCadastro = this.getView();
 
-			if (!erroDeValidacaoDeCampos && !erroDeValidacaoDeData) {
-				let _repositorioLivro = new RepositorioDeLivros;
-				let livroModelo = livroASerSalvo.getData();
-				const rota = "detalhes";
-				if (!!livroModelo.id) {
-					_repositorioLivro.AtualizarLivro(livroASerSalvo)
-						.then(livro => {
-							let idDoLivro = livro.id;
-							this._navegarParaRota(rota, idDoLivro);
-						})
-				} else {
-					_repositorioLivro.SalvarLivro(livroASerSalvo)
-						.then(livro => {
-							let idDoLivro = livro.id;
-							this._navegarParaRota(rota, idDoLivro);
-						})
-				}
-			} else {
-				MessageBox.alert("Falha na validação dos campos");
-			}
+			let inputs = [
+				telaCadastro.byId(inputTitulo),
+				telaCadastro.byId(inputEditora),
+				telaCadastro.byId(inputAutor),
+			];
+
+			let valorInputData = this.getView().byId(dateTimePicker);
+			let erroDeValidacaoDeCampos = _validacaoLivro.ValidarCadastro(inputs, valorInputData).erroDeInput;
+			let erroDeValidacaoDeData = _validacaoLivro.ValidarCadastro(inputs, valorInputData).erroDeData;
+			let livroASerSalvo = this.getView().getModel(nomeDoModelo).getData();
+
+			!erroDeValidacaoDeCampos && !erroDeValidacaoDeData 
+				? !!livroASerSalvo.id 
+						? this._salvarLivro(livroASerSalvo)
+						: this._atualizarLivro(livroASerSalvo)
+				: MessageBox.alert("Falha na validação dos campos");
 		},
 
 		AoClicarEmVoltar: function () {
@@ -105,21 +92,33 @@ sap.ui.define([
 					sap.m.MessageBox.Action.CANCEL
 				],
 				onClose: function (confirmacao) {
-					let parametroDaRota = null;
 					if (confirmacao === 'OK') {
-						this._navegarParaRota(rota, parametroDaRota);
+						this._navegarParaRota(rota, null);
 					}
 				}.bind(this)
 			});
 		},
 
-		_navegarParaRota(nomeDaRota, parametroDaRota = null) {
+		_navegarParaRota(nomeDaRota, id = null) {
 			let rota = this.getOwnerComponent().getRouter();
-			(parametroDaRota !== null) 
-				? rota.navTo(nomeDaRota, {
-					"id": parametroDaRota
-				})
-				: rota.navTo(nomeDaRota) 
-		}
+
+			!!id 
+				? rota.navTo(nomeDaRota, {"id": id })
+				: rota.navTo(nomeDaRota); 
+		},
+
+		_salvarLivro: function(livroASerSalvo){
+			let _repositorioLivro = new RepositorioDeLivros;
+			return _repositorioLivro.AtualizarLivro(livroASerSalvo)
+			.then(this._navegarParaRota(rotaDetalhes, livroASerSalvo.id));
+		},
+
+		_atualizarLivro: function(livroASerSalvo){
+			let _repositorioLivro = new RepositorioDeLivros;
+			return _repositorioLivro.SalvarLivro(livroASerSalvo)
+			.then(livroRetorno => {
+				this._navegarParaRota(rotaDetalhes, livroRetorno.id)
+			});
+		},
 	});
 });

@@ -16,34 +16,34 @@ sap.ui.define([
 
 		_coincidirRota: function (evento) {
 			const parametroNome = "name";
-			const rotaDetalhesLivro = "detalhes";
+			const rotaDetalhes = "detalhes";
 
-			if(evento.getParameter(parametroNome) == rotaDetalhesLivro){
+			if(evento.getParameter(parametroNome) == rotaDetalhes){
 				this._carregarLivros(window.decodeURIComponent(evento.getParameter("arguments").id));
 			}
 		},
 
 		_carregarLivros: function (idLivroBuscado) {
-			let _repositorioLivro = new RepositorioDeLivros();
-			let resultado = _repositorioLivro.BuscarLivroPorId(idLivroBuscado);
+			const nomeModelo = "livro";
+			let _repositorioLivro = new RepositorioDeLivros;
+			let livroBuscado = _repositorioLivro.BuscarLivroPorId(idLivroBuscado);
 
-			resultado.then(livroRetornado => {
+			livroBuscado.then(livroRetornado => {
 				let modelo = new JSONModel(livroRetornado);
-				this.getView().setModel(modelo, "livro");
+				this.getView().setModel(modelo, nomeModelo);
 			})
 		},
 
 		AoClicarEmVoltar: function () {
 			const rotaDaLista = "listaDeLivros";
-			this._navegarParaRota(rotaDaLista);
-		
+			this._navegarParaRota(rotaDaLista, null);
 		},
 
 		AoClicarEmEditar: function () {
-			const rotaEditarLivro = "editarLivro";
-			let idLivro = this.getView().getModel("livro").getData().id;
+			const rotaEditar = "editarLivro";
+			let livro = this.getView().getModel("livro").getData();
 	
-			this._navegarParaRota(rotaEditarLivro, idLivro);
+			this._navegarParaRota(rotaEditar, livro.id);
 		},
 
 		AoClicarEmDeletar: function () {
@@ -52,6 +52,9 @@ sap.ui.define([
 		},
 
 		_confirmarExclusaoDeLivro: function (livroASerExcluido) {
+			const rotaDaLista = "listaDeLivros";
+			let _repositorioLivro = new RepositorioDeLivros;
+
 			MessageBox.confirm("Deseja excluir o livro?", {
 				title: "Confirmação",
 				emphasizedAction: sap.m.MessageBox.Action.OK,
@@ -60,22 +63,19 @@ sap.ui.define([
 				],
 				onClose: function (confirmacao) {
 					if (confirmacao === 'OK') {
-						const rotaDaLista = "listaDeLivros";
-						let parametroDaRota = null;
-						let _repositorioLivro = new RepositorioDeLivros();
 						_repositorioLivro.ExcluirLivro(livroASerExcluido);
-						this._navegarParaRota(rotaDaLista, parametroDaRota)
+						this._navegarParaRota(rotaDaLista, null)
 					}
 				}.bind(this)
 			});
 		},
 
-		_navegarParaRota(nomeDaRota, parametroDaRota = null) {
+		_navegarParaRota(nomeDaRota, id = null) {
 			let rota = this.getOwnerComponent().getRouter();
 
-			(parametroDaRota !== null) 
+			(id !== null) 
 				? rota.navTo(nomeDaRota, {
-					"id": parametroDaRota
+					"id": id
 				})
 				: rota.navTo(nomeDaRota) 
 		}

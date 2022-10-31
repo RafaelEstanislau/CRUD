@@ -17,39 +17,38 @@ sap.ui.define([
 		_coincidirRota: function (oEvent) {
 			const parametroNome = "name";
 			const rotaListaDeLivros = "listaDeLivros";
-			if (oEvent.getParameter(parametroNome) != rotaListaDeLivros) {
-				return;
-			} else {
-				this._carregarLivros();
-			}
+
+			oEvent.getParameter(parametroNome) == rotaListaDeLivros 
+				? this._carregarLivros()
+				: (() => null);
 		},
 
 		_carregarLivros: function () {
-			let repositorioBuscaLivros = new RepositorioDeLivros()
-			let resultado = repositorioBuscaLivros.ObterTodosOsLivros();
-			resultado.then(lista => {
+			const nomeModelo = "listaDeLivros";
+			let _repositorioLivro = new RepositorioDeLivros;
+			_repositorioLivro.ObterTodosOsLivros()
+				.then(lista => {
 				let oModel = new JSONModel(lista);
-				this.getView().setModel(oModel, "listaDeLivros")
-			})
+				this.getView().setModel(oModel, nomeModelo)
+			});
 		},
 
 		AoClicarEmLivro: function (evento) {
-			const detalhesDoLivro = "detalhes";
+			const rotaDetalhes = "detalhes";
 			const idDoLivroClicado = evento.getSource().getBindingContext("listaDeLivros").getProperty('id');
-			this._navegarParaRota(detalhesDoLivro, idDoLivroClicado)
+			this._navegarParaRota(rotaDetalhes, idDoLivroClicado)
 		},
 
 		AoClicarEmCadastrar: function () {
 			const rotaDeCadastro = "cadastrarLivro";
-			let parametroDaRota = null;
-			this._navegarParaRota(rotaDeCadastro, parametroDaRota);
+			this._navegarParaRota(rotaDeCadastro, null);
 		},
 
-		AoProcurar: function (oEvent) {
+		aoClicarEmPesquisar: function (oEvent) {
 			let livrosBuscados = [];
-			let sQuery = oEvent.getParameter("query");
-			if (sQuery) {
-				livrosBuscados.push(new Filter("titulo", FilterOperator.Contains, sQuery));
+			let parametroPesquisa = oEvent.getParameter("query");
+			if (parametroPesquisa) {
+				livrosBuscados.push(new Filter("titulo", FilterOperator.Contains, parametroPesquisa));
 			}
 			let listaDeLivros = this.byId("ListaDeLivros");
 			let oBinding = listaDeLivros.getBinding("items");

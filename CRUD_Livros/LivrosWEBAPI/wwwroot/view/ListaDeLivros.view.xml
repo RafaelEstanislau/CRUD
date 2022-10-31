@@ -23,7 +23,7 @@
                 press="AoClicarEmCadastrar"
                 class="myCustomButton"/>
 				<ToolbarSpacer/>
-				<SearchField width="50%" search="AoProcurar"/>
+				<SearchField width="50%" search="aoClicarEmPesquisar"/>
 			</Toolbar>
            
 		</headerToolbar>

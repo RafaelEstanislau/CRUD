@@ -21,8 +21,8 @@ sap.ui.define([
         },
         //SalvarLivro
         SalvarLivro: async function (livroASerSalvo) {
-            let livroModelo = livroASerSalvo.getData();
-            var livro;
+            let livroModelo = livroASerSalvo;
+            var livroRetorno;
             await fetch('https://localhost:7012/livros', {
                     headers: {
                         "Content-Type": "application/json; charset=utf-8"
@@ -36,12 +36,12 @@ sap.ui.define([
                     })
                 })
                 .then((response) => response.json())
-                .then(data => livro = data)
-            return livro;
+                .then(data => livroRetorno = data)
+            return livroRetorno;
         },
 
         AtualizarLivro: async function (livroASerAtualizado) {
-            let livroModelo = livroASerAtualizado.getData();
+            let livroModelo = livroASerAtualizado;
             var livro;
             await fetch(`https://localhost:7012/livros/${livroModelo.id}`, {
                     headers: {

@@ -8,10 +8,20 @@ sap.ui.define([
 
 	return ManagedObject.extend("sap.ui.demo.walkthrough.controller.Validacao", {
 		
-        ValidarCampo: function (input) {
-			var estado = "None";
-			var erroDeValidacao = false;
-			var oBinding = input.getBinding("value");
+		ValidarCadastro: function (inputsDeCampo, data) {
+			let erroDeInput = false;
+			let erroDeData = false;
+
+			inputsDeCampo.forEach(input =>
+				erroDeInput = this._validarCampo(input) || erroDeInput, this);
+				erroDeData = this._validarData(data);
+			return {erroDeInput, erroDeData};
+		},
+
+        _validarCampo: function (input) {
+			let estado = "None";
+			let erroDeValidacao = false;
+			let oBinding = input.getBinding("value");
 			try {
 				oBinding.getType().validateValue(input.getValue());
 			} catch (oException) {
@@ -23,10 +33,10 @@ sap.ui.define([
 			return erroDeValidacao;
 		},
 
-		ValidarData : function(inputData){
-			var dataInputada = inputData.getValue();
-			var estado = "None";
-			var erroDeValidacao = false;
+		_validarData : function(inputData){
+			let dataInputada = inputData.getValue();
+			let estado = "None";
+			let erroDeValidacao = false;
 			let dataMinimaValida = new Date(1860, 1, 1).toISOString();
 			let dataMaximaValida = new Date().toISOString();
 
@@ -50,6 +60,6 @@ sap.ui.define([
 			inputData.setValueState(estado);
 			inputData.setValueStateText("A data deve ser válida e preenchida entre 1860 e hoje");
 			return erroDeValidacao;	
-		}
+		},
 	});
 });
