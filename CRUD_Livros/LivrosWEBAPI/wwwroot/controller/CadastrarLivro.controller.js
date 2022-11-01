@@ -3,7 +3,7 @@ sap.ui.define([
 	"sap/m/MessageBox",
 	"sap/ui/model/json/JSONModel",
 	"sap/ui/core/Core",
-	"sap/ui/demo/walkthrough/controller/Validacao",
+	"sap/ui/demo/walkthrough/Validacao",
 	"sap/ui/demo/walkthrough/controller/RepositorioDeLivros"
 
 ], function (
@@ -23,9 +23,16 @@ sap.ui.define([
 	return Controller.extend("sap.ui.demo.walkthrough.controller.CadastrarLivro", {
 
 		onInit: function () {
+			let roteador = this
+				.getOwnerComponent()
+				.getRouter();
+			roteador
+				.getRoute("cadastrarLivro")
+				.attachPatternMatched(this._coincidirRotaDeCriacao, this);
+			roteador
+				.getRoute("editarLivro")
 
-			let rota = sap.ui.core.UIComponent.getRouterFor(this);
-			rota.attachRoutePatternMatched(this._coincidirRota, this);
+				.attachPatternMatched(this._coincidirRotaDeEdicao, this);
 			let tela = this.getView(),
 
 				oMM = Core.getMessageManager();
@@ -33,16 +40,30 @@ sap.ui.define([
 			oMM.registerObject(tela.byId(inputEditora), true)
 			oMM.registerObject(tela.byId(inputAutor), true)
 		},
-
-		_coincidirRota: function (evento) {
-			const parametroNome = "name";
-			const rotaEditarLivro = "editarLivro";
-			const nomeModelo = "livro";
-			let idLivroASerAtualizado = window.decodeURIComponent(evento.getParameter("arguments").id);
-
-			evento.getParameter(parametroNome) == rotaEditarLivro ?
-				this._carregarLivro(idLivroASerAtualizado) :
+		_processarEvento: function(acao){
+			try {
+				var promise = acao();
+				if(promise && typeof(promise["catch"]) == "function"){
+					promise.catch(error => MessageBox.error(error.message));
+				}
+			}catch (error) {
+				MessageBox.error(error.message);
+			}
+		},
+		_coincidirRotaDeCriacao: function(evento){
+		    this._processarEvento(() => {
+				let nomeModelo = "livro";
 				this.getView().setModel(new JSONModel(), nomeModelo);
+			});
+		},
+		_coincidirRotaDeEdicao: function(evento){
+			this._processarEvento(() => {
+				let idLivroASerAtualizado = evento.getParameter("arguments").id;
+				if(!idLivroASerAtualizado){
+					throw new Error("Id inválido")
+				}
+				return this._carregarLivro(idLivroASerAtualizado);
+			})
 		},
 
 		_carregarLivro: function (id) {
@@ -68,11 +89,10 @@ sap.ui.define([
 			];
 
 			let valorInputData = this.getView().byId(dateTimePicker);
-			let erroDeValidacaoDeCampos = _validacaoLivro.ValidarCadastro(inputs, valorInputData).erroDeInput;
-			let erroDeValidacaoDeData = _validacaoLivro.ValidarCadastro(inputs, valorInputData).erroDeData;
+			let retornoValidacao = _validacaoLivro.ValidarCadastro(inputs, valorInputData); 
 			let livroASerSalvo = this.getView().getModel(nomeDoModelo).getData();
 
-			!erroDeValidacaoDeCampos && !erroDeValidacaoDeData ?
+			!retornoValidacao.erroDeInput && !retornoValidacao.erroDeData ?
 				!livroASerSalvo.id ?
 				this._salvarLivro(livroASerSalvo) :
 				this._atualizarLivro(livroASerSalvo) :

@@ -6,15 +6,12 @@ sap.ui.define([
 ) {
 	"use strict";
 
-	return ManagedObject.extend("sap.ui.demo.walkthrough.controller.Validacao", {
+	return ManagedObject.extend("sap.ui.demo.walkthrough.Validacao", {
 
-		ValidarCadastro: function (inputsDeCampo, data) {
-			let erroDeInput = false;
+		ValidarCadastro: function (inputsDeCampo, inputData) {
 			let erroDeData = false;
-
-			inputsDeCampo.forEach(input =>
-				erroDeInput = this._validarCampo(input) || erroDeInput, this);
-			erroDeData = this._validarData(data);
+			let erroDeInput = !inputsDeCampo.every(input => this._validarCampo(input));
+			erroDeData = this._validarData(inputData);
 			return {
 				erroDeInput,
 				erroDeData
