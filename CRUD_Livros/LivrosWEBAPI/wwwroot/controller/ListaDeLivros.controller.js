@@ -18,9 +18,9 @@ sap.ui.define([
 			const parametroNome = "name";
 			const rotaListaDeLivros = "listaDeLivros";
 
-			oEvent.getParameter(parametroNome) == rotaListaDeLivros 
-				? this._carregarLivros()
-				: (() => null);
+			oEvent.getParameter(parametroNome) == rotaListaDeLivros ?
+				this._carregarLivros() :
+				(() => null);
 		},
 
 		_carregarLivros: function () {
@@ -28,9 +28,9 @@ sap.ui.define([
 			let _repositorioLivro = new RepositorioDeLivros;
 			_repositorioLivro.ObterTodosOsLivros()
 				.then(lista => {
-				let oModel = new JSONModel(lista);
-				this.getView().setModel(oModel, nomeModelo)
-			});
+					let oModel = new JSONModel(lista);
+					this.getView().setModel(oModel, nomeModelo)
+				});
 		},
 
 		AoClicarEmLivro: function (evento) {
@@ -57,11 +57,10 @@ sap.ui.define([
 
 		_navegarParaRota(nomeDaRota, parametroDaRota = null) {
 			let rota = this.getOwnerComponent().getRouter();
-			(parametroDaRota !== null) 
-				? rota.navTo(nomeDaRota, {
-					"id": parametroDaRota
-				})
-				: rota.navTo(nomeDaRota) 
+			(parametroDaRota !== null) ?
+			rota.navTo(nomeDaRota, {
+				"id": parametroDaRota
+			}): rota.navTo(nomeDaRota)
 		}
 	});
 });
