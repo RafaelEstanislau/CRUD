@@ -38,11 +38,11 @@ sap.ui.define([
 			const parametroNome = "name";
 			const rotaEditarLivro = "editarLivro";
 			const nomeModelo = "livro";
-			let livroASerAtualizado = window.decodeURIComponent(evento.getParameter("arguments"));
+			let idLivroASerAtualizado = window.decodeURIComponent(evento.getParameter("arguments").id);
 
-			evento.getParameter(parametroNome) == rotaEditarLivro 
-				? this._carregarLivro(livroASerAtualizado.id) 
-				: this.getView().setModel(new JSONModel(), nomeModelo);
+			evento.getParameter(parametroNome) == rotaEditarLivro ?
+				this._carregarLivro(idLivroASerAtualizado) :
+				this.getView().setModel(new JSONModel(), nomeModelo);
 		},
 
 		_carregarLivro: function (id) {
@@ -72,11 +72,11 @@ sap.ui.define([
 			let erroDeValidacaoDeData = _validacaoLivro.ValidarCadastro(inputs, valorInputData).erroDeData;
 			let livroASerSalvo = this.getView().getModel(nomeDoModelo).getData();
 
-			!erroDeValidacaoDeCampos && !erroDeValidacaoDeData 
-				? !!livroASerSalvo.id 
-						? this._salvarLivro(livroASerSalvo)
-						: this._atualizarLivro(livroASerSalvo)
-				: MessageBox.alert("Falha na validação dos campos");
+			!erroDeValidacaoDeCampos && !erroDeValidacaoDeData ?
+				!livroASerSalvo.id ?
+				this._salvarLivro(livroASerSalvo) :
+				this._atualizarLivro(livroASerSalvo) :
+				MessageBox.alert("Falha na validação dos campos");
 		},
 
 		AoClicarEmVoltar: function () {
@@ -102,23 +102,26 @@ sap.ui.define([
 		_navegarParaRota(nomeDaRota, id = null) {
 			let rota = this.getOwnerComponent().getRouter();
 
-			!!id 
-				? rota.navTo(nomeDaRota, {"id": id })
-				: rota.navTo(nomeDaRota); 
+			!!id
+				?
+				rota.navTo(nomeDaRota, {
+					"id": id
+				}) :
+				rota.navTo(nomeDaRota);
 		},
 
-		_salvarLivro: function(livroASerSalvo){
+		_atualizarLivro: function (livroASerSalvo) {
 			let _repositorioLivro = new RepositorioDeLivros;
 			return _repositorioLivro.AtualizarLivro(livroASerSalvo)
-			.then(this._navegarParaRota(rotaDetalhes, livroASerSalvo.id));
+				.then(this._navegarParaRota(rotaDetalhes, livroASerSalvo.id));
 		},
 
-		_atualizarLivro: function(livroASerSalvo){
+		_salvarLivro: function (livroASerSalvo) {
 			let _repositorioLivro = new RepositorioDeLivros;
 			return _repositorioLivro.SalvarLivro(livroASerSalvo)
-			.then(livroRetorno => {
-				this._navegarParaRota(rotaDetalhes, livroRetorno.id)
-			});
+				.then(livroRetorno => {
+					this._navegarParaRota(rotaDetalhes, livroRetorno.id)
+				});
 		},
 	});
 });

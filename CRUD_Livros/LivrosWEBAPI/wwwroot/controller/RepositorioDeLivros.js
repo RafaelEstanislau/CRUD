@@ -60,7 +60,7 @@ sap.ui.define([
                 .then(data => livro = data)
             return livro;
         },
-        
+
         ExcluirLivro: async function (livroASerExcluido) {
             let livroModelo = livroASerExcluido.getData();
             let idASerDeletado = livroModelo.id;
