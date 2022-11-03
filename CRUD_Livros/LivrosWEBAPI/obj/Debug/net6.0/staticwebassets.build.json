@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "N3hDUQR/0ny+pqqKa/UmLn8+/KSBRl4oitz6bdDLPro=",
+  "Hash": "s3+CKYw5shuXj9nN/dr6aQB889PHw3vMgA79YJs4nx4=",
   "Source": "LivrosWEBAPI",
   "BasePath": "_content/LivrosWEBAPI",
   "Mode": "Default",
@@ -119,23 +119,6 @@
       "OriginalItemSpec": "wwwroot\\controller\\RepositorioDeLivros.js"
     },
     {
-      "Identity": "C:\\Users\\Usuario\\Documents\\Meus Projetos\\CRUD\\CRUD_Livros\\LivrosWEBAPI\\wwwroot\\controller\\Validacao.js",
-      "SourceId": "LivrosWEBAPI",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Usuario\\Documents\\Meus Projetos\\CRUD\\CRUD_Livros\\LivrosWEBAPI\\wwwroot\\",
-      "BasePath": "_content/LivrosWEBAPI",
-      "RelativePath": "controller/Validacao.js",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\controller\\Validacao.js"
-    },
-    {
       "Identity": "C:\\Users\\Usuario\\Documents\\Meus Projetos\\CRUD\\CRUD_Livros\\LivrosWEBAPI\\wwwroot\\i18n\\i18n.properties",
       "SourceId": "LivrosWEBAPI",
       "SourceType": "Discovered",
@@ -202,6 +185,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\manifest.json"
+    },
+    {
+      "Identity": "C:\\Users\\Usuario\\Documents\\Meus Projetos\\CRUD\\CRUD_Livros\\LivrosWEBAPI\\wwwroot\\Validacao.js",
+      "SourceId": "LivrosWEBAPI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Usuario\\Documents\\Meus Projetos\\CRUD\\CRUD_Livros\\LivrosWEBAPI\\wwwroot\\",
+      "BasePath": "_content/LivrosWEBAPI",
+      "RelativePath": "Validacao.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Validacao.js"
     },
     {
       "Identity": "C:\\Users\\Usuario\\Documents\\Meus Projetos\\CRUD\\CRUD_Livros\\LivrosWEBAPI\\wwwroot\\view\\App.view.xml",

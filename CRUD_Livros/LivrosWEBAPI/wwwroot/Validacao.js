@@ -7,18 +7,26 @@ sap.ui.define([
 	"use strict";
 
 	return ManagedObject.extend("sap.ui.demo.walkthrough.Validacao", {
-
+		_i18n: null,
+		Receberi18n: function(pacote){
+			this._i18n = pacote
+		},
 		ValidarCadastro: function (inputsDeCampo, inputData) {
 			let erroDeData = false;
-			let erroDeInput = !inputsDeCampo.every(input => this._validarCampo(input));
-			erroDeData = this._validarData(inputData);
-			return {
-				erroDeInput,
-				erroDeData
-			};
-		},
+			let erroDeInput = false;
+			let erroDeValidacao = false;
 
+			inputsDeCampo.forEach(input =>
+				erroDeInput = this._validarCampo(input) || erroDeInput, this);
+			erroDeData = this._validarData(inputData);
+
+			if(erroDeData || erroDeInput == true){
+				erroDeValidacao = true;
+			}
+			return erroDeValidacao
+		},
 		_validarCampo: function (input) {
+			const mensagemValidacaoDeCampo = this._i18n.getText("mensagemValidacaoDeCampo")
 			let estado = "None";
 			let erroDeValidacao = false;
 			let oBinding = input.getBinding("value");
@@ -28,12 +36,14 @@ sap.ui.define([
 				estado = "Error";
 				erroDeValidacao = true;
 			}
-			input.setValueStateText("O campo deve conter 1-100 caracteres");
+			
+			input.setValueStateText(mensagemValidacaoDeCampo);
 			input.setValueState(estado);
 			return erroDeValidacao;
 		},
 
 		_validarData: function (inputData) {
+			const mensagemValidacaoDeData = this._i18n.getText("mensagemValidacaoDeData")
 			let dataInputada = inputData.getValue();
 			let estado = "None";
 			let erroDeValidacao = false;
@@ -58,7 +68,7 @@ sap.ui.define([
 				erroDeValidacao = true;
 			}
 			inputData.setValueState(estado);
-			inputData.setValueStateText("A data deve ser válida e preenchida entre 1860 e hoje");
+			inputData.setValueStateText(mensagemValidacaoDeData);
 			return erroDeValidacao;
 		},
 	});

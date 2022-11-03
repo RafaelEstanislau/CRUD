@@ -4,30 +4,34 @@ sap.ui.define([
     ManagedObject,
 ) {
     "use strict";
-    return ManagedObject.extend("sap.ui.demo.walkthrough.controller.RepositorioDeLivros", {
+    const urlAPI = "https://localhost:7012/livros/"
+    const caminhoDoRepositorio = "sap.ui.demo.walkthrough.controller.RepositorioDeLivros"
+    return ManagedObject.extend(caminhoDoRepositorio, {
         //ObterTodosOsLivros
         ObterTodosOsLivros: function () {
-            let livrosObtidos = fetch("https://localhost:7012/livros")
+            
+            let livrosObtidos = fetch(urlAPI)
                 .then((response) => response.json())
                 .then(data => livrosObtidos = data);
             return livrosObtidos;
         },
         //BuscarLivroPorId
         BuscarLivroPorId: function (idLivroBuscado) {
-            let livroBuscado = fetch(`https://localhost:7012/livros/${idLivroBuscado}`)
+            let livroBuscado = fetch(`${urlAPI}${idLivroBuscado}`)
                 .then((response) => response.json())
                 .then(data => livroBuscado = data)
             return livroBuscado;
         },
         //SalvarLivro
         SalvarLivro: async function (livroASerSalvo) {
+            const metodoSalvar = 'POST';
             let livroModelo = livroASerSalvo;
             var livroRetorno;
-            await fetch('https://localhost:7012/livros', {
+            await fetch(urlAPI, {
                     headers: {
                         "Content-Type": "application/json; charset=utf-8"
                     },
-                    method: 'POST',
+                    method: metodoSalvar,
                     body: JSON.stringify({
                         autor: livroModelo.autor,
                         titulo: livroModelo.titulo,
@@ -41,13 +45,14 @@ sap.ui.define([
         },
 
         AtualizarLivro: async function (livroASerAtualizado) {
+            const metodoEditar = 'PUT';
             let livroModelo = livroASerAtualizado;
             var livro;
-            await fetch(`https://localhost:7012/livros/${livroModelo.id}`, {
+            await fetch(`${urlAPI}${livroModelo.id}`, {
                     headers: {
                         "Content-Type": "application/json; charset=utf-8"
                     },
-                    method: 'PUT',
+                    method: metodoEditar,
                     body: JSON.stringify({
                         id: livroModelo.id,
                         autor: livroModelo.autor,
@@ -62,10 +67,11 @@ sap.ui.define([
         },
 
         ExcluirLivro: async function (livroASerExcluido) {
+            const metodoExcluir = 'DELETE';
             let livroModelo = livroASerExcluido.getData();
             let idASerDeletado = livroModelo.id;
-            await fetch(`https://localhost:7012/livros/${idASerDeletado}`, {
-                method: 'DELETE'
+            await fetch(`${urlAPI}${idASerDeletado}`, {
+                method: metodoExcluir
             })
         }
     });

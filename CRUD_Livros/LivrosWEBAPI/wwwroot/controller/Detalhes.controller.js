@@ -2,33 +2,52 @@ sap.ui.define([
 	"sap/ui/core/mvc/Controller",
 	"sap/ui/model/json/JSONModel",
 	"sap/m/MessageBox",
-	"sap/ui/demo/walkthrough/controller/RepositorioDeLivros"
+	"sap/ui/demo/walkthrough/controller/RepositorioDeLivros",
+	"sap/ui/model/resource/ResourceModel"
 ], function (Controller,
 	JSONModel,
 	MessageBox,
-	RepositorioDeLivros) {
+	RepositorioDeLivros,
+	ResourceModel) {
 	"use strict";
-	return Controller.extend("sap.ui.demo.walkthrough.controller.Detalhes", {
+	const nomeModelo = "livro";
+	const caminhoDeDetalhes = "sap.ui.demo.walkthrough.controller.Detalhes"
+	return Controller.extend(caminhoDeDetalhes, {
 		onInit: function () {
-			let rota = sap.ui.core.UIComponent.getRouterFor(this);
-			rota.attachRoutePatternMatched(this._coincidirRota, this);
+			const rotaDeDetalhes = "detalhes";
+			let roteador = this
+				.getOwnerComponent()
+				.getRouter();
+			roteador
+				.getRoute(rotaDeDetalhes)
+				.attachPatternMatched(this._coincidirRotaDeDetalhes, this);
+			var i18nModel = new ResourceModel({
+				bundleName: "sap.ui.demo.walkthrough.i18n.i18n"
+			});
+			this.getView().setModel(i18nModel, "i18n");
 		},
-
-		_coincidirRota: function (evento) {
-			const parametroNome = "name";
-			const rotaDetalhes = "detalhes";
-
-			if(evento.getParameter(parametroNome) == rotaDetalhes){
-				this._carregarLivros(window.decodeURIComponent(evento.getParameter("arguments").id));
+		_processarEvento: function (acao) {
+			try {
+				var promise = acao();
+				if (promise && typeof (promise["catch"]) == "function") {
+					promise.catch(error => MessageBox.error(error.message));
+				}
+			} catch (error) {
+				MessageBox.error(error.message);
 			}
 		},
 
+		_coincidirRotaDeDetalhes: function (evento) {
+			this._processarEvento(() => {
+				return this._carregarLivros(window.decodeURIComponent(evento.getParameter("arguments").id));
+			})
+		},
+
 		_carregarLivros: function (idLivroBuscado) {
-			const nomeModelo = "livro";
 			let _repositorioLivro = new RepositorioDeLivros;
 			let livroBuscado = _repositorioLivro.BuscarLivroPorId(idLivroBuscado);
 
-			livroBuscado.then(livroRetornado => {
+			return livroBuscado.then(livroRetornado => {
 				let modelo = new JSONModel(livroRetornado);
 				this.getView().setModel(modelo, nomeModelo);
 			})
@@ -36,26 +55,33 @@ sap.ui.define([
 
 		AoClicarEmVoltar: function () {
 			const rotaDaLista = "listaDeLivros";
-			this._navegarParaRota(rotaDaLista, null);
+			this._processarEvento(() => {
+				this._navegarParaRota(rotaDaLista, null);
+			})
 		},
 
 		AoClicarEmEditar: function () {
 			const rotaEditar = "editarLivro";
-			let livro = this.getView().getModel("livro").getData();
-	
-			this._navegarParaRota(rotaEditar, livro.id);
+			let livro = this.getView().getModel(nomeModelo).getData();
+			this._processarEvento(() => {
+				this._navegarParaRota(rotaEditar, livro.id);
+			})
 		},
 
 		AoClicarEmDeletar: function () {
-			let livroASerExcluido = this.getView().getModel("livro");
-			this._confirmarExclusaoDeLivro(livroASerExcluido);
+			let livroASerExcluido = this.getView().getModel(nomeModelo);
+			this._processarEvento(() => {
+				this._confirmarExclusaoDeLivro(livroASerExcluido);
+			})
 		},
 
 		_confirmarExclusaoDeLivro: function (livroASerExcluido) {
 			const rotaDaLista = "listaDeLivros";
+			const modeloi18n = "i18n";
+			const confirmacaoDeExclusao = this.getView().getModel(modeloi18n).getResourceBundle().getText("mensagemConfirmacaoExclusao");
 			let _repositorioLivro = new RepositorioDeLivros;
 
-			MessageBox.confirm("Deseja excluir o livro?", {
+			MessageBox.confirm(confirmacaoDeExclusao, {
 				title: "Confirmação",
 				emphasizedAction: sap.m.MessageBox.Action.OK,
 				actions: [sap.m.MessageBox.Action.OK,
@@ -73,11 +99,10 @@ sap.ui.define([
 		_navegarParaRota(nomeDaRota, id = null) {
 			let rota = this.getOwnerComponent().getRouter();
 
-			(id !== null) 
-				? rota.navTo(nomeDaRota, {
-					"id": id
-				})
-				: rota.navTo(nomeDaRota) 
+			(id !== null) ?
+			rota.navTo(nomeDaRota, {
+				"id": id
+			}): rota.navTo(nomeDaRota)
 		}
 	});
 });

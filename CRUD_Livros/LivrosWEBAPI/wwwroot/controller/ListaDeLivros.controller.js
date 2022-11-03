@@ -6,61 +6,82 @@ sap.ui.define([
 	"sap/ui/demo/walkthrough/controller/RepositorioDeLivros"
 ], function (Controller, JSONModel, Filter, FilterOperator, RepositorioDeLivros) {
 	"use strict";
-
-	return Controller.extend("sap.ui.demo.walkthrough.controller.ListaDeLivros", {
+	const caminhoDaLista = "sap.ui.demo.walkthrough.controller.ListaDeLivros"
+	return Controller.extend(caminhoDaLista, {
 
 		onInit: function () {
-			let rota = sap.ui.core.UIComponent.getRouterFor(this);
-			rota.attachRoutePatternMatched(this._coincidirRota, this);
+			const rotaDaLista = "listaDeLivros";
+			let roteador = this
+				.getOwnerComponent()
+				.getRouter();
+			roteador
+				.getRoute(rotaDaLista)
+				.attachPatternMatched(this._coincidirRotaDaLista, this);
 		},
-
-		_coincidirRota: function (oEvent) {
-			const parametroNome = "name";
-			const rotaListaDeLivros = "listaDeLivros";
-
-			oEvent.getParameter(parametroNome) == rotaListaDeLivros ?
-				this._carregarLivros() :
-				(() => null);
+		_processarEvento: function (acao) {
+			try {
+				var promise = acao();
+				if (promise && typeof (promise["catch"]) == "function") {
+					promise.catch(error => MessageBox.error(error.message));
+				}
+			} catch (error) {
+				MessageBox.error(error.message);
+			}
+		},
+		_coincidirRotaDaLista: function () {
+			this._processarEvento(() => {
+				this._carregarLivros();
+			}) 
 		},
 
 		_carregarLivros: function () {
 			const nomeModelo = "listaDeLivros";
 			let _repositorioLivro = new RepositorioDeLivros;
-			_repositorioLivro.ObterTodosOsLivros()
+			return _repositorioLivro.ObterTodosOsLivros()
 				.then(lista => {
-					let oModel = new JSONModel(lista);
-					this.getView().setModel(oModel, nomeModelo)
+					let modelo = new JSONModel(lista);
+					this.getView().setModel(modelo, nomeModelo)
 				});
 		},
 
 		AoClicarEmLivro: function (evento) {
 			const rotaDetalhes = "detalhes";
 			const idDoLivroClicado = evento.getSource().getBindingContext("listaDeLivros").getProperty('id');
-			this._navegarParaRota(rotaDetalhes, idDoLivroClicado)
+			this._processarEvento(() => {
+				this._navegarParaRota(rotaDetalhes, idDoLivroClicado);
+			});
 		},
 
 		AoClicarEmCadastrar: function () {
 			const rotaDeCadastro = "cadastrarLivro";
-			this._navegarParaRota(rotaDeCadastro, null);
+			this._processarEvento(() => {
+				this._navegarParaRota(rotaDeCadastro, null);
+			})
 		},
 
-		aoClicarEmPesquisar: function (oEvent) {
+		aoClicarEmPesquisar: function (evento) {
+			const lista = "ListaDeLivros";
+			const tituloDoLivro = "titulo";
 			let livrosBuscados = [];
-			let parametroPesquisa = oEvent.getParameter("query");
-			if (parametroPesquisa) {
-				livrosBuscados.push(new Filter("titulo", FilterOperator.Contains, parametroPesquisa));
-			}
-			let listaDeLivros = this.byId("ListaDeLivros");
-			let oBinding = listaDeLivros.getBinding("items");
-			oBinding.filter(livrosBuscados);
+			let parametroPesquisa = evento.getParameter("query");
+			this._processarEvento(() => {
+				if (parametroPesquisa) {
+					livrosBuscados.push(new Filter(tituloDoLivro, FilterOperator.Contains, parametroPesquisa));
+				}
+				let listaDeLivros = this.byId(lista);
+				let oBinding = listaDeLivros.getBinding("items");
+				oBinding.filter(livrosBuscados);
+			})
 		},
 
-		_navegarParaRota(nomeDaRota, parametroDaRota = null) {
+		_navegarParaRota(nomeDaRota, id = null) {
 			let rota = this.getOwnerComponent().getRouter();
-			(parametroDaRota !== null) ?
-			rota.navTo(nomeDaRota, {
-				"id": parametroDaRota
-			}): rota.navTo(nomeDaRota)
+
+			(id !== null) 
+				? rota.navTo(nomeDaRota, {
+					"id": id
+				})
+				: rota.navTo(nomeDaRota) 
 		}
 	});
 });
