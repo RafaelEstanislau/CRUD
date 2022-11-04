@@ -1,10 +1,12 @@
 
 using CRUD_Livros.Infra.AcessoDeDados;
+using Hellang.Middleware.ProblemDetails;
 using Infra.AcessoDeDados;
 using Microsoft.AspNetCore.StaticFiles;
 
 var builder = WebApplication.CreateBuilder(args);
 {
+    builder.Services.AddProblemDetails();
     builder.Services.AddControllers();
     builder.Services.AddCors();
     builder.Services.AddScoped<IRepositorio, RepositoryLINQTODB>();
@@ -16,6 +18,7 @@ var app = builder.Build();
     app.UseHttpsRedirection();
     app.UseCors(options => options.WithOrigins("*").AllowAnyMethod().AllowAnyHeader()
        );
+    app.UseProblemDetails();
     app.UseAuthentication();
     app.UseDefaultFiles();
     app.UseStaticFiles();

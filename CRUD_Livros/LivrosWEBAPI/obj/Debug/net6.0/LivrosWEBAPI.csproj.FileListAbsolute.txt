@@ -283,3 +283,5 @@ C:\Users\Usuario\Documents\Meus Projetos\CRUD\CRUD_Livros\LivrosWEBAPI\obj\Debug
 C:\Users\Usuario\Documents\Meus Projetos\CRUD\CRUD_Livros\LivrosWEBAPI\obj\Debug\net6.0\LivrosWEBAPI.pdb
 C:\Users\Usuario\Documents\Meus Projetos\CRUD\CRUD_Livros\LivrosWEBAPI\obj\Debug\net6.0\LivrosWEBAPI.genruntimeconfig.cache
 C:\Users\Usuario\Documents\Meus Projetos\CRUD\CRUD_Livros\LivrosWEBAPI\obj\Debug\net6.0\ref\LivrosWEBAPI.dll
+C:\Users\Usuario\Documents\Meus Projetos\CRUD\CRUD_Livros\LivrosWEBAPI\bin\Debug\net6.0\Hellang.Middleware.ProblemDetails.dll
+C:\Users\Usuario\Documents\Meus Projetos\CRUD\CRUD_Livros\LivrosWEBAPI\bin\Debug\net6.0\FluentValidation.dll
