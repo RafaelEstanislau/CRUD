@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Y3yuUiRk/yz1o+ZZtXOjhUfvpyR+ap3z52Vm8k5GiV5mYPSuJq6/ZT8W69n+H1YvgFM93pzQ2EygyTCw8RzkgA==",
+  "dgSpecHash": "mIonDykFirFcx57b6Hf6Fm50O+RsqWVEnYOxQmYHv+g5yAOA10oM9nUKO6lln38eN2ywEJC1+Mfso3lTT/Swpg==",
   "success": true,
   "projectFilePath": "C:\\Users\\Usuario\\Documents\\Meus Projetos\\CRUD\\CRUD_Livros\\LivrosWEBAPI\\LivrosWEBAPI.csproj",
   "expectedPackageFiles": [
@@ -23,7 +23,6 @@
     "C:\\Users\\Usuario\\.nuget\\packages\\fluentmigrator.runner.sqlite\\3.3.2\\fluentmigrator.runner.sqlite.3.3.2.nupkg.sha512",
     "C:\\Users\\Usuario\\.nuget\\packages\\fluentmigrator.runner.sqlserver\\3.3.2\\fluentmigrator.runner.sqlserver.3.3.2.nupkg.sha512",
     "C:\\Users\\Usuario\\.nuget\\packages\\fluentmigrator.runner.sqlserverce\\3.3.2\\fluentmigrator.runner.sqlserverce.3.3.2.nupkg.sha512",
-    "C:\\Users\\Usuario\\.nuget\\packages\\fluentvalidation\\11.2.2\\fluentvalidation.11.2.2.nupkg.sha512",
     "C:\\Users\\Usuario\\.nuget\\packages\\hellang.middleware.problemdetails\\6.5.1\\hellang.middleware.problemdetails.6.5.1.nupkg.sha512",
     "C:\\Users\\Usuario\\.nuget\\packages\\linq2db\\4.3.0\\linq2db.4.3.0.nupkg.sha512",
     "C:\\Users\\Usuario\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",

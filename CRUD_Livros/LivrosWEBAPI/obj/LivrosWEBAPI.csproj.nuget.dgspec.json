@@ -44,14 +44,6 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
-            "FluentValidation": {
-              "target": "Package",
-              "version": "[11.2.2, )"
-            },
-            "Hellang.Middleware.ProblemDetails": {
-              "target": "Package",
-              "version": "[6.5.1, )"
-            },
             "Microsoft.Extensions.Hosting": {
               "target": "Package",
               "version": "[6.0.1, )"
@@ -129,14 +121,6 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
-            "FluentValidation": {
-              "target": "Package",
-              "version": "[11.2.2, )"
-            },
-            "Hellang.Middleware.ProblemDetails": {
-              "target": "Package",
-              "version": "[6.5.1, )"
-            },
             "Microsoft.Extensions.Hosting": {
               "target": "Package",
               "version": "[6.0.1, )"
@@ -232,14 +216,6 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
-            "FluentValidation": {
-              "target": "Package",
-              "version": "[11.2.2, )"
-            },
-            "Hellang.Middleware.ProblemDetails": {
-              "target": "Package",
-              "version": "[6.5.1, )"
-            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.2.3, )"

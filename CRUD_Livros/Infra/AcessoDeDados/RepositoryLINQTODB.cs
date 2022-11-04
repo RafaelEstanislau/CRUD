@@ -14,14 +14,14 @@ namespace Infra.AcessoDeDados
             return ConfigurationManager.ConnectionStrings["conexaoSql"].ConnectionString;
         }
 
-        public int Salvar(Livro livro)
+        public void Salvar(Livro livro)
         {
             try
             {
                 using var db = SqlServerTools.CreateDataConnection(BancoConexao());
                 {
-                   var idDoLivroAdicionado =  db.InsertWithInt32Identity(livro);
-                    return idDoLivroAdicionado;
+                    db.Insert(livro);
+
                 }
             }
             catch (Exception ex)
@@ -36,7 +36,7 @@ namespace Infra.AcessoDeDados
                 using var db = SqlServerTools.CreateDataConnection(BancoConexao());
                 {
                     var livroBuscado = db.GetTable<Livro>()
-                         .FirstOrDefault(l => l.id == id) ?? throw new Exception($"Livro com id { id } não encontrado");
+                         .FirstOrDefault(l => l.id == id) ?? throw new Exception("Livro com id " + id + " não encontrado");
                       return livroBuscado;
                 }
             }
@@ -64,14 +64,14 @@ namespace Infra.AcessoDeDados
             }
         }
 
-        public Livro Editar(Livro livro)
+        public void Editar(Livro livro)
         {
             try
             {
                 using var db = SqlServerTools.CreateDataConnection(BancoConexao());
                 {
                     db.Update(livro);
-                    return BuscarPorID(livro.id);
+
                 }
             }
             catch (Exception ex)

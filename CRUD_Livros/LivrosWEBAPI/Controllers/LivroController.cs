@@ -3,9 +3,6 @@ using CRUD_Livros.Infra.AcessoDeDados;
 using CRUD_Livros.Dominio.RegraDeNegocio;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
-using FluentValidation;
-using FluentValidation.Results;
-using Microsoft.AspNetCore.Http;
 
 namespace LivrosAPI.Controllers
 {
@@ -20,27 +17,22 @@ namespace LivrosAPI.Controllers
             _livroServico = livroServico;
         }
         [HttpPost]
-        public IActionResult CriarLivros([FromBody] Livro livroASerAdicionado)
+        public IActionResult CriarLivros(Livro livroASerAdicionado)
         {
             try
             {
-                Validacao validator = new();
-                ValidationResult resultado = validator.Validate(livroASerAdicionado);
-                if (resultado.IsValid)
-                {
-                    var id = _livroServico.Salvar(livroASerAdicionado);
-                    livroASerAdicionado.id = id;
-                }
-                else
-                {
-                    throw new Exception(resultado.ToString());
-                }
-                return Created($"livro/{livroASerAdicionado.id}", livroASerAdicionado);
+                Validacao.ValidacaoDeCampos(livroASerAdicionado);
+                _livroServico.Salvar(livroASerAdicionado);
+
+                return CreatedAtAction(
+                actionName: nameof(BuscarTodos),
+                livroASerAdicionado
+                );
             }
             catch (Exception ex)
             {
-                var detalheErroDeCriacao = "Não foi possível criar este livro";
-                return Problem(detalheErroDeCriacao, HttpContext.Request.Path, (int)HttpStatusCode.InternalServerError, ex.Message);
+
+                return StatusCode((int)HttpStatusCode.InternalServerError, ex.Message);
             }
         }
 
@@ -71,26 +63,22 @@ namespace LivrosAPI.Controllers
         {
             try
             {
-                Livro livroEditado = new();
                 if (livroASerEditado == null)
                 {
                     NotFound();
                 }
                 else
                 {
-                    Validacao validator = new();
-                    validator.ValidateAndThrow(livroASerEditado);
-                    livroEditado = _livroServico.Editar(livroASerEditado);
-                
+                    Validacao.ValidacaoDeCampos(livroASerEditado);
+                    _livroServico.Editar(livroASerEditado);
                 }
 
-                return Ok(livroEditado);
+                return Ok();
             }
             catch (Exception ex)
             {
 
-                var detalheErroDeEdicao = $"Não foi possível editar o livro de id {livroASerEditado.id}";
-                return Problem(detalheErroDeEdicao, HttpContext.Request.Path, (int)HttpStatusCode.InternalServerError, ex.Message);
+                return StatusCode((int)HttpStatusCode.InternalServerError, ex.Message);
             }
           
         }
@@ -98,22 +86,14 @@ namespace LivrosAPI.Controllers
         [HttpDelete("{id}")]
         public IActionResult ExcluirLivros(int id)
         {
-            try
+            
+            var livroASerDeletado = _livroServico.BuscarPorID(id);
+            if(livroASerDeletado == null)
             {
-                var livroASerDeletado = _livroServico.BuscarPorID(id);
-                if (livroASerDeletado == null)
-                {
-                    return NotFound();
-                }
-                _livroServico.Excluir(id);
-                return Ok(id);
+                return NotFound();
             }
-            catch (Exception ex)
-            {
-                var detalheErroDeExclusao = $"Não foi possível excluir o livro de ID {id}";
-                return Problem(detalheErroDeExclusao, HttpContext.Request.Path, (int)HttpStatusCode.InternalServerError, ex.Message);
-            }
-         
+            _livroServico.Excluir(id);
+            return Ok(id);
         }
     }
 }

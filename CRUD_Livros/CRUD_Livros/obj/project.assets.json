@@ -344,19 +344,6 @@
           "build/netstandard2.0/_._": {}
         }
       },
-      "FluentValidation/11.2.2": {
-        "type": "package",
-        "compile": {
-          "lib/net6.0/FluentValidation.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net6.0/FluentValidation.dll": {
-            "related": ".xml"
-          }
-        }
-      },
       "Hellang.Middleware.ProblemDetails/6.5.1": {
         "type": "package",
         "dependencies": {
@@ -1559,8 +1546,6 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
-          "FluentValidation": "11.2.2",
-          "Hellang.Middleware.ProblemDetails": "6.5.1",
           "Microsoft.Extensions.Hosting": "6.0.1",
           "Microsoft.Extensions.Hosting.Abstractions": "6.0.0",
           "linq2db": "4.3.0"
@@ -1577,8 +1562,6 @@
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
           "Dominio": "1.0.0",
-          "FluentValidation": "11.2.2",
-          "Hellang.Middleware.ProblemDetails": "6.5.1",
           "Microsoft.Extensions.Hosting": "6.0.1",
           "Microsoft.Extensions.Hosting.Abstractions": "6.0.0",
           "Microsoft.IdentityModel.Protocols": "6.23.1",
@@ -1954,27 +1937,6 @@
         "runtimes/win-x86/sqlceme40.dll",
         "runtimes/win-x86/sqlceqp40.dll",
         "runtimes/win-x86/sqlcese40.dll"
-      ]
-    },
-    "FluentValidation/11.2.2": {
-      "sha512": "5QEte2BUZZF6Sezeekr7Zu1THfgpxU7pmuL2SjIrajuGMah+pxPGiRiLtw+x/tSUSSVmcv9LrUe41lKu4l0n4A==",
-      "type": "package",
-      "path": "fluentvalidation/11.2.2",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "README.md",
-        "fluent-validation-icon.png",
-        "fluentvalidation.11.2.2.nupkg.sha512",
-        "fluentvalidation.nuspec",
-        "lib/net5.0/FluentValidation.dll",
-        "lib/net5.0/FluentValidation.xml",
-        "lib/net6.0/FluentValidation.dll",
-        "lib/net6.0/FluentValidation.xml",
-        "lib/netstandard2.0/FluentValidation.dll",
-        "lib/netstandard2.0/FluentValidation.xml",
-        "lib/netstandard2.1/FluentValidation.dll",
-        "lib/netstandard2.1/FluentValidation.xml"
       ]
     },
     "Hellang.Middleware.ProblemDetails/6.5.1": {
@@ -3879,7 +3841,6 @@
   "projectFileDependencyGroups": {
     "net6.0-windows7.0": [
       "Dominio >= 1.0.0",
-      "Hellang.Middleware.ProblemDetails >= 6.5.1",
       "Infra >= 1.0.0",
       "Microsoft.Extensions.Hosting >= 6.0.1",
       "Microsoft.Extensions.Hosting.Abstractions >= 6.0.0",
@@ -3941,10 +3902,6 @@
       "net6.0-windows7.0": {
         "targetAlias": "net6.0-windows",
         "dependencies": {
-          "Hellang.Middleware.ProblemDetails": {
-            "target": "Package",
-            "version": "[6.5.1, )"
-          },
           "Microsoft.Extensions.Hosting": {
             "target": "Package",
             "version": "[6.0.1, )"

@@ -5,7 +5,7 @@ using CRUD_Livros.Dominio.RegraDeNegocio;
 
 namespace CRUD_Livros.Infra.AcessoDeDados
 {
-    public class RepositorySQL 
+    public class RepositorySQL : IRepositorio
     {
         SqlDataAdapter da;
         SqlDataReader dr;
