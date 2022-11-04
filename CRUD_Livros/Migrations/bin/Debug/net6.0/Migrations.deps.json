@@ -9,7 +9,8 @@
       "Migrations/1.0.0": {
         "dependencies": {
           "FluentMigrator.Extensions.SqlServer": "3.3.2",
-          "FluentMigrator.Runner": "3.3.2"
+          "FluentMigrator.Runner": "3.3.2",
+          "Hellang.Middleware.ProblemDetails": "6.5.1"
         },
         "runtime": {
           "Migrations.dll": {}
@@ -261,6 +262,17 @@
           }
         }
       },
+      "Hellang.Middleware.ProblemDetails/6.5.1": {
+        "dependencies": {
+          "System.Reflection.Metadata": "5.0.0"
+        },
+        "runtime": {
+          "lib/net6.0/Hellang.Middleware.ProblemDetails.dll": {
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.0.0.0"
+          }
+        }
+      },
       "Microsoft.CSharp/4.5.0": {},
       "Microsoft.Data.SqlClient/2.1.2": {
         "dependencies": {
@@ -323,75 +335,31 @@
       "Microsoft.Extensions.Configuration.Abstractions/2.0.1": {
         "dependencies": {
           "Microsoft.Extensions.Primitives": "2.0.0"
-        },
-        "runtime": {
-          "lib/netstandard2.0/Microsoft.Extensions.Configuration.Abstractions.dll": {
-            "assemblyVersion": "2.0.1.0",
-            "fileVersion": "2.0.1.18051"
-          }
         }
       },
       "Microsoft.Extensions.DependencyInjection/2.0.0": {
         "dependencies": {
           "Microsoft.Extensions.DependencyInjection.Abstractions": "2.0.0"
-        },
-        "runtime": {
-          "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.dll": {
-            "assemblyVersion": "2.0.0.0",
-            "fileVersion": "2.0.0.17205"
-          }
         }
       },
-      "Microsoft.Extensions.DependencyInjection.Abstractions/2.0.0": {
-        "runtime": {
-          "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll": {
-            "assemblyVersion": "2.0.0.0",
-            "fileVersion": "2.0.0.17205"
-          }
-        }
-      },
+      "Microsoft.Extensions.DependencyInjection.Abstractions/2.0.0": {},
       "Microsoft.Extensions.Logging/2.0.1": {
         "dependencies": {
           "Microsoft.Extensions.DependencyInjection.Abstractions": "2.0.0",
           "Microsoft.Extensions.Logging.Abstractions": "2.0.1",
           "Microsoft.Extensions.Options": "2.0.1"
-        },
-        "runtime": {
-          "lib/netstandard2.0/Microsoft.Extensions.Logging.dll": {
-            "assemblyVersion": "2.0.1.0",
-            "fileVersion": "2.0.1.18051"
-          }
         }
       },
-      "Microsoft.Extensions.Logging.Abstractions/2.0.1": {
-        "runtime": {
-          "lib/netstandard2.0/Microsoft.Extensions.Logging.Abstractions.dll": {
-            "assemblyVersion": "2.0.1.0",
-            "fileVersion": "2.0.1.18051"
-          }
-        }
-      },
+      "Microsoft.Extensions.Logging.Abstractions/2.0.1": {},
       "Microsoft.Extensions.Options/2.0.1": {
         "dependencies": {
           "Microsoft.Extensions.DependencyInjection.Abstractions": "2.0.0",
           "Microsoft.Extensions.Primitives": "2.0.0"
-        },
-        "runtime": {
-          "lib/netstandard2.0/Microsoft.Extensions.Options.dll": {
-            "assemblyVersion": "2.0.1.0",
-            "fileVersion": "2.0.1.18051"
-          }
         }
       },
       "Microsoft.Extensions.Primitives/2.0.0": {
         "dependencies": {
           "System.Runtime.CompilerServices.Unsafe": "4.4.0"
-        },
-        "runtime": {
-          "lib/netstandard2.0/Microsoft.Extensions.Primitives.dll": {
-            "assemblyVersion": "2.0.0.0",
-            "fileVersion": "2.0.0.17205"
-          }
         }
       },
       "Microsoft.Identity.Client/4.21.1": {
@@ -536,6 +504,7 @@
           }
         }
       },
+      "System.Reflection.Metadata/5.0.0": {},
       "System.Runtime.Caching/4.7.0": {
         "dependencies": {
           "System.Configuration.ConfigurationManager": "4.7.0"
@@ -758,6 +727,13 @@
       "path": "fluentmigrator.runner.sqlserverce/3.3.2",
       "hashPath": "fluentmigrator.runner.sqlserverce.3.3.2.nupkg.sha512"
     },
+    "Hellang.Middleware.ProblemDetails/6.5.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-LgceF4mPguB/q3NWs6T3bitOFnYIANSRvfhASMgVb8ks7fSqY8jbdBHoVEuUDmxg3T7+kF21qSE0jQv9hdpLng==",
+      "path": "hellang.middleware.problemdetails/6.5.1",
+      "hashPath": "hellang.middleware.problemdetails.6.5.1.nupkg.sha512"
+    },
     "Microsoft.CSharp/4.5.0": {
       "type": "package",
       "serviceable": true,
@@ -925,6 +901,13 @@
       "sha512": "sha512-5tBCjAub2Bhd5qmcd0WhR5s354e4oLYa//kOWrkX+6/7ZbDDJjMTfwLSOiZ/MMpWdE4DWPLOfTLOq/juj9CKzA==",
       "path": "system.identitymodel.tokens.jwt/6.8.0",
       "hashPath": "system.identitymodel.tokens.jwt.6.8.0.nupkg.sha512"
+    },
+    "System.Reflection.Metadata/5.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-5NecZgXktdGg34rh1OenY1rFNDCI8xSjFr+Z4OU4cU06AQHUdRnIIEeWENu3Wl4YowbzkymAIMvi3WyK9U53pQ==",
+      "path": "system.reflection.metadata/5.0.0",
+      "hashPath": "system.reflection.metadata.5.0.0.nupkg.sha512"
     },
     "System.Runtime.Caching/4.7.0": {
       "type": "package",

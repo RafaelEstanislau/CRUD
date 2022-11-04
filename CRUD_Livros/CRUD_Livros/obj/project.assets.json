@@ -344,6 +344,38 @@
           "build/netstandard2.0/_._": {}
         }
       },
+      "FluentValidation/11.2.2": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/FluentValidation.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/FluentValidation.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Hellang.Middleware.ProblemDetails/6.5.1": {
+        "type": "package",
+        "dependencies": {
+          "System.Reflection.Metadata": "5.0.0"
+        },
+        "compile": {
+          "lib/net6.0/Hellang.Middleware.ProblemDetails.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Hellang.Middleware.ProblemDetails.dll": {
+            "related": ".xml"
+          }
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
+      },
       "linq2db/4.3.0": {
         "type": "package",
         "compile": {
@@ -1270,6 +1302,19 @@
           }
         }
       },
+      "System.Reflection.Metadata/5.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/System.Reflection.Metadata.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/System.Reflection.Metadata.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "System.Runtime.Caching/4.7.0": {
         "type": "package",
         "dependencies": {
@@ -1514,6 +1559,8 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
+          "FluentValidation": "11.2.2",
+          "Hellang.Middleware.ProblemDetails": "6.5.1",
           "Microsoft.Extensions.Hosting": "6.0.1",
           "Microsoft.Extensions.Hosting.Abstractions": "6.0.0",
           "linq2db": "4.3.0"
@@ -1530,6 +1577,8 @@
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
           "Dominio": "1.0.0",
+          "FluentValidation": "11.2.2",
+          "Hellang.Middleware.ProblemDetails": "6.5.1",
           "Microsoft.Extensions.Hosting": "6.0.1",
           "Microsoft.Extensions.Hosting.Abstractions": "6.0.0",
           "Microsoft.IdentityModel.Protocols": "6.23.1",
@@ -1549,7 +1598,8 @@
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
           "FluentMigrator.Extensions.SqlServer": "3.3.2",
-          "FluentMigrator.Runner": "3.3.2"
+          "FluentMigrator.Runner": "3.3.2",
+          "Hellang.Middleware.ProblemDetails": "6.5.1"
         },
         "compile": {
           "bin/placeholder/Migrations.dll": {}
@@ -1904,6 +1954,45 @@
         "runtimes/win-x86/sqlceme40.dll",
         "runtimes/win-x86/sqlceqp40.dll",
         "runtimes/win-x86/sqlcese40.dll"
+      ]
+    },
+    "FluentValidation/11.2.2": {
+      "sha512": "5QEte2BUZZF6Sezeekr7Zu1THfgpxU7pmuL2SjIrajuGMah+pxPGiRiLtw+x/tSUSSVmcv9LrUe41lKu4l0n4A==",
+      "type": "package",
+      "path": "fluentvalidation/11.2.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "fluent-validation-icon.png",
+        "fluentvalidation.11.2.2.nupkg.sha512",
+        "fluentvalidation.nuspec",
+        "lib/net5.0/FluentValidation.dll",
+        "lib/net5.0/FluentValidation.xml",
+        "lib/net6.0/FluentValidation.dll",
+        "lib/net6.0/FluentValidation.xml",
+        "lib/netstandard2.0/FluentValidation.dll",
+        "lib/netstandard2.0/FluentValidation.xml",
+        "lib/netstandard2.1/FluentValidation.dll",
+        "lib/netstandard2.1/FluentValidation.xml"
+      ]
+    },
+    "Hellang.Middleware.ProblemDetails/6.5.1": {
+      "sha512": "LgceF4mPguB/q3NWs6T3bitOFnYIANSRvfhASMgVb8ks7fSqY8jbdBHoVEuUDmxg3T7+kF21qSE0jQv9hdpLng==",
+      "type": "package",
+      "path": "hellang.middleware.problemdetails/6.5.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "hellang.middleware.problemdetails.6.5.1.nupkg.sha512",
+        "hellang.middleware.problemdetails.nuspec",
+        "lib/net5.0/Hellang.Middleware.ProblemDetails.dll",
+        "lib/net5.0/Hellang.Middleware.ProblemDetails.xml",
+        "lib/net6.0/Hellang.Middleware.ProblemDetails.dll",
+        "lib/net6.0/Hellang.Middleware.ProblemDetails.xml",
+        "lib/netcoreapp3.1/Hellang.Middleware.ProblemDetails.dll",
+        "lib/netcoreapp3.1/Hellang.Middleware.ProblemDetails.xml",
+        "problem-logo.png"
       ]
     },
     "linq2db/4.3.0": {
@@ -3287,6 +3376,30 @@
         "system.identitymodel.tokens.jwt.nuspec"
       ]
     },
+    "System.Reflection.Metadata/5.0.0": {
+      "sha512": "5NecZgXktdGg34rh1OenY1rFNDCI8xSjFr+Z4OU4cU06AQHUdRnIIEeWENu3Wl4YowbzkymAIMvi3WyK9U53pQ==",
+      "type": "package",
+      "path": "system.reflection.metadata/5.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net461/System.Reflection.Metadata.dll",
+        "lib/net461/System.Reflection.Metadata.xml",
+        "lib/netstandard1.1/System.Reflection.Metadata.dll",
+        "lib/netstandard1.1/System.Reflection.Metadata.xml",
+        "lib/netstandard2.0/System.Reflection.Metadata.dll",
+        "lib/netstandard2.0/System.Reflection.Metadata.xml",
+        "lib/portable-net45+win8/System.Reflection.Metadata.dll",
+        "lib/portable-net45+win8/System.Reflection.Metadata.xml",
+        "system.reflection.metadata.5.0.0.nupkg.sha512",
+        "system.reflection.metadata.nuspec",
+        "useSharedDesignerContext.txt",
+        "version.txt"
+      ]
+    },
     "System.Runtime.Caching/4.7.0": {
       "sha512": "NdvNRjTPxYvIEhXQszT9L9vJhdQoX6AQ0AlhjTU+5NqFQVuacJTfhPVAvtGWNA2OJCqRiR/okBcZgMwI6MqcZg==",
       "type": "package",
@@ -3766,6 +3879,7 @@
   "projectFileDependencyGroups": {
     "net6.0-windows7.0": [
       "Dominio >= 1.0.0",
+      "Hellang.Middleware.ProblemDetails >= 6.5.1",
       "Infra >= 1.0.0",
       "Microsoft.Extensions.Hosting >= 6.0.1",
       "Microsoft.Extensions.Hosting.Abstractions >= 6.0.0",
@@ -3827,6 +3941,10 @@
       "net6.0-windows7.0": {
         "targetAlias": "net6.0-windows",
         "dependencies": {
+          "Hellang.Middleware.ProblemDetails": {
+            "target": "Package",
+            "version": "[6.5.1, )"
+          },
           "Microsoft.Extensions.Hosting": {
             "target": "Package",
             "version": "[6.0.1, )"
