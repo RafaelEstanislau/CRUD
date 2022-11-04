@@ -17,17 +17,15 @@ namespace LivrosAPI.Controllers
             _livroServico = livroServico;
         }
         [HttpPost]
-        public IActionResult CriarLivros(Livro livroASerAdicionado)
+        public IActionResult CriarLivros([FromBody] Livro livroASerAdicionado)
         {
             try
             {
                 Validacao.ValidacaoDeCampos(livroASerAdicionado);
-                _livroServico.Salvar(livroASerAdicionado);
-
-                return CreatedAtAction(
-                actionName: nameof(BuscarTodos),
-                livroASerAdicionado
-                );
+                var id = _livroServico.Salvar(livroASerAdicionado);
+                livroASerAdicionado.id = id;
+            
+                return Created($"livro/{livroASerAdicionado.id}", livroASerAdicionado);
             }
             catch (Exception ex)
             {
@@ -59,10 +57,11 @@ namespace LivrosAPI.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult EditarLivro(Livro livroASerEditado)
+        public OkObjectResult EditarLivro(Livro livroASerEditado)
         {
             try
             {
+                Livro livroEditado = new();
                 if (livroASerEditado == null)
                 {
                     NotFound();
@@ -70,15 +69,16 @@ namespace LivrosAPI.Controllers
                 else
                 {
                     Validacao.ValidacaoDeCampos(livroASerEditado);
-                    _livroServico.Editar(livroASerEditado);
+                    livroEditado = _livroServico.Editar(livroASerEditado);
+                
                 }
 
-                return Ok();
+                return Ok(livroEditado);
             }
             catch (Exception ex)
             {
 
-                return StatusCode((int)HttpStatusCode.InternalServerError, ex.Message);
+                throw new Exception("Não foi possível editar", ex);
             }
           
         }

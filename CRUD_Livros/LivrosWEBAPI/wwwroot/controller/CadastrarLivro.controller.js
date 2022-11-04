@@ -99,10 +99,10 @@ sap.ui.define([
 				let valorInputData = this.getView().byId(dateTimePicker);
 				let retornoValidacao = this._validacaoLivro.ValidarCadastro(inputs, valorInputData);
 
-				// if (!!retornoValidacao) {
-				// 	MessageBox.alert(mensagemFalhaDeValidacao);
-				// 	return
-				// }
+				if(!retornoValidacao){
+					 MessageBox.alert(mensagemFalhaDeValidacao);
+					 return
+				} 
 				let livroASerSalvo = this.getView().getModel(nomeDoModelo).getData();
 				return !livroASerSalvo.id ?
 					this._salvarLivro(livroASerSalvo) :
@@ -149,29 +149,15 @@ sap.ui.define([
 		_atualizarLivro: function (livroASerSalvo) {
 			let _repositorioLivro = new RepositorioDeLivros;
 			return _repositorioLivro.AtualizarLivro(livroASerSalvo)
-				.then(retorno =>
-					!livroASerSalvo.ok
-					? this._mensagemDeErro(retorno)
-					: this._navegarParaRota(rotaDetalhes, livroASerSalvo.id));
-					
+				.then(() =>this._navegarParaRota(rotaDetalhes, livroASerSalvo.id));
 		},
-		_mensagemDeErro: function(textoRetorno){
-			if(!!textoRetorno.detail){
-				MessageBox.error(textoRetorno.detail)
-			}
-		},
+
 		_salvarLivro: function (livroASerSalvo) {
 			let _repositorioLivro = new RepositorioDeLivros;
 			return _repositorioLivro.SalvarLivro(livroASerSalvo)
 				.then(livroRetorno => {
-					!livroRetorno.id
-					? this._mensagemDeErro(livroRetorno)
-					: this._navegarParaRota(rotaDetalhes, livroRetorno.id)
+					this._navegarParaRota(rotaDetalhes, livroRetorno.id)
 				});
 		},
 	});
 });
-
-//Receber o retorno da requisição 
-//Checar se houve sucesso na conclusão da ação
-//Se não houver, emitir o titulo do erro na tela para o usuário

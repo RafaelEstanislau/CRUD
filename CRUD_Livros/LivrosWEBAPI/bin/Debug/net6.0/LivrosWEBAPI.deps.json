@@ -263,17 +263,6 @@
           }
         }
       },
-      "Hellang.Middleware.ProblemDetails/6.5.1": {
-        "dependencies": {
-          "System.Reflection.Metadata": "5.0.0"
-        },
-        "runtime": {
-          "lib/net6.0/Hellang.Middleware.ProblemDetails.dll": {
-            "assemblyVersion": "6.0.0.0",
-            "fileVersion": "6.0.0.0"
-          }
-        }
-      },
       "linq2db/4.3.0": {
         "runtime": {
           "lib/net6.0/linq2db.dll": {
@@ -806,7 +795,6 @@
           }
         }
       },
-      "System.Reflection.Metadata/5.0.0": {},
       "System.Runtime.Caching/4.7.0": {
         "dependencies": {
           "System.Configuration.ConfigurationManager": "6.0.1"
@@ -921,8 +909,7 @@
       "Migrations/1.0.0": {
         "dependencies": {
           "FluentMigrator.Extensions.SqlServer": "3.3.2",
-          "FluentMigrator.Runner": "3.3.2",
-          "Hellang.Middleware.ProblemDetails": "6.5.1"
+          "FluentMigrator.Runner": "3.3.2"
         },
         "runtime": {
           "Migrations.dll": {}
@@ -1068,13 +1055,6 @@
       "sha512": "sha512-IOYYVsgsTPdRUx6ZZ74Xuu6ZCTJuj268CG4hYciMsznuAGSZvADHFQrHC0EdXn+kNOdZfYeKyJ+kuR+igm6utg==",
       "path": "fluentmigrator.runner.sqlserverce/3.3.2",
       "hashPath": "fluentmigrator.runner.sqlserverce.3.3.2.nupkg.sha512"
-    },
-    "Hellang.Middleware.ProblemDetails/6.5.1": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-LgceF4mPguB/q3NWs6T3bitOFnYIANSRvfhASMgVb8ks7fSqY8jbdBHoVEuUDmxg3T7+kF21qSE0jQv9hdpLng==",
-      "path": "hellang.middleware.problemdetails/6.5.1",
-      "hashPath": "hellang.middleware.problemdetails.6.5.1.nupkg.sha512"
     },
     "linq2db/4.3.0": {
       "type": "package",
@@ -1467,13 +1447,6 @@
       "sha512": "sha512-5tBCjAub2Bhd5qmcd0WhR5s354e4oLYa//kOWrkX+6/7ZbDDJjMTfwLSOiZ/MMpWdE4DWPLOfTLOq/juj9CKzA==",
       "path": "system.identitymodel.tokens.jwt/6.8.0",
       "hashPath": "system.identitymodel.tokens.jwt.6.8.0.nupkg.sha512"
-    },
-    "System.Reflection.Metadata/5.0.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-5NecZgXktdGg34rh1OenY1rFNDCI8xSjFr+Z4OU4cU06AQHUdRnIIEeWENu3Wl4YowbzkymAIMvi3WyK9U53pQ==",
-      "path": "system.reflection.metadata/5.0.0",
-      "hashPath": "system.reflection.metadata.5.0.0.nupkg.sha512"
     },
     "System.Runtime.Caching/4.7.0": {
       "type": "package",

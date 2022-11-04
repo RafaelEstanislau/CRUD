@@ -48,7 +48,6 @@ sap.ui.define([
             const metodoEditar = 'PUT';
             let livroModelo = livroASerAtualizado;
             var livro;
-            var retorno;
             await fetch(`${urlAPI}${livroModelo.id}`, {
                     headers: {
                         "Content-Type": "application/json; charset=utf-8"
@@ -62,8 +61,9 @@ sap.ui.define([
                         lancamento: livroModelo.lancamento,
                     })
                 })
-                .then((response) => retorno = response.status)
-            return retorno;
+                .then((response) => response.json())
+                .then(data => livro = data)
+            return livro;
         },
 
         ExcluirLivro: async function (livroASerExcluido) {

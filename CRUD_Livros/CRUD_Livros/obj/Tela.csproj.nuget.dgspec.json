@@ -299,10 +299,6 @@
             "FluentMigrator.Runner": {
               "target": "Package",
               "version": "[3.3.2, )"
-            },
-            "Hellang.Middleware.ProblemDetails": {
-              "target": "Package",
-              "version": "[6.5.1, )"
             }
           },
           "imports": [
