@@ -21,11 +21,12 @@ sap.ui.define([
 	const caminhoDoCadastro = "sap.ui.demo.walkthrough.controller.CadastrarLivro"
 	return Controller.extend(caminhoDoCadastro, {
 		_validacaoLivro: null,
+		_repositorioLivro: null,
 		onInit: function () {
 			const rotaDeCadastro = "cadastrarLivro";
 			const rotaDeEditar = "editarLivro";
 			this._validacaoLivro = new Validacao;
-
+			this._repositorioLivro = new RepositorioDeLivros;
 			let roteador = this
 				.getOwnerComponent()
 				.getRouter();
@@ -45,6 +46,7 @@ sap.ui.define([
 			var i18nModel = this.getOwnerComponent().getModel("i18n").getResourceBundle();
 			this._validacaoLivro.Receberi18n(i18nModel);
 		},
+
 		_processarEvento: function (acao) {
 			try {
 				var promise = acao();
@@ -55,12 +57,14 @@ sap.ui.define([
 				MessageBox.error(error.message);
 			}
 		},
+
 		_coincidirRotaDeCriacao: function () {
 			this._processarEvento(() => {
 				let nomeModelo = "livro";
 				this.getView().setModel(new JSONModel(), nomeModelo);
 			});
 		},
+
 		_coincidirRotaDeEdicao: function (evento) {
 			const erroIdInvalido = "ID inválido"
 			this._processarEvento(() => {
@@ -74,9 +78,8 @@ sap.ui.define([
 
 		_carregarLivro: function (id) {
 			const nomeModelo = "livro";
-			let _repositorioLivro = new RepositorioDeLivros;
 
-			return _repositorioLivro.BuscarLivroPorId(id).then(livroRetornado => {
+			return this._repositorioLivro.BuscarLivroPorId(id).then(livroRetornado => {
 				let modelo = new JSONModel(livroRetornado);
 				this.getView().setModel(modelo, nomeModelo);
 			});
@@ -99,16 +102,16 @@ sap.ui.define([
 				let valorInputData = this.getView().byId(dateTimePicker);
 				let retornoValidacao = this._validacaoLivro.ValidarCadastro(inputs, valorInputData);
 
-				if(!retornoValidacao){
-					 MessageBox.alert(mensagemFalhaDeValidacao);
-					 return
-				} 
+				// if (!!retornoValidacao) {
+				// 	MessageBox.alert(mensagemFalhaDeValidacao);
+				// 	return
+				// }
 				let livroASerSalvo = this.getView().getModel(nomeDoModelo).getData();
 				return !livroASerSalvo.id ?
 					this._salvarLivro(livroASerSalvo) :
 					this._atualizarLivro(livroASerSalvo);
 			})
-
+//Receber se o fetch obteve sucesso, caso não ocorra, mostrar mensagem de erro na tela
 		},
 
 		AoClicarEmVoltar: function (evento) {
@@ -147,14 +150,12 @@ sap.ui.define([
 		},
 
 		_atualizarLivro: function (livroASerSalvo) {
-			let _repositorioLivro = new RepositorioDeLivros;
-			return _repositorioLivro.AtualizarLivro(livroASerSalvo)
-				.then(() =>this._navegarParaRota(rotaDetalhes, livroASerSalvo.id));
+			return this._repositorioLivro.AtualizarLivro(livroASerSalvo)
+				.then(() => this._navegarParaRota(rotaDetalhes, livroASerSalvo.id));
 		},
 
 		_salvarLivro: function (livroASerSalvo) {
-			let _repositorioLivro = new RepositorioDeLivros;
-			return _repositorioLivro.SalvarLivro(livroASerSalvo)
+			return this._repositorioLivro.SalvarLivro(livroASerSalvo)
 				.then(livroRetorno => {
 					this._navegarParaRota(rotaDetalhes, livroRetorno.id)
 				});

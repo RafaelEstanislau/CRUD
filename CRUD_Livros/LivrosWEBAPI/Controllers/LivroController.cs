@@ -3,6 +3,9 @@ using CRUD_Livros.Infra.AcessoDeDados;
 using CRUD_Livros.Dominio.RegraDeNegocio;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
+using FluentValidation;
+using FluentValidation.Results;
+using Microsoft.AspNetCore.Http;
 
 namespace LivrosAPI.Controllers
 {
@@ -21,16 +24,25 @@ namespace LivrosAPI.Controllers
         {
             try
             {
-                Validacao.ValidacaoDeCampos(livroASerAdicionado);
-                var id = _livroServico.Salvar(livroASerAdicionado);
-                livroASerAdicionado.id = id;
-            
+                Validacao validator = new();
+                ValidationResult resultado = validator.Validate(livroASerAdicionado);
+                if (resultado.IsValid)
+                {
+                    var id = _livroServico.Salvar(livroASerAdicionado);
+                    livroASerAdicionado.id = id;
+                }
+                else
+                {
+                    throw new Exception(resultado.ToString());
+                }
+
                 return Created($"livro/{livroASerAdicionado.id}", livroASerAdicionado);
             }
             catch (Exception ex)
             {
 
-                return StatusCode((int)HttpStatusCode.InternalServerError, ex.Message);
+                var detalheErroDeCriacao = "Não foi possível criar este livro";
+                return Problem(detalheErroDeCriacao, HttpContext.Request.Path, (int)HttpStatusCode.InternalServerError, ex.Message);
             }
         }
 
@@ -57,7 +69,7 @@ namespace LivrosAPI.Controllers
         }
 
         [HttpPut("{id}")]
-        public OkObjectResult EditarLivro(Livro livroASerEditado)
+        public IActionResult EditarLivro(Livro livroASerEditado)
         {
             try
             {
@@ -68,9 +80,10 @@ namespace LivrosAPI.Controllers
                 }
                 else
                 {
-                    Validacao.ValidacaoDeCampos(livroASerEditado);
+                    Validacao validator = new();
+                    validator.ValidateAndThrow(livroASerEditado);
                     livroEditado = _livroServico.Editar(livroASerEditado);
-                
+
                 }
 
                 return Ok(livroEditado);
@@ -78,7 +91,8 @@ namespace LivrosAPI.Controllers
             catch (Exception ex)
             {
 
-                throw new Exception("Não foi possível editar", ex);
+                var detalheErroDeEdicao = $"Não foi possível editar o livro de id {livroASerEditado.id}";
+                return Problem(detalheErroDeEdicao, HttpContext.Request.Path, (int)HttpStatusCode.InternalServerError, ex.Message);
             }
           
         }
@@ -86,14 +100,21 @@ namespace LivrosAPI.Controllers
         [HttpDelete("{id}")]
         public IActionResult ExcluirLivros(int id)
         {
-            
-            var livroASerDeletado = _livroServico.BuscarPorID(id);
-            if(livroASerDeletado == null)
+            try
             {
-                return NotFound();
+                var livroASerDeletado = _livroServico.BuscarPorID(id);
+                if (livroASerDeletado == null)
+                {
+                    return NotFound();
+                }
+                _livroServico.Excluir(id);
+                return Ok(id);
             }
-            _livroServico.Excluir(id);
-            return Ok(id);
+            catch (Exception ex)
+            {
+                var detalheErroDeExclusao = $"Não foi possível excluir o livro de ID {id}";
+                return Problem(detalheErroDeExclusao, HttpContext.Request.Path, (int)HttpStatusCode.InternalServerError, ex.Message);
+            }
         }
     }
 }

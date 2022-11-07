@@ -9,7 +9,7 @@ sap.ui.define([
     return ManagedObject.extend(caminhoDoRepositorio, {
         //ObterTodosOsLivros
         ObterTodosOsLivros: function () {
-            
+
             let livrosObtidos = fetch(urlAPI)
                 .then((response) => response.json())
                 .then(data => livrosObtidos = data);
@@ -26,7 +26,8 @@ sap.ui.define([
         SalvarLivro: async function (livroASerSalvo) {
             const metodoSalvar = 'POST';
             let livroModelo = livroASerSalvo;
-            var livroRetorno;
+            let livroRetorno;
+            let erroDeRequisicao = false;
             await fetch(urlAPI, {
                     headers: {
                         "Content-Type": "application/json; charset=utf-8"
@@ -39,15 +40,25 @@ sap.ui.define([
                         lancamento: livroModelo.lancamento,
                     })
                 })
-                .then((response) => response.json())
+                .then(response => {
+                    if (!response.ok) {
+                        erroDeRequisicao = true
+                    }
+                    return response.json()
+                })
                 .then(data => livroRetorno = data)
+                if(!!erroDeRequisicao){
+                    let erro = [livroRetorno.detail, livroRetorno.title]
+                    throw new Error((erro.join("\r\n")).toString())
+                } 
             return livroRetorno;
         },
 
         AtualizarLivro: async function (livroASerAtualizado) {
             const metodoEditar = 'PUT';
             let livroModelo = livroASerAtualizado;
-            var livro;
+            let livroRetorno;
+            let erroDeRequisicao = false;
             await fetch(`${urlAPI}${livroModelo.id}`, {
                     headers: {
                         "Content-Type": "application/json; charset=utf-8"
@@ -61,9 +72,18 @@ sap.ui.define([
                         lancamento: livroModelo.lancamento,
                     })
                 })
-                .then((response) => response.json())
-                .then(data => livro = data)
-            return livro;
+                .then(response => {
+                    if (!response.ok) {
+                        erroDeRequisicao = true
+                    }
+                    return response.json()
+                })
+                .then(data => livroRetorno = data)
+                if(!!erroDeRequisicao){
+                    let erro = [livroRetorno.detail, livroRetorno.title]
+                    throw new Error((erro.join("\r\n")).toString())
+                } 
+            return livroRetorno;
         },
 
         ExcluirLivro: async function (livroASerExcluido) {

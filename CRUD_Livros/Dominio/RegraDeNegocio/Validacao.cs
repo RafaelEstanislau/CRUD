@@ -1,35 +1,18 @@
-﻿namespace CRUD_Livros.Dominio.RegraDeNegocio
+﻿using FluentValidation;
+using static LinqToDB.Common.Configuration;
+
+namespace CRUD_Livros.Dominio.RegraDeNegocio
 {
-    public class Validacao
+    public class Validacao : AbstractValidator<Livro>
     {
-        public static bool ValidacaoDeCampos(Livro livro)
+        public Validacao()
         {
-            bool validacao = true;
-            if (livro.titulo == string.Empty)
-            {
-                validacao = false;
-                throw new Exception("Campo Nome deve ser informado");
-                
-            }
-            if (livro.editora == string.Empty)
-            {
-                validacao = false;
-                throw new Exception("Campo Editora deve ser informado");
-                
-            }
-            if (livro.autor == string.Empty)
-            {
-                validacao = false;
-                throw new Exception("Campo Autor deve ser informado");
-                
-            }
-            if (livro.lancamento > DateTime.Now)
-            {
-                validacao = false;
-                throw new Exception("Insira uma data válida anterior à hoje!");
-                
-            }
-            return validacao;
+            var dataMinimaValida = new DateTime(1860, 1, 1);
+            RuleFor(livro => livro.titulo).NotEmpty();
+            RuleFor(livro => livro.editora).NotEmpty();
+            RuleFor(livro => livro.autor).NotEmpty();
+            RuleFor(livro => livro.lancamento).NotEmpty()
+                .ExclusiveBetween(dataMinimaValida, DateTime.Today);
         }
     }
 }

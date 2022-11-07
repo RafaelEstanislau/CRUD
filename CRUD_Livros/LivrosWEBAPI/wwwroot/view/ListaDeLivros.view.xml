@@ -2,6 +2,7 @@
    controllerName="sap.ui.demo.walkthrough.controller.ListaDeLivros"
    xmlns="sap.m"
    xmlns:mvc="sap.ui.core.mvc">
+   <Page>
    <Panel accessibleRole="Region">
    <Table
       id="ListaDeLivros"
@@ -70,4 +71,5 @@
         </Table>
         
     </Panel>
+</Page>
 </mvc:View>

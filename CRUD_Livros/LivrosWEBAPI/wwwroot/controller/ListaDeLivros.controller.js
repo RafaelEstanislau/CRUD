@@ -31,7 +31,7 @@ sap.ui.define([
 		_coincidirRotaDaLista: function () {
 			this._processarEvento(() => {
 				this._carregarLivros();
-			}) 
+			})
 		},
 
 		_carregarLivros: function () {
@@ -77,11 +77,10 @@ sap.ui.define([
 		_navegarParaRota(nomeDaRota, id = null) {
 			let rota = this.getOwnerComponent().getRouter();
 
-			(id !== null) 
-				? rota.navTo(nomeDaRota, {
-					"id": id
-				})
-				: rota.navTo(nomeDaRota) 
+			(id !== null) ?
+			rota.navTo(nomeDaRota, {
+				"id": id
+			}): rota.navTo(nomeDaRota)
 		}
 	});
 });

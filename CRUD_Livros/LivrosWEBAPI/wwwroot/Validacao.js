@@ -2,15 +2,15 @@ sap.ui.define([
 	"sap/ui/base/ManagedObject"
 ], function (
 	ManagedObject,
-
 ) {
 	"use strict";
 
 	return ManagedObject.extend("sap.ui.demo.walkthrough.Validacao", {
 		_i18n: null,
-		Receberi18n: function(pacote){
+		Receberi18n: function (pacote) {
 			this._i18n = pacote
 		},
+
 		ValidarCadastro: function (inputsDeCampo, inputData) {
 			let erroDeData = false;
 			let erroDeInput = false;
@@ -20,11 +20,12 @@ sap.ui.define([
 				erroDeInput = this._validarCampo(input) || erroDeInput, this);
 			erroDeData = this._validarData(inputData);
 
-			if(erroDeData || erroDeInput == true){
+			if (erroDeData || erroDeInput == true) {
 				erroDeValidacao = true;
 			}
 			return erroDeValidacao
 		},
+
 		_validarCampo: function (input) {
 			const mensagemValidacaoDeCampo = this._i18n.getText("mensagemValidacaoDeCampo")
 			let estado = "None";
@@ -36,7 +37,7 @@ sap.ui.define([
 				estado = "Error";
 				erroDeValidacao = true;
 			}
-			
+
 			input.setValueStateText(mensagemValidacaoDeCampo);
 			input.setValueState(estado);
 			return erroDeValidacao;
