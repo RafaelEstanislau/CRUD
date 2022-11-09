@@ -6,6 +6,7 @@ sap.ui.define([
     "use strict";
     const urlAPI = "https://localhost:7012/livros/"
     const caminhoDoRepositorio = "sap.ui.demo.walkthrough.controller.RepositorioDeLivros"
+    const tipoDeConteudo = "application/json; charset=utf-8"
     return ManagedObject.extend(caminhoDoRepositorio, {
         //ObterTodosOsLivros
         ObterTodosOsLivros: function () {
@@ -25,19 +26,18 @@ sap.ui.define([
         //SalvarLivro
         SalvarLivro: async function (livroASerSalvo) {
             const metodoSalvar = 'POST';
-            let livroModelo = livroASerSalvo;
             let livroRetorno;
             let erroDeRequisicao = false;
             await fetch(urlAPI, {
                     headers: {
-                        "Content-Type": "application/json; charset=utf-8"
+                        "Content-Type": tipoDeConteudo
                     },
                     method: metodoSalvar,
                     body: JSON.stringify({
-                        autor: livroModelo.autor,
-                        titulo: livroModelo.titulo,
-                        editora: livroModelo.editora,
-                        lancamento: livroModelo.lancamento,
+                        autor: livroASerSalvo.autor,
+                        titulo: livroASerSalvo.titulo,
+                        editora: livroASerSalvo.editora,
+                        lancamento: livroASerSalvo.lancamento,
                     })
                 })
                 .then(response => {
@@ -56,20 +56,19 @@ sap.ui.define([
 
         AtualizarLivro: async function (livroASerAtualizado) {
             const metodoEditar = 'PUT';
-            let livroModelo = livroASerAtualizado;
             let livroRetorno;
             let erroDeRequisicao = false;
-            await fetch(`${urlAPI}${livroModelo.id}`, {
+            await fetch(`${urlAPI}${livroASerAtualizado.id}`, {
                     headers: {
-                        "Content-Type": "application/json; charset=utf-8"
+                        "Content-Type": tipoDeConteudo
                     },
                     method: metodoEditar,
                     body: JSON.stringify({
-                        id: livroModelo.id,
-                        autor: livroModelo.autor,
-                        titulo: livroModelo.titulo,
-                        editora: livroModelo.editora,
-                        lancamento: livroModelo.lancamento,
+                        id: livroASerAtualizado.id,
+                        autor: livroASerAtualizado.autor,
+                        titulo: livroASerAtualizado.titulo,
+                        editora: livroASerAtualizado.editora,
+                        lancamento: livroASerAtualizado.lancamento,
                     })
                 })
                 .then(response => {

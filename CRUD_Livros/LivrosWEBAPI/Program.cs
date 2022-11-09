@@ -3,11 +3,30 @@ using CRUD_Livros.Infra.AcessoDeDados;
 using Infra.AcessoDeDados;
 using Microsoft.AspNetCore.StaticFiles;
 using Hellang.Middleware.ProblemDetails;
+using Microsoft.AspNetCore.Mvc;
+using Dominio.RegraDeNegocio;
 
 var builder = WebApplication.CreateBuilder(args);
 {
     builder.Services.AddProblemDetails();
     builder.Services.AddControllers();
+    builder.Services.ConfigureProblemDetailsModelState();
+
+    /*.ConfigureApiBehaviorOptions(x =>
+    {
+        x.InvalidModelStateResponseFactory = context =>
+        {
+            return new BadRequestObjectResult(new ValidationProblemDetails(context.ModelState)
+            {
+                Instance = context.HttpContext.Request.Path,
+                Status = StatusCodes.Status400BadRequest,
+                Type = $"https://httpstatus.com/400",
+                Title= "teste",
+                Detail = "teste detalhes"
+                
+            });
+        };
+    });*/
     builder.Services.AddCors();
     builder.Services.AddScoped<IRepositorio, RepositoryLINQTODB>();
 }

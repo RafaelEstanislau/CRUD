@@ -50,7 +50,7 @@ sap.ui.define([
 		_processarEvento: function (acao) {
 			try {
 				var promise = acao();
-				if (promise && typeof (promise["catch"]) == "function") {
+				if (promise && typeof (promise["catch"]) == "function"){
 					promise.catch(error => MessageBox.error(error.message));
 				}
 			} catch (error) {

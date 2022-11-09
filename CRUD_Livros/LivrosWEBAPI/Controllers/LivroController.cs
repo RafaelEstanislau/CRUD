@@ -9,8 +9,8 @@ using Microsoft.AspNetCore.Http;
 
 namespace LivrosAPI.Controllers
 {
-    [ApiController]
     [Route("livros")]
+    [ApiController]
     public class LivroController : ControllerBase
     {
         private readonly IRepositorio _livroServico;
@@ -40,9 +40,9 @@ namespace LivrosAPI.Controllers
             }
             catch (Exception ex)
             {
-
                 var detalheErroDeCriacao = "Não foi possível criar este livro";
-                return Problem(detalheErroDeCriacao, HttpContext.Request.Path, (int)HttpStatusCode.InternalServerError, ex.Message);
+                return BadRequest(ex.Message);
+                //return Problem(detalheErroDeCriacao, HttpContext.Request.Path, (int)HttpStatusCode.InternalServerError, ex.Message);
             }
         }
 
