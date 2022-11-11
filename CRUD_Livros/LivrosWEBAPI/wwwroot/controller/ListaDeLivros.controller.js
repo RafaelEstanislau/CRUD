@@ -30,7 +30,7 @@ sap.ui.define([
 		},
 		_coincidirRotaDaLista: function () {
 			this._processarEvento(() => {
-				this._carregarLivros();
+				return this._carregarLivros();
 			})
 		},
 

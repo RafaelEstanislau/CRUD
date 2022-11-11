@@ -4,10 +4,10 @@ using CRUD_Livros.Dominio.RegraDeNegocio;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 using FluentValidation;
-using FluentValidation.Results;
-using Microsoft.AspNetCore.Http;
+using Dominio.RegraDeNegocio;
 
-namespace LivrosAPI.Controllers
+
+namespace LivrosWEBAPI.Controllers
 {
     [Route("livros")]
     [ApiController]
@@ -22,35 +22,21 @@ namespace LivrosAPI.Controllers
         [HttpPost]
         public IActionResult CriarLivros([FromBody] Livro livroASerAdicionado)
         {
-            try
-            {
-                Validacao validator = new();
-                ValidationResult resultado = validator.Validate(livroASerAdicionado);
-                if (resultado.IsValid)
-                {
-                    var id = _livroServico.Salvar(livroASerAdicionado);
-                    livroASerAdicionado.id = id;
-                }
-                else
-                {
-                    throw new Exception(resultado.ToString());
-                }
 
-                return Created($"livro/{livroASerAdicionado.id}", livroASerAdicionado);
-            }
-            catch (Exception ex)
-            {
-                var detalheErroDeCriacao = "Não foi possível criar este livro";
-                return BadRequest(ex.Message);
-                //return Problem(detalheErroDeCriacao, HttpContext.Request.Path, (int)HttpStatusCode.InternalServerError, ex.Message);
-            }
+            Validacao validator = new();
+            validator.ValidateAndThrow(livroASerAdicionado);
+            var id = _livroServico.Salvar(livroASerAdicionado);
+            livroASerAdicionado.id = id;
+            return Created($"livro/{livroASerAdicionado.id}", livroASerAdicionado);
+
+
         }
 
         [HttpGet]
         public IActionResult BuscarTodos()
         {
             var livrosBuscados = _livroServico.BuscarTodos();
-            if(livrosBuscados == null)
+            if (livrosBuscados == null)
             {
                 return NotFound();
             }
@@ -71,8 +57,7 @@ namespace LivrosAPI.Controllers
         [HttpPut("{id}")]
         public IActionResult EditarLivro(Livro livroASerEditado)
         {
-            try
-            {
+            
                 Livro livroEditado = new();
                 if (livroASerEditado == null)
                 {
@@ -87,21 +72,20 @@ namespace LivrosAPI.Controllers
                 }
 
                 return Ok(livroEditado);
-            }
-            catch (Exception ex)
-            {
+            
+            
 
-                var detalheErroDeEdicao = $"Não foi possível editar o livro de id {livroASerEditado.id}";
-                return Problem(detalheErroDeEdicao, HttpContext.Request.Path, (int)HttpStatusCode.InternalServerError, ex.Message);
-            }
-          
+               // var detalheErroDeEdicao = $"Não foi possível editar o livro de id {livroASerEditado.id}";
+              
+                //return Problem(detalheErroDeEdicao, HttpContext.Request.Path, (int)HttpStatusCode.InternalServerError, ex.Message);
+            
+
         }
 
         [HttpDelete("{id}")]
         public IActionResult ExcluirLivros(int id)
         {
-            try
-            {
+           
                 var livroASerDeletado = _livroServico.BuscarPorID(id);
                 if (livroASerDeletado == null)
                 {
@@ -109,12 +93,11 @@ namespace LivrosAPI.Controllers
                 }
                 _livroServico.Excluir(id);
                 return Ok(id);
-            }
-            catch (Exception ex)
-            {
-                var detalheErroDeExclusao = $"Não foi possível excluir o livro de ID {id}";
-                return Problem(detalheErroDeExclusao, HttpContext.Request.Path, (int)HttpStatusCode.InternalServerError, ex.Message);
-            }
+            
+           
+                //var detalheErroDeExclusao = $"Não foi possível excluir o livro de ID {id}";
+                //return Problem(detalheErroDeExclusao, HttpContext.Request.Path, (int)HttpStatusCode.InternalServerError, ex.Message);
+            
         }
     }
 }

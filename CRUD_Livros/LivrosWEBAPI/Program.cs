@@ -4,7 +4,7 @@ using Infra.AcessoDeDados;
 using Microsoft.AspNetCore.StaticFiles;
 using Hellang.Middleware.ProblemDetails;
 using Microsoft.AspNetCore.Mvc;
-using Dominio.RegraDeNegocio;
+using LivrosWEBAPI.Extensoes;
 
 var builder = WebApplication.CreateBuilder(args);
 {
@@ -12,21 +12,6 @@ var builder = WebApplication.CreateBuilder(args);
     builder.Services.AddControllers();
     builder.Services.ConfigureProblemDetailsModelState();
 
-    /*.ConfigureApiBehaviorOptions(x =>
-    {
-        x.InvalidModelStateResponseFactory = context =>
-        {
-            return new BadRequestObjectResult(new ValidationProblemDetails(context.ModelState)
-            {
-                Instance = context.HttpContext.Request.Path,
-                Status = StatusCodes.Status400BadRequest,
-                Type = $"https://httpstatus.com/400",
-                Title= "teste",
-                Detail = "teste detalhes"
-                
-            });
-        };
-    });*/
     builder.Services.AddCors();
     builder.Services.AddScoped<IRepositorio, RepositoryLINQTODB>();
 }
@@ -40,6 +25,13 @@ var app = builder.Build();
     app.UseProblemDetails();
     app.UseAuthentication();
     app.UseDefaultFiles();
+    app.UseRouting();
+    app.UseProblemDetailsExceptionHandler();
+    app.UseEndpoints(endpoints =>
+    {
+        endpoints.MapControllers();
+    }
+    );
     app.UseStaticFiles();
     app.UseStaticFiles(new StaticFileOptions()
     {

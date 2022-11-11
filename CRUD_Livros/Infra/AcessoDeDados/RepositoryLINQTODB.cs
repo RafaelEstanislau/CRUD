@@ -4,6 +4,8 @@ using System.Configuration;
 using System.Data;
 using CRUD_Livros.Dominio.RegraDeNegocio;
 using CRUD_Livros.Infra.AcessoDeDados;
+using Dominio.RegraDeNegocio;
+using Dominio.Constantes;
 
 namespace Infra.AcessoDeDados
 {
@@ -20,14 +22,14 @@ namespace Infra.AcessoDeDados
             {
                 using var db = SqlServerTools.CreateDataConnection(BancoConexao());
                 {
-                   var idDoLivroAdicionado =  db.InsertWithInt32Identity(livro);
+                    var idDoLivroAdicionado = db.InsertWithInt32Identity(livro);
                     return idDoLivroAdicionado;
 
                 }
             }
             catch (Exception ex)
             {
-                throw new Exception("Erro ao adicionar livro", ex);
+                throw new Exception(MensagensDeTela.MENSAGEM_ERRO_ADICIONAR_LIVRO, ex);
             }
         }
         public Livro BuscarPorID(int id)
@@ -37,13 +39,13 @@ namespace Infra.AcessoDeDados
                 using var db = SqlServerTools.CreateDataConnection(BancoConexao());
                 {
                     var livroBuscado = db.GetTable<Livro>()
-                         .FirstOrDefault(l => l.id == id) ?? throw new Exception($"Livro com id { id } não encontrado");
-                      return livroBuscado;
+                         .FirstOrDefault(l => l.id == id) ?? throw new Exception(MensagensDeTela.FalharAoBuscarPorID(id));
+                    return livroBuscado;
                 }
             }
             catch (Exception ex)
             {
-                throw new Exception("Erro ao buscar por livros", ex);
+                throw new NotFoundException(MensagensDeTela.MENSAGEM_ERRO_BUSCAR_LIVRO, ex);
             }
         }
 
@@ -61,7 +63,7 @@ namespace Infra.AcessoDeDados
             }
             catch (Exception ex)
             {
-                throw new Exception("Erro ao carregar lista de livros", ex);
+                throw new NotFoundException(MensagensDeTela.MENSAGEM_ERRO_CARREGAR_LIVROS, ex);
             }
         }
 
@@ -77,7 +79,7 @@ namespace Infra.AcessoDeDados
             }
             catch (Exception ex)
             {
-                throw new Exception("Erro ao editar livro", ex);
+                throw new Exception(MensagensDeTela.MENSAGEM_ERRO_EDITAR_LIVRO, ex);
             }
         }
 
@@ -94,7 +96,7 @@ namespace Infra.AcessoDeDados
             }
             catch (Exception ex)
             {
-                throw new Exception("Erro ao excluir livro", ex);
+                throw new Exception(MensagensDeTela.MENSAGEM_ERRO_EXCLUIR_LIVRO, ex);
             }
         }
 

@@ -24,7 +24,7 @@ sap.ui.define([
             return livroBuscado;
         },
         //SalvarLivro
-        SalvarLivro: async function (livroASerSalvo) {
+        SalvarLivro: async function (corpo) {
             const metodoSalvar = 'POST';
             let livroRetorno;
             let erroDeRequisicao = false;
@@ -33,12 +33,7 @@ sap.ui.define([
                         "Content-Type": tipoDeConteudo
                     },
                     method: metodoSalvar,
-                    body: JSON.stringify({
-                        autor: livroASerSalvo.autor,
-                        titulo: livroASerSalvo.titulo,
-                        editora: livroASerSalvo.editora,
-                        lancamento: livroASerSalvo.lancamento,
-                    })
+                    body: corpo
                 })
                 .then(response => {
                     if (!response.ok) {
@@ -48,13 +43,13 @@ sap.ui.define([
                 })
                 .then(data => livroRetorno = data)
                 if(!!erroDeRequisicao){
-                    let erro = [livroRetorno.detail, livroRetorno.title]
+                    let erro = [livroRetorno.detail, livroRetorno.erros.join("\r\n")]
                     throw new Error((erro.join("\r\n")).toString())
                 } 
             return livroRetorno;
         },
 
-        AtualizarLivro: async function (livroASerAtualizado) {
+        AtualizarLivro: async function (livroASerAtualizado, corpo) {
             const metodoEditar = 'PUT';
             let livroRetorno;
             let erroDeRequisicao = false;
@@ -63,13 +58,7 @@ sap.ui.define([
                         "Content-Type": tipoDeConteudo
                     },
                     method: metodoEditar,
-                    body: JSON.stringify({
-                        id: livroASerAtualizado.id,
-                        autor: livroASerAtualizado.autor,
-                        titulo: livroASerAtualizado.titulo,
-                        editora: livroASerAtualizado.editora,
-                        lancamento: livroASerAtualizado.lancamento,
-                    })
+                    body: corpo
                 })
                 .then(response => {
                     if (!response.ok) {
@@ -79,7 +68,7 @@ sap.ui.define([
                 })
                 .then(data => livroRetorno = data)
                 if(!!erroDeRequisicao){
-                    let erro = [livroRetorno.detail, livroRetorno.title]
+                    let erro = [livroRetorno.detail, livroRetorno.erros.join("\r\n")] 
                     throw new Error((erro.join("\r\n")).toString())
                 } 
             return livroRetorno;

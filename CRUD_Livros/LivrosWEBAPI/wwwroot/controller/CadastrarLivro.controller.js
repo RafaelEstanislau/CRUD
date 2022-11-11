@@ -98,7 +98,6 @@ sap.ui.define([
 					telaCadastro.byId(inputEditora),
 					telaCadastro.byId(inputAutor),
 				];
-
 				let valorInputData = this.getView().byId(dateTimePicker);
 				let retornoValidacao = this._validacaoLivro.ValidarCadastro(inputs, valorInputData);
 
@@ -106,10 +105,19 @@ sap.ui.define([
 				// 	MessageBox.alert(mensagemFalhaDeValidacao);
 				// 	return
 				// }
+				
 				let livroASerSalvo = this.getView().getModel(nomeDoModelo).getData();
+				let corpo = JSON.stringify({
+					autor: livroASerSalvo.autor,
+					titulo: livroASerSalvo.titulo,
+					editora: livroASerSalvo.editora,
+					lancamento: livroASerSalvo.lancamento,
+					id: livroASerSalvo.id
+				})
+
 				return !livroASerSalvo.id ?
-					this._salvarLivro(livroASerSalvo) :
-					this._atualizarLivro(livroASerSalvo);
+					this._salvarLivro(corpo) :
+					this._atualizarLivro(livroASerSalvo, corpo);
 			})
 //Receber se o fetch obteve sucesso, caso não ocorra, mostrar mensagem de erro na tela
 		},
@@ -149,13 +157,13 @@ sap.ui.define([
 				rota.navTo(nomeDaRota);
 		},
 
-		_atualizarLivro: function (livroASerSalvo) {
-			return this._repositorioLivro.AtualizarLivro(livroASerSalvo)
+		_atualizarLivro: function (livroASerSalvo, corpo) {
+			return this._repositorioLivro.AtualizarLivro(livroASerSalvo, corpo)
 				.then(() => this._navegarParaRota(rotaDetalhes, livroASerSalvo.id));
 		},
 
-		_salvarLivro: function (livroASerSalvo) {
-			return this._repositorioLivro.SalvarLivro(livroASerSalvo)
+		_salvarLivro: function (corpo) {
+			return this._repositorioLivro.SalvarLivro(corpo)
 				.then(livroRetorno => {
 					this._navegarParaRota(rotaDetalhes, livroRetorno.id)
 				});
