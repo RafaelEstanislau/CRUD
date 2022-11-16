@@ -22,14 +22,11 @@ namespace LivrosWEBAPI.Controllers
         [HttpPost]
         public IActionResult CriarLivros([FromBody] Livro livroASerAdicionado)
         {
-
             Validacao validator = new();
             validator.ValidateAndThrow(livroASerAdicionado);
             var id = _livroServico.Salvar(livroASerAdicionado);
             livroASerAdicionado.id = id;
             return Created($"livro/{livroASerAdicionado.id}", livroASerAdicionado);
-
-
         }
 
         [HttpGet]
@@ -57,7 +54,6 @@ namespace LivrosWEBAPI.Controllers
         [HttpPut("{id}")]
         public IActionResult EditarLivro(Livro livroASerEditado)
         {
-            
                 Livro livroEditado = new();
                 if (livroASerEditado == null)
                 {
@@ -68,24 +64,13 @@ namespace LivrosWEBAPI.Controllers
                     Validacao validator = new();
                     validator.ValidateAndThrow(livroASerEditado);
                     livroEditado = _livroServico.Editar(livroASerEditado);
-
                 }
-
                 return Ok(livroEditado);
-            
-            
-
-               // var detalheErroDeEdicao = $"Não foi possível editar o livro de id {livroASerEditado.id}";
-              
-                //return Problem(detalheErroDeEdicao, HttpContext.Request.Path, (int)HttpStatusCode.InternalServerError, ex.Message);
-            
-
         }
 
         [HttpDelete("{id}")]
         public IActionResult ExcluirLivros(int id)
         {
-           
                 var livroASerDeletado = _livroServico.BuscarPorID(id);
                 if (livroASerDeletado == null)
                 {
@@ -93,11 +78,6 @@ namespace LivrosWEBAPI.Controllers
                 }
                 _livroServico.Excluir(id);
                 return Ok(id);
-            
-           
-                //var detalheErroDeExclusao = $"Não foi possível excluir o livro de ID {id}";
-                //return Problem(detalheErroDeExclusao, HttpContext.Request.Path, (int)HttpStatusCode.InternalServerError, ex.Message);
-            
         }
     }
 }

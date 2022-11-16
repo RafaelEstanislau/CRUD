@@ -9,18 +9,40 @@ sap.ui.define([
     const tipoDeConteudo = "application/json; charset=utf-8"
     return ManagedObject.extend(caminhoDoRepositorio, {
         //ObterTodosOsLivros
-        ObterTodosOsLivros: function () {
-
-            let livrosObtidos = fetch(urlAPI)
-                .then((response) => response.json())
-                .then(data => livrosObtidos = data);
+        ObterTodosOsLivros: async function () {
+            let livrosObtidos;
+            await fetch(urlAPI)
+                .then(response => {
+                    if (!response.ok) {
+                        const erro = response.status
+                        console.log("teste reposta de erro http")
+                        Promise.reject(erro)
+                    }
+                    return response.json()
+                })
+                .then(data => livrosObtidos = data)
+                .catch(err => {
+                    console.log("teste servidor desligado obter todos")
+                    throw new Error(err)
+                })
             return livrosObtidos;
         },
         //BuscarLivroPorId
-        BuscarLivroPorId: function (idLivroBuscado) {
-            let livroBuscado = fetch(`${urlAPI}${idLivroBuscado}`)
-                .then((response) => response.json())
+        BuscarLivroPorId: async function (idLivroBuscado) {
+            let livroBuscado;
+            await fetch(`${urlAPI}${idLivroBuscado}`)
+                .then((response) => {
+                    if (!response.ok) {
+                        const erro = response.status
+                        throw new Error(erro)
+                    }
+                    return response.json()
+                })
                 .then(data => livroBuscado = data)
+                .catch(err => {
+                    console.log("pilantra")
+                    throw new Error(err)
+                })
             return livroBuscado;
         },
         //SalvarLivro
@@ -42,10 +64,10 @@ sap.ui.define([
                     return response.json()
                 })
                 .then(data => livroRetorno = data)
-                if(!!erroDeRequisicao){
-                    let erro = [livroRetorno.detail, livroRetorno.erros.join("\r\n")]
-                    throw new Error((erro.join("\r\n")).toString())
-                } 
+            if (!!erroDeRequisicao) {
+                let erro = [livroRetorno.title, livroRetorno.detail, livroRetorno.erros.join("\r\n")]
+                throw new Error((erro.join("\r\n")).toString())
+            }
             return livroRetorno;
         },
 
@@ -67,10 +89,10 @@ sap.ui.define([
                     return response.json()
                 })
                 .then(data => livroRetorno = data)
-                if(!!erroDeRequisicao){
-                    let erro = [livroRetorno.detail, livroRetorno.erros.join("\r\n")] 
-                    throw new Error((erro.join("\r\n")).toString())
-                } 
+            if (!!erroDeRequisicao) {
+                let erro = [livroRetorno.detail, livroRetorno.erros.join("\r\n")]
+                throw new Error((erro.join("\r\n")).toString())
+            }
             return livroRetorno;
         },
 

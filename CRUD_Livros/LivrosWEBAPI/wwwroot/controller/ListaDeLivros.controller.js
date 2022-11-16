@@ -3,8 +3,14 @@ sap.ui.define([
 	"sap/ui/model/json/JSONModel",
 	"sap/ui/model/Filter",
 	"sap/ui/model/FilterOperator",
-	"sap/ui/demo/walkthrough/controller/RepositorioDeLivros"
-], function (Controller, JSONModel, Filter, FilterOperator, RepositorioDeLivros) {
+	"sap/ui/demo/walkthrough/controller/RepositorioDeLivros",
+	"sap/m/MessageBox"
+], function (Controller,
+	JSONModel,
+	Filter,
+	FilterOperator,
+	RepositorioDeLivros,
+	MessageBox) {
 	"use strict";
 	const caminhoDaLista = "sap.ui.demo.walkthrough.controller.ListaDeLivros"
 	return Controller.extend(caminhoDaLista, {
